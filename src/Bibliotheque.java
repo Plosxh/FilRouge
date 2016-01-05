@@ -150,6 +150,17 @@ public class Bibliotheque implements Serializable
 	 */
         public void consulterOuvrage()
         {
+         
+            Integer numOuvrage = EntreesSorties.lireEntier("Entrez le numero de l'ouvrage : ");
+		
+		Ouvrage O = unOuvrage(numOuvrage);
+		
+		if (O!=null){
+			O.infoOuvrage();
+		}
+		else {
+			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
+		}
             
         }
         
@@ -190,6 +201,12 @@ public class Bibliotheque implements Serializable
 	private Lecteur unLecteur(Integer numLecteur)
 	{
 		return _dicoLecteur.get(numLecteur);
+	}
+        
+        
+        private Ouvrage unOuvrage(Integer numOuvrage)
+	{
+		return _dicoLecteur.get(numOuvrage);
 	}
 	
 	/*
