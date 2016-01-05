@@ -29,19 +29,19 @@ public void menuPrincipal() {
 					break;
 				}
                                 
-                        switch (menu){
-                            case 2 : {
+                        
+                                case 2 : {
                                         this.menuOuvrage();
                                         break;
-                            }
-                        }
+                                         }
+                        
                                 
-                        switch (menu){
-                            case 3 : {
+                        
+                                 case 3 : {
                                         this.menuExemplaire();
                                         break;
-                            }
-                        }
+                            
+                                        }
 				
 				default : {
 					break;
@@ -121,7 +121,7 @@ public void menuExemplaire() {
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
-			
+			/**
 			switch (menuExemp){
 				case 1 : {
 					_bibliotheque.nouvelExemplaire();
@@ -135,6 +135,7 @@ public void menuExemplaire() {
 					break;
 				}
 			}
+                        * **/
 	} while (menuExemp != 0);	
 }
 	
