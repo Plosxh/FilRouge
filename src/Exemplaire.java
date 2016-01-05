@@ -50,9 +50,19 @@ public class Exemplaire implements Serializable
 			// Methodes
 		// -----------------------------------------------
 		
-		public void exemplaireInfos()
+		public void infosExemplaire()
 		{
 			
+		}
+                
+                /*
+		 * La m�thode afficherExemplaire affiche l'ensemble des informations relatives à l'exemplaire.
+		 */
+		public void afficherExemplaire()
+		{
+			System.out.println("Numero exemplaire : " + this.getNumExemplaire());
+			System.out.println("Date de réception : " + this.getDateReception());
+			EntreesSorties.afficherMessage("");
 		}
             
                 
