@@ -110,7 +110,8 @@ public class Ouvrage
 		 */
 		public void infosOuvrage()
 		{
-                	System.out.println("Isbn    : " + this.getIsbn());
+                	
+                        System.out.println("Isbn    : " + this.getIsbn());
 			System.out.println("Titre   : " + this.getTitre());
 			System.out.println("Editeur : " + this.getNomEditeur());
 			System.out.println("Date de parution : " + this.getDateParution());

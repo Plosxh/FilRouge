@@ -116,6 +116,9 @@ public class Bibliotheque implements Serializable
 			EntreesSorties.afficherMessage("Aucun lecteur n'est associe a ce numero.");
 		}
 	}
+        
+        
+        
 	
 // -----------------------------------------------
 	// Private
