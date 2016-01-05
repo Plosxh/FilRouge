@@ -16,6 +16,7 @@ public class Bibliotheque implements Serializable
 	// -----------------------------------------------
 	
 		private HashMap<Integer, Lecteur> _dicoLecteur;
+                private HashMap<String, Ouvrage> _dicoOuvrage;
                 private Integer _numLast=(1);
                 
 		
@@ -188,7 +189,9 @@ public class Bibliotheque implements Serializable
 		_dicoLecteur = dicoLecteur;
 	}
 
-	
+	private void setOuvrages(HashMap<String, Ouvrage> dicoOuvrage) {
+		_dicoOuvrage = dicoOuvrage;
+	}
 	
 	// -----------------------------------------------
 		// Mï¿½thodes
@@ -209,6 +212,16 @@ public class Bibliotheque implements Serializable
 		return _dicoLecteur.get(numOuvrage);
 	}
 	
+        /*
+	 * La méthode unOuvrage permet de rechercher dans la base de donnée de bibliotheque un objet 
+	 * ouvrage identifié par son ISBN, et de renvoyer l'objet. (ou la donnée null s'il n'est pas trouvé)
+	 */
+	private Lecteur unOuvrage(String isbn)
+	{
+		return _dicoOuvrage.get(isbn);
+	}
+	
+        
 	/*
 	 * La méthode lierLecteur permet d'ajouter un lecteur a la base de donnée de bibliotheque.
 	 */
