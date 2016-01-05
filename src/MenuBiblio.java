@@ -114,8 +114,8 @@ public void menuExemplaire() {
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
-		EntreesSorties.afficherMessage("| Nouveau Exemplaire : 1                                    |");
-		EntreesSorties.afficherMessage("| Consulter Exemplaire : 2                                  |");
+		EntreesSorties.afficherMessage("| Nouveau Exemplaire : 1                                 |");
+		EntreesSorties.afficherMessage("| Consulter Exemplaire : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
