@@ -30,8 +30,7 @@ import java.util.HashMap;
 
 public class Ouvrage 
 {
-    
-    
+    public enum PublicCible {enfant,adolescent,adulte};
     
 	/*private static final long serialVersionUID = 422L;*/
 	
@@ -44,7 +43,7 @@ public class Ouvrage
                 private String _nomEditeur;
                 private GregorianCalendar _dateParution;
                 private String _nomAuteur;
-                /*private chose _public;   faire un vecteur/dictionnaire  */
+                private PublicCible _public;
                 private Integer _nbExemplaires;
 	
 	
@@ -53,16 +52,14 @@ public class Ouvrage
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur/*, String public*/, Integer nbExemplaires)
+		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage, Integer nbExemplaires)
 		{
-                        String vectPublic [] = {"enfant","adolescent","adulte" };
-                    
-			this.setIsbn(isbn);
+                     	this.setIsbn(isbn);
 			this.setTitre(titre);
 			this.setNomEditeur(nomEditeur);
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
-			/*this.setPublic(public);*/
+			this.setPublic(publicOuvrage);
                         this.setNbExemplaires(nbExemplaires);
 		}
 		
@@ -94,7 +91,7 @@ public class Ouvrage
 			return _nomAuteur;
 		}
 
-		public vectPublic getPublic() {
+		public PublicCible getPublic() {
 			return _public;
 		}
                 
@@ -118,7 +115,7 @@ public class Ouvrage
 			System.out.println("Editeur : " + this.getNomEditeur());
 			System.out.println("Date de parution : " + this.getDateParution());
 			System.out.println("Auteur  : " + this.getNomAuteur());
-                        /*System.out.println("Public  : " + this.getPublic());*/
+                        System.out.println("Public  : " + this.getPublic());
                         System.out.println("Nombre d'exemplaires  : " + this.getNbExemplaires());
 			EntreesSorties.afficherMessage("");
 		}
@@ -156,9 +153,9 @@ public class Ouvrage
 			this._nomAuteur = nomAuteur;
 		}
 
-		/*private void setPublic(String public) {
-			this._public = public;
-		}*/
+		private void setPublic(PublicCible publicOuvrage) {
+			this._public = publicOuvrage;
+		}
                 
                 private void setNbExemplaires(Integer nbExemplaires) {
                     this._nbExemplaires = nbExemplaires;
