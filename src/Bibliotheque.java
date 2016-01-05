@@ -17,7 +17,7 @@ public class Bibliotheque implements Serializable
 	
 		private HashMap<Integer, Lecteur> _dicoLecteur;
                 private Integer _numLast=(1);
-                private Integer _numLecteur;
+                
 		
 		/*
 		 * Le dictionnaire de lecteur permet à bibliotheque de 
@@ -175,19 +175,5 @@ public class Bibliotheque implements Serializable
         this._numLast = _numLast;
     }
 
-    /**
-     * @return the _numLecteur
-     */
-    public Integer getNumLecteur() {
-        return _numLecteur;
-    }
-
-    /**
-     * @param _numLecteur the _numLecteur to set4 
-     */
-    public void setNumLecteur(Integer _numLecteur) {
-        this._numLecteur = _numLecteur;
-    }
 
     }
-}
