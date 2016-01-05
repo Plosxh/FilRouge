@@ -23,7 +23,7 @@ public class Exemplaire implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public creerExemplaire(Integer numExemplaire, GregorianCalendar dateReception)
+		public Exemplaire(Integer numExemplaire, GregorianCalendar dateReception)
 		{
 			this.setNumExemplaire(numExemplaire);
 			this.setDateReception(dateReception);
@@ -37,11 +37,11 @@ public class Exemplaire implements Serializable
 			//Getters
 		// -----------------------------------------------
 	
-		public String getNumExemplaire() {
+		public Integer getNumExemplaire() {
 			return _numExemplaire;
 		}
                 
-                public String getDateReception() {
+                public GregorianCalendar getDateReception() {
 			return _dateReception;
 		}
 
