@@ -111,31 +111,31 @@ public void menuOuvrage() {
 	} while (menuOuvr != 0);	
 }
 
-public void menuLecteur() {
-	Integer menuLect;
+public void menuExemplaire() {
+	Integer menuExemp;
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
-		EntreesSorties.afficherMessage("| Nouveau Lecteur : 1                                    |");
-		EntreesSorties.afficherMessage("| Consulter Lecteur : 2                                  |");
+		EntreesSorties.afficherMessage("| Nouveau Exemplaire : 1                                 |");
+		EntreesSorties.afficherMessage("| Consulter Exemplaire : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
-		menuLect = EntreesSorties.lireEntier();
+		menuExemp = EntreesSorties.lireEntier();
 			
-			switch (menuLect){
+			switch (menuExemp){
 				case 1 : {
-					_bibliotheque.nouveauLecteur();
+					_bibliotheque.nouvelExemplaire();
 					break;
 				}
 				case 2 : {
-					_bibliotheque.consulterLecteur();
+					_bibliotheque.consulterExemplaire();
 					break;
 				}
 				default : {
 					break;
 				}
 			}
-	} while (menuLect != 0);	
+	} while (menuExemp != 0);	
 }
 	
 }
