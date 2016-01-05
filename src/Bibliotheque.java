@@ -183,7 +183,7 @@ public class Bibliotheque implements Serializable
     }
 
     /**
-     * @param _numLecteur the _numLecteur to set
+     * @param _numLecteur the _numLecteur to set4 
      */
     public void setNumLecteur(Integer _numLecteur) {
         this._numLecteur = _numLecteur;
