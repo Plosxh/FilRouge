@@ -96,6 +96,14 @@ public class Bibliotheque implements Serializable
 		
 	}
 	
+        /*
+	 * La méthode nouvelOuvrage permet de créé un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
+	 * la date de parution, le(s) nom(s) de l'auteur (ou des auteurs), son ISBN et le public visé
+	 */
+        
+        
+        
+        
 	
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
