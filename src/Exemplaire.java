@@ -72,4 +72,18 @@ public class Exemplaire implements Serializable
 			this._dateReception = dateReception;
 		}
 		
+                                
+                // -----------------------------------------------
+			// Methodes
+		// -----------------------------------------------
+		
+		private void genererNumExemplaire()
+		{
+			
+		}
+                                
+                private void lierOuvrage()
+		{
+			
+		}
 }
