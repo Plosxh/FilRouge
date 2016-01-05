@@ -97,13 +97,25 @@ public class Bibliotheque implements Serializable
 	}
 	
         /*
-	 * La méthode nouvelOuvrage permet de créé un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
+	 * La méthode nouvelOuvrage permet de créer un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
 	 * la date de parution, le(s) nom(s) de l'auteur (ou des auteurs), son ISBN et le public visé
 	 */
+        public void nouvelOuvrage()
+        {
+            
+        }
         
-        
-        
-        
+        /*
+	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
+	 * date de parution.
+         * Si l'ouvrage n'existe pas, on le crée en demandant les informations correspondantes
+         * A la création, on génère un numéro d'exemplaire (en fonction du nombre d'exemplaires pré-éxistant)
+	 */
+        public void nouvelExemplaire()
+        {
+            
+        }
+                
 	
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
@@ -125,6 +137,31 @@ public class Bibliotheque implements Serializable
 		}
 	}
 	
+               
+	
+	/*
+	 * La méthode consulterOuvrage permet d'afficher l'ensemble des informations relatives à
+	 * un ouvrage, par la saisie de son ISBN.
+         * Si le numéro ISBN n'est pas dans la base de données de bibliotheque un message d'erreur est
+         * renvoyé a l'utilisateur.
+	 */
+        public void consulterOuvrage()
+        {
+            
+        }
+        
+        /*
+	 * La méthode consulterExemplaireOuvrage permet d'afficher l'ensemble des informations relatives à
+	 * un ouvrage, ainsi que tous ses exempalires existants (avec leur numéro d'exemplaire) à partir de 
+         * la saisie de son ISBN.
+         * Si le numéro ISBN n'est pas dans la base de données de bibliotheque un message d'erreur est
+         * renvoyé a l'utilisateur.
+	 */
+        public void consulterExemplaireOuvrage()
+        {
+            
+        }
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
