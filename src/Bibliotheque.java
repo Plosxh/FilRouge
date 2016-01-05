@@ -152,9 +152,9 @@ public class Bibliotheque implements Serializable
         public void consulterOuvrage()
         {
          
-            Integer numOuvrage = EntreesSorties.lireEntier("Entrez le numero de l'ouvrage : ");
+            String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
 		
-		Ouvrage O = unOuvrage(numOuvrage);
+		Ouvrage O = unOuvrage(isbn);
 		
 		if (O!=null){
 			O.infoOuvrage();
@@ -207,16 +207,12 @@ public class Bibliotheque implements Serializable
 	}
         
         
-        private Ouvrage unOuvrage(Integer numOuvrage)
-	{
-		return _dicoLecteur.get(numOuvrage);
-	}
 	
         /*
 	 * La méthode unOuvrage permet de rechercher dans la base de donnée de bibliotheque un objet 
 	 * ouvrage identifié par son ISBN, et de renvoyer l'objet. (ou la donnée null s'il n'est pas trouvé)
 	 */
-	private Lecteur unOuvrage(String isbn)
+	private Ouvrage unOuvrage(String isbn)
 	{
 		return _dicoOuvrage.get(isbn);
 	}
