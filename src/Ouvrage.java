@@ -130,6 +130,8 @@ public class Ouvrage
                    Integer numExemplaire = getNumLast();
                    setNumLast(numExemplaire+1);
                    
+                   
+                   Exemplaire e;
                    boolean test;
                    boolean empruntable;
                    boolean disponible=true;
@@ -165,8 +167,12 @@ public class Ouvrage
 		 */
 		public void afficherInfosExemplaire()
 		{
-                    e = mesExemplaires(); 
-                                      
+          
+                   HashSet<Exemplaire> ensE=mesExemplaires();
+                   for(Exemplaire e : ensE)
+                   { 
+                        e.infosExemplaire();
+                   }                  
 		}
 		
 		/*
@@ -174,8 +180,8 @@ public class Ouvrage
 		 */
 		public void infosReduitOuvrage()
 		{
-                (juste faire un print de isbn titre)	
-                        
+                    System.out.println("Isbn    : " + this.getIsbn());
+                    System.out.println("Titre   : " + this.getTitre());         
 		}
 		
 	

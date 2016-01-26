@@ -238,15 +238,17 @@ public class Bibliotheque implements Serializable
         {         
             String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
 		
-		Ouvrage O = unOuvrage(isbn);
+		Ouvrage o = unOuvrage(isbn);
 		
-		if (O!=null){
-                    Ouvrage.InfosReduitOuvrage();
+		if (o!=null){
+                    o.infosReduitOuvrage();
+                    o.afficherInfosExemplaire();
                 }
                 else {
 			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
 		}
             
+               
         }
         
 // -----------------------------------------------
