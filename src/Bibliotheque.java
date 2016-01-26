@@ -230,7 +230,17 @@ public class Bibliotheque implements Serializable
          * renvoyé a l'utilisateur.
 	 */
         public void consulterExemplaireOuvrage()
-        {
+        {         
+            String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
+		
+		Ouvrage O = unOuvrage(isbn);
+		
+		if (O!=null){
+                    Ouvrage.InfosReduitOuvrage();
+                }
+                else {
+			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
+		}
             
         }
         
