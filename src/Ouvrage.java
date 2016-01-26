@@ -118,8 +118,23 @@ public class Ouvrage
 			EntreesSorties.afficherMessage("");
 		}
 		
+                /*
+		 * La m�thode afficherInfosExemplaire affiche l'ensemble des informations relatives aux exemplaires d'un ouvrage.
+		 */
+		public void afficherInfosExemplaire()
+		{
+                	
+                        
+		}
 		
-		
+		/*
+		 * La m�thode infosReduitOuvrage affiche quelques informations sur un ouvrage.
+		 */
+		public void infosReduitOuvrage()
+		{
+                	
+                        
+		}
 		
 	
 	
