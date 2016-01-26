@@ -21,6 +21,7 @@ public class Lecteur implements Serializable
 		private GregorianCalendar _dateNaissance;
 		private String _adresseLecteur;
 		private String _telephone;
+                private Integer _nbEmprunt;
 	
 	
 	
@@ -28,7 +29,7 @@ public class Lecteur implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaiss, String adresse, String tel)
+		public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaiss, String adresse, String tel, Integer nbEmprunt)
 		{
 			this.setNom(nom);
 			this.setPrenom(prenom);
@@ -36,6 +37,7 @@ public class Lecteur implements Serializable
 			this.setDateNaiss(dateNaiss);
 			this.setAdresse(adresse);
 			this.setTel(tel);
+                        this.setNbEmprunt(nbEmprunt);
 		}
 		
 // -----------------------------------------------
@@ -67,8 +69,14 @@ public class Lecteur implements Serializable
 		}
 
 		public String getTel() {
-			return _telephone;
-		}
+			return _telephone;                      
+        	}
+                
+                public Integer getNbEmprunt() {
+			return _nbEmprunt;                      
+        	}
+                
+                
 		// -----------------------------------------------
 			// Methodes
 		// -----------------------------------------------
@@ -83,6 +91,7 @@ public class Lecteur implements Serializable
 			System.out.println("Age : " + this.calculAge() + " ans");
 			System.out.println("Adresse : " + this.getAdresse());
 			System.out.println("Telephone : " + this.getTel());
+                        System.out.println("Nombre d'exemplaire(s) emprunté(s) : " + this.getNbEmprunt());
 			EntreesSorties.afficherMessage("");
 		}
 		
@@ -139,5 +148,7 @@ public class Lecteur implements Serializable
 			this._telephone = tel;
 		}
 		
-		
+		private void setNbEmprunt(Integer nbEmprunt) {
+			this._nbEmprunt = nbEmprunt;
+		}
 }
