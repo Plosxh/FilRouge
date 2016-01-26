@@ -43,14 +43,14 @@ public class Ouvrage
                 private GregorianCalendar _dateParution;
                 private String _nomAuteur;
                 private PublicCible _public;
-                private Integer _nbExemplaires;
-	
+                private HashSet<Exemplaire> _exemplaire;
+                private Integer _numLast=(1);
 	
 	// -----------------------------------------------
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage, String nbExemplaires)
+		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage)
 		{
                      	this.setIsbn(isbn);
 			this.setTitre(titre);
@@ -58,6 +58,7 @@ public class Ouvrage
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
+                        _exemplaire = new HashSet<>();
 		}
 		
 // -----------------------------------------------
@@ -119,7 +120,8 @@ public class Ouvrage
                 
 		public void ajouterExemplaire()
 		{
-                
+                    Integer numExemplaire = getNumLast();
+                    setNumLast(numExemplaire+1);
                 }
 		
                 /*
@@ -127,8 +129,8 @@ public class Ouvrage
 		 */
 		public void afficherInfosExemplaire()
 		{
-                	
-                        
+                    e = mesExemplaires(); 
+                                      
 		}
 		
 		/*
@@ -136,7 +138,7 @@ public class Ouvrage
 		 */
 		public void infosReduitOuvrage()
 		{
-                	
+                (juste faire un print de isbn titre)	
                         
 		}
 		
@@ -174,6 +176,24 @@ public class Ouvrage
 			this._public = publicOuvrage;
 		}
                 
+                // -----------------------------------------------
+			// Methodes
+		// -----------------------------------------------
+		
+		/*
+		 * La m�thode mesExemplaires demande d'accèder à tous les exemplaires de cet ouvrage.
+		 */
+		public HashSet<Exemplaire> mesExemplaires()
+		{
+			return _exemplaire;
+		}       
+
+    /**
+     * @param _exemplaire the _exemplaire to set
+     */
+    public void setExemplaire(HashSet<Exemplaire> _exemplaire) {
+        this._exemplaire = _exemplaire;
+    }
                 
-                		
+                
 }
