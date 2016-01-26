@@ -106,12 +106,19 @@ public class Bibliotheque implements Serializable
         {
                 Integer NB = 1;
                 String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
-		Ouvrage O = unOuvrage(isbn);
-                String numExmplaire = isbn+NB;
-                PublicCible p;
-                boolean t;
-		
-		if (O==null){
+		Ouvrage o = unOuvrage(isbn);
+                if (o==null){
+                this.creationOuvrage(isbn);
+                }
+                else{
+                    EntreesSorties.afficherMessage("Cet ouvrage existe deja.");
+		}
+        }
+        
+	private Ouvrage creationOuvrage(String isbn)
+        {	
+                    PublicCible p=PublicCible.ADULTE;
+                    boolean t;
                     String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
                     String nomEditeur = EntreesSorties.lireChaine("Entrez le nom d'editeur : ");
                     String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
@@ -142,13 +149,14 @@ public class Bibliotheque implements Serializable
                             }
                     } while (t);
                     
-                    O = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p, numExmplaire);
-			lierOuvrage(O, isbn);  
-		}  
-             else{
-                    EntreesSorties.afficherMessage("Cet ouvrage existe deja.");
-		}
-        }
+                    Ouvrage o = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p);
+                    lierOuvrage(o, isbn);
+                        
+                   return o; 
+		} 
+        
+             
+        
         
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
@@ -164,16 +172,12 @@ public class Bibliotheque implements Serializable
             if (o == null)
             {
              
-                this.nouvelOuvrage();
-             
+               o =this.creationOuvrage(isbn);
+                
             }
-              
-
-            else
-            {
                         
-            Ouvrage.ajouterExemplaire();
-            }
+            o.ajouterExemplaire();
+            
         }
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
@@ -211,10 +215,10 @@ public class Bibliotheque implements Serializable
          
             String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
 		
-		Ouvrage O = unOuvrage(isbn);
+		Ouvrage o = unOuvrage(isbn);
 		
-		if (O!=null){
-			O.infoOuvrage();
+		if (o!=null){
+			o.infosOuvrage();
 		}
 		else {
 			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
@@ -284,9 +288,9 @@ public class Bibliotheque implements Serializable
 	}
 	
         
-        	private void lierOuvrage(Ouvrage O, String isbn)
+        private void lierOuvrage(Ouvrage o, String isbn)
 	{
-		_dicoOuvrage.put(isbn, O);
+		_dicoOuvrage.put(isbn, o);
 	}
 	
 	/*
