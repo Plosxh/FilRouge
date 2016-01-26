@@ -104,19 +104,51 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelOuvrage()
         {
-            Ouvrage o = unOuvrage(isbn);
-            
-            if (o == null)
-            {
-                String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
-                String titre = EntreesSorties.lireChaine("Entrez son titre :");
-		String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de son éditeur :");
-		GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
-                String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de son auteur :");
-                String public = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
-                
-            }
-            }
+                Integer NB = 1;
+                String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
+		Ouvrage O = unOuvrage(isbn);
+                String numExmplaire = isbn+NB;
+                PublicCible p;
+                boolean t;
+		
+		if (O==null){
+                    String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
+                    String nomEditeur = EntreesSorties.lireChaine("Entrez le nom d'editeur : ");
+                    String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
+                    GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
+                    Integer publique = EntreesSorties.lireEntier("1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
+                    
+                    do{
+                        t = false;
+                        
+                        switch (publique){
+                                    case 1 : {
+                                            p=PublicCible.ENFANT;
+                                            break;
+                                    }
+                                    case 2 : {
+                                             p=PublicCible.ADOLESCENT;
+                                            break;
+                                    }
+                                    case 3 : {
+                                             p=PublicCible.ADULTE;
+                                            break;
+                                    }
+                                    default : {
+                                             EntreesSorties.afficherMessage("Inserez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
+                                             t=true;
+                                            break;
+                                    }
+                            }
+                    } while (t);
+                    
+                    O = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p, numExmplaire);
+			lierOuvrage(O, isbn);  
+		}  
+             else{
+                    EntreesSorties.afficherMessage("Cet ouvrage existe deja.");
+		}
+        }
         
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
@@ -126,16 +158,17 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelExemplaire()
         {
+            String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
             Ouvrage o = unOuvrage(isbn);
 
             if (o == null)
             {
-             String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
+             
              String titre = EntreesSorties.lireChaine("Entrez son titre :");
              String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de son éditeur :");
              GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
              String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de son auteur :");
-             String public = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
+             String publique = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
             }
               
 
@@ -252,6 +285,11 @@ public class Bibliotheque implements Serializable
 		_dicoLecteur.put(numLecteur, L);
 	}
 	
+        
+        	private void lierOuvrage(Ouvrage O, String isbn)
+	{
+		_dicoOuvrage.put(isbn, O);
+	}
 	
 	/*
 	 * La méthode lesLecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir

@@ -30,7 +30,6 @@ import java.util.HashMap;
 
 public class Ouvrage 
 {
-    public enum PublicCible {enfant,adolescent,adulte};
     
 	/*private static final long serialVersionUID = 422L;*/
 	
@@ -51,7 +50,7 @@ public class Ouvrage
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage, Integer nbExemplaires)
+		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage, String nbExemplaires)
 		{
                      	this.setIsbn(isbn);
 			this.setTitre(titre);
