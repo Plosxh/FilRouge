@@ -67,6 +67,7 @@ public class Bibliotheque implements Serializable
 			String nom = EntreesSorties.lireChaine("Entrez le nom :");
 			String prenom = EntreesSorties.lireChaine("Entrez le prenom :");
 			Integer age;
+                        Integer nbEmprunt=0;
 			GregorianCalendar dateNaiss, dateNaissComp;
 			GregorianCalendar dateActuelle = new GregorianCalendar();
 			do {
@@ -89,7 +90,7 @@ public class Bibliotheque implements Serializable
 			String tel = EntreesSorties.lireChaine("Entrez le numero de telephone :");
 			EntreesSorties.afficherMessage("Fin de saisie");
 			
-			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel);
+			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel, nbEmprunt);
 			lierLecteur(L, numLecteur);
 		}
 		else {
@@ -234,7 +235,17 @@ public class Bibliotheque implements Serializable
          * renvoyé a l'utilisateur.
 	 */
         public void consulterExemplaireOuvrage()
-        {
+        {         
+            String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
+		
+		Ouvrage O = unOuvrage(isbn);
+		
+		if (O!=null){
+                    Ouvrage.InfosReduitOuvrage();
+                }
+                else {
+			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
+		}
             
         }
         
