@@ -92,6 +92,12 @@ public class Ouvrage
 		public PublicCible getPublic() {
 			return _public;
 		}
+                    /**
+                * @return the _numLast
+                */
+               public Integer getNumLast() {
+                   return _numLast;
+               }
                
                 
                 
@@ -120,8 +126,38 @@ public class Ouvrage
                 
 		public void ajouterExemplaire()
 		{
-                    Integer numExemplaire = getNumLast();
-                    setNumLast(numExemplaire+1);
+                
+                   Integer numExemplaire = getNumLast();
+                   setNumLast(numExemplaire+1);
+                   
+                   boolean test;
+                   boolean empruntable;
+                   boolean disponible=true;
+                   Integer empr = EntreesSorties.lireEntier("Entrez l'empruntabilité : 1 pour Oui, 2 pour Non : ");
+                   GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
+                   
+                   do{
+                        test = false;
+                        
+                        switch (empr){
+                                    case 1 : {
+                                            empruntable=true;
+                                            break;
+                                    }
+                                    case 2 : {
+                                             empruntable=false;
+                                            break;
+                                    }
+                                    
+                                    default : {
+                                             EntreesSorties.afficherMessage("Inserez : 1 pour Oui, 2 pour Non.");
+                                             test=true;
+                                            break;
+                                    }
+                            }
+                    } while (test);
+                   
+                  e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible);
                 }
 		
                 /*
@@ -175,6 +211,12 @@ public class Ouvrage
 		private void setPublic(PublicCible publicOuvrage) {
 			this._public = publicOuvrage;
 		}
+                /**
+                 * @param _numLast the _numLast to set
+                 */
+                public void setNumLast(Integer _numLast) {
+                    this._numLast = _numLast;
+                }
                 
                 // -----------------------------------------------
 			// Methodes

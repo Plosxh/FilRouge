@@ -14,7 +14,7 @@ public class Exemplaire implements Serializable
 		//Attributs
 	// -----------------------------------------------
 	
-		private String _numExemplaire;
+		private Integer _numExemplaire;
 		private GregorianCalendar _dateReception;
                 private Boolean _empruntable;
                 private Boolean _disponibilite;
@@ -25,7 +25,7 @@ public class Exemplaire implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Exemplaire(String numExemplaire, GregorianCalendar dateReception, Boolean empruntable, Boolean disponibilite)
+		public Exemplaire(Integer numExemplaire, GregorianCalendar dateReception, Boolean empruntable, Boolean disponibilite)
 		{
 			this.setNumExemplaire(numExemplaire);
 			this.setDateReception(dateReception);
@@ -41,7 +41,7 @@ public class Exemplaire implements Serializable
 			//Getters
 		// -----------------------------------------------
 	
-		public String getNumExemplaire() {
+		public Integer getNumExemplaire() {
 			return _numExemplaire;
 		}
                 
@@ -80,7 +80,7 @@ public class Exemplaire implements Serializable
 			//Setters
 		// -----------------------------------------------
 
-		private void setNumExemplaire(String numExemplaire) {
+		private void setNumExemplaire(Integer numExemplaire) {
 			this._numExemplaire = numExemplaire;
 		}
 		
