@@ -32,6 +32,7 @@ public class Bibliotheque implements Serializable
 
 		public Bibliotheque() {
 			this.setLecteurs(new HashMap<Integer, Lecteur>());
+                        this.setOuvrages(new HashMap<String, Ouvrage>());
 		
 		}
 	
@@ -103,8 +104,19 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelOuvrage()
         {
+            Ouvrage o = unOuvrage(isbn);
             
-        }
+            if (o == null)
+            {
+                String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
+                String titre = EntreesSorties.lireChaine("Entrez son titre :");
+		String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de son éditeur :");
+		GregorianCalendar dateparution = EntreesSorties.lireDate("Entrez la date de parution :");
+                String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de son auteur :");
+                String public = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
+                
+            }
+            }
         
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
