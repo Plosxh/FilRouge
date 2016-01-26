@@ -43,7 +43,7 @@ public class Ouvrage
                 private GregorianCalendar _dateParution;
                 private String _nomAuteur;
                 private PublicCible _public;
-	
+                private Integer _nbExemplaires;
 	
 	
 	// -----------------------------------------------
@@ -122,6 +122,23 @@ public class Ouvrage
                 
                 }
 		
+                /*
+		 * La m�thode afficherInfosExemplaire affiche l'ensemble des informations relatives aux exemplaires d'un ouvrage.
+		 */
+		public void afficherInfosExemplaire()
+		{
+                	
+                        
+		}
+		
+		/*
+		 * La m�thode infosReduitOuvrage affiche quelques informations sur un ouvrage.
+		 */
+		public void infosReduitOuvrage()
+		{
+                	
+                        
+		}
 		
 	
 	

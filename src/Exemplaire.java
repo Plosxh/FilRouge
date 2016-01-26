@@ -17,6 +17,7 @@ public class Exemplaire implements Serializable
 		private String _numExemplaire;
 		private GregorianCalendar _dateReception;
                 private Boolean _empruntable;
+                private Boolean _disponibilite;
 	
 	
 	
@@ -24,11 +25,12 @@ public class Exemplaire implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Exemplaire(String numExemplaire, GregorianCalendar dateReception, Boolean empruntable)
+		public Exemplaire(String numExemplaire, GregorianCalendar dateReception, Boolean empruntable, Boolean disponibilite)
 		{
 			this.setNumExemplaire(numExemplaire);
 			this.setDateReception(dateReception);
                         this.setEmpruntable(empruntable);
+                        this.setDisponibilite(disponibilite);
 		}
 		
 // -----------------------------------------------
@@ -50,6 +52,10 @@ public class Exemplaire implements Serializable
                 public Boolean getEmpruntable() {
 			return _empruntable;
 		}
+                
+                public Boolean getDisponibilite() {
+                        return _disponibilite;
+                }
 
                 
 		// -----------------------------------------------
@@ -61,6 +67,7 @@ public class Exemplaire implements Serializable
 			System.out.println("Numéro Exemlpaire  : " + this.getNumExemplaire());
                         System.out.println("Date de réception  : " + this.getDateReception());
                         System.out.println("Empruntable        : " + this.getEmpruntable());
+                        System.out.println("Disponibilité      : " + this.getDisponibilite());
 			EntreesSorties.afficherMessage("");
 		}
                       
@@ -81,10 +88,12 @@ public class Exemplaire implements Serializable
 			this._dateReception = dateReception;
 		}
                 
-		 private void setEmpruntable(Boolean empruntable){
+		private void setEmpruntable(Boolean empruntable){
 			this._empruntable = empruntable;
 		}
-		
-                                
+                
+		private void setDisponibilite(Boolean disponibilite){
+			this._disponibilite = disponibilite;
+		}
 			
 }
