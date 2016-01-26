@@ -43,7 +43,6 @@ public class Ouvrage
                 private GregorianCalendar _dateParution;
                 private String _nomAuteur;
                 private PublicCible _public;
-                private Integer _nbExemplaires;
 	
 	
 	
@@ -59,7 +58,6 @@ public class Ouvrage
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
-                        this.setNbExemplaires(nbExemplaires);
 		}
 		
 // -----------------------------------------------

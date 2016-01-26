@@ -14,8 +14,9 @@ public class Exemplaire implements Serializable
 		//Attributs
 	// -----------------------------------------------
 	
-		private Integer _numExemplaire;
+		private String _numExemplaire;
 		private GregorianCalendar _dateReception;
+                private Boolean _empruntable;
 	
 	
 	
@@ -23,26 +24,31 @@ public class Exemplaire implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Exemplaire(Integer numExemplaire, GregorianCalendar dateReception)
+		public Exemplaire(String numExemplaire, GregorianCalendar dateReception, Boolean empruntable)
 		{
 			this.setNumExemplaire(numExemplaire);
 			this.setDateReception(dateReception);
+                        this.setEmpruntable(empruntable);
 		}
 		
 // -----------------------------------------------
 	// Public
 // -----------------------------------------------
-		
+                
 		// -----------------------------------------------
 			//Getters
 		// -----------------------------------------------
 	
-		public Integer getNumExemplaire() {
+		public String getNumExemplaire() {
 			return _numExemplaire;
 		}
                 
                 public GregorianCalendar getDateReception() {
 			return _dateReception;
+		}
+                
+                public Boolean getEmpruntable() {
+			return _empruntable;
 		}
 
                 
@@ -52,19 +58,12 @@ public class Exemplaire implements Serializable
 		
 		public void infosExemplaire()
 		{
-			
-		}
-                
-                /*
-		 * La m�thode afficherExemplaire affiche l'ensemble des informations relatives à l'exemplaire.
-		 */
-		public void afficherExemplaire()
-		{
-			System.out.println("Numero exemplaire : " + this.getNumExemplaire());
-			System.out.println("Date de réception : " + this.getDateReception());
+			System.out.println("Numéro Exemlpaire  : " + this.getNumExemplaire());
+                        System.out.println("Date de réception  : " + this.getDateReception());
+                        System.out.println("Empruntable        : " + this.getEmpruntable());
 			EntreesSorties.afficherMessage("");
 		}
-            
+                      
                 
 // -----------------------------------------------
 	// Private
@@ -74,26 +73,18 @@ public class Exemplaire implements Serializable
 			//Setters
 		// -----------------------------------------------
 
-		private void setNumExemplaire(Integer numExemplaire) {
+		private void setNumExemplaire(String numExemplaire) {
 			this._numExemplaire = numExemplaire;
 		}
 		
                 private void setDateReception(GregorianCalendar dateReception) {
 			this._dateReception = dateReception;
 		}
+                
+		 private void setEmpruntable(Boolean empruntable){
+			this._empruntable = empruntable;
+		}
 		
                                 
-                // -----------------------------------------------
-			// Methodes
-		// -----------------------------------------------
-		
-		private void genererNumExemplaire()
-		{
 			
-		}
-                                
-                private void lierOuvrage()
-		{
-			
-		}
 }

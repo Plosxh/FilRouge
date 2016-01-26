@@ -32,6 +32,7 @@ public class Bibliotheque implements Serializable
 
 		public Bibliotheque() {
 			this.setLecteurs(new HashMap<Integer, Lecteur>());
+                        this.setOuvrages(new HashMap<String, Ouvrage>());
 		
 		}
 	
@@ -157,10 +158,24 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelExemplaire()
         {
-            
+            Ouvrage o = unOuvrage(isbn);
+
+            if (o == null)
+            {
+             String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
+             String titre = EntreesSorties.lireChaine("Entrez son titre :");
+             String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de son éditeur :");
+             GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
+             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de son auteur :");
+             String public = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
+            }
+              
+
+            else
+            {
+            Ajout.Exemplaire(dateReception,Empruntable)
+            }
         }
-                
-	
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
 	 * un lecteur, par la saisie de son identifiant (numéro de lecteur).
