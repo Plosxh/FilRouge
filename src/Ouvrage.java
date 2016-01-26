@@ -130,7 +130,7 @@ public class Ouvrage
                    Integer numExemplaire = getNumLast();
                    setNumLast(numExemplaire+1);
                    
-                   
+                   HashSet<Exemplaire> ensE=mesExemplaires();                   
                    Exemplaire e;
                    boolean test;
                    boolean empruntable;
@@ -160,6 +160,7 @@ public class Ouvrage
                     } while (test);
                    
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible);
+                  ensE.add(e);
                 }
 		
                 /*
