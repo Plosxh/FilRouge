@@ -91,10 +91,7 @@ public class Ouvrage
 		public PublicCible getPublic() {
 			return _public;
 		}
-                
-                public Integer getNbExemplaires() {
-                        return _nbExemplaires;
-                }
+               
                 
                 
                 
@@ -114,11 +111,16 @@ public class Ouvrage
 			System.out.println("Date de parution : " + this.getDateParution());
 			System.out.println("Auteur  : " + this.getNomAuteur());
                         System.out.println("Public  : " + this.getPublic());
-                        System.out.println("Nombre d'exemplaires  : " + this.getNbExemplaires());
+                        System.out.println("Nombre d'exemplaires  : ");
 			EntreesSorties.afficherMessage("");
 		}
 		
-		
+                
+                
+		public void ajouterExemplaire()
+		{
+                
+                }
 		
 		
 	
@@ -155,9 +157,6 @@ public class Ouvrage
 			this._public = publicOuvrage;
 		}
                 
-                private void setNbExemplaires(Integer nbExemplaires) {
-                    this._nbExemplaires = nbExemplaires;
-                }
                 
                 		
 }
