@@ -44,7 +44,7 @@ public class Ouvrage
                 private GregorianCalendar _dateParution;
                 private String _nomAuteur;
                 private PublicCible _public;
-	
+                private Integer _nbExemplaires;
 	
 	
 	// -----------------------------------------------
