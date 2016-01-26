@@ -17,6 +17,7 @@ public class Lecteur implements Serializable
 		private String _nomLecteur;
 		private String _prenomLecteur;
 		private Integer _numLecteur;
+                private Integer _numEmprunt;
 		private GregorianCalendar _dateNaissance;
 		private String _adresseLecteur;
 		private String _telephone;

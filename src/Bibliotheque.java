@@ -165,17 +165,15 @@ public class Bibliotheque implements Serializable
             if (o == null)
             {
              
-             String titre = EntreesSorties.lireChaine("Entrez son titre :");
-             String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de son éditeur :");
-             GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
-             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de son auteur :");
-             String publique = EntreesSorties.lireChaine("Entrez le type de public auquel il correspond :");
+                this.nouvelOuvrage();
+             
             }
               
 
             else
             {
-            Ajout.Exemplaire(dateReception,Empruntable)
+                        
+            Ouvrage.ajouterExemplaire();
             }
         }
 	/*
