@@ -155,8 +155,10 @@ public class Bibliotheque implements Serializable
                     
                     Ouvrage o = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p);
                     lierOuvrage(o, isbn);
-                        
+                   
+                   EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
                    return o; 
+                   
 		} 
         
              
@@ -170,12 +172,12 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelExemplaire()
         {
-            String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage");
+            String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage : ");
             Ouvrage o = unOuvrage(isbn);
 
             if (o == null)
             {
-             
+               EntreesSorties.afficherMessage("Cet ouvrage n'existe pas, nous allons le créer.");
                o =this.creationOuvrage(isbn);
                 
             }

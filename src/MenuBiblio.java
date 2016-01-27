@@ -122,21 +122,21 @@ public void menuExemplaire() {
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
-			/**
+			
 			switch (menuExemp){
 				case 1 : {
 					_bibliotheque.nouvelExemplaire();
 					break;
 				}
 				case 2 : {
-					_bibliotheque.consulterExemplaire();
+					_bibliotheque.consulterExemplaireOuvrage();
 					break;
 				}
 				default : {
 					break;
 				}
 			}
-                        * **/
+                        
 	} while (menuExemp != 0);	
 }
 	
