@@ -142,7 +142,7 @@ public class Ouvrage implements Serializable
                    boolean empruntable=false;
                    boolean disponible=true;
                    Integer empr = EntreesSorties.lireEntier("Entrez l'empruntabilité : 1 pour Oui, 2 pour Non : ");
-                   GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
+                   
                    
                    do{
                         test = false;
@@ -153,7 +153,17 @@ public class Ouvrage implements Serializable
                                             break;
                                     }
                                     case 2 : {
-                                            empruntable=false;
+                                              empruntable=false;
+                                              
+                                       HashSet<Exemplaire> ensemblE=mesExemplaires();
+                                       for(Exemplaire ex : ensemblE)
+                                       {
+                                            if (ex.getEmpruntable()==false)
+                                            {
+                                                EntreesSorties.afficherMessage("Il existe déjà un exemplaire non empruntable, celui-ci sera donc empruntable.");
+                                                empruntable=true;
+                                            }        
+                                       }
                                             break;
                                     }
                                     
@@ -164,6 +174,8 @@ public class Ouvrage implements Serializable
                                     }
                             }
                     } while (test);
+                   
+                  GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
                    
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
                   ensE.add(e);
