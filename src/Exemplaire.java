@@ -70,6 +70,14 @@ public class Exemplaire implements Serializable
                         System.out.println("Disponibilité      : " + this.getDisponibilite());
 			EntreesSorties.afficherMessage("");
 		}
+                
+                /*
+                 * La méthode lierOuvrage permet d'ajouter un ouvrage a la base de donnée de Exemplaire.
+                 */
+                /*private void lierOuvrage(Ouvrage o, String isbn)
+                {
+                    _dicoOuvrage.put(isbn, o);
+                }*/
                       
                 
 // -----------------------------------------------

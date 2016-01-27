@@ -147,13 +147,13 @@ public class Ouvrage
                                             break;
                                     }
                                     case 2 : {
-                                             empruntable=false;
+                                            empruntable=false;
                                             break;
                                     }
                                     
                                     default : {
-                                             EntreesSorties.afficherMessage("Inserez : 1 pour Oui, 2 pour Non.");
-                                             test=true;
+                                            EntreesSorties.afficherMessage("Inserez : 1 pour Oui, 2 pour Non.");
+                                            test=true;
                                             break;
                                     }
                             }
@@ -236,6 +236,14 @@ public class Ouvrage
 		{
 			return _exemplaire;
 		}       
+                
+                /*
+                 * La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.
+                 */
+               /* private void lierExemplaire(Exemplaire e)
+                {
+                    _dicoOuvrage.put(e);
+                }*/
 
     /**
      * @param _exemplaire the _exemplaire to set
