@@ -190,10 +190,10 @@ public class Bibliotheque implements Serializable
 	{
 		Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
 		
-		Lecteur L = unLecteur(numLecteur);
+		Lecteur l = unLecteur(numLecteur);
 		
-		if (L!=null){
-			L.afficherLecteur();
+		if (l!=null){
+			l.afficherLecteur();
 		}
 		else {
 			EntreesSorties.afficherMessage("Aucun lecteur n'est associe a ce numero.");
