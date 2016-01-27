@@ -58,7 +58,7 @@ public class Ouvrage implements Serializable
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
-                        _exemplaire = new HashSet<>();
+                        _exemplaire = new HashSet<Exemplaire>();
 		}
 		
                  public void setExemplaire(HashSet<Exemplaire> _exemplaire)
@@ -120,7 +120,7 @@ public class Ouvrage implements Serializable
                         System.out.println("Isbn    : " + this.getIsbn());
 			System.out.println("Titre   : " + this.getTitre());
 			System.out.println("Editeur : " + this.getNomEditeur());
-			System.out.println("Date de parution : " + this.getDateParution());
+			System.out.println("Date de parution : " + EntreesSorties.ecrireDate(getDateParution()));
 			System.out.println("Auteur  : " + this.getNomAuteur());
                         System.out.println("Public  : " + this.getPublic());
                         System.out.println("Nombre d'exemplaires  : " + nbExemplaires);
