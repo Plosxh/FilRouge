@@ -92,9 +92,10 @@ public class Bibliotheque implements Serializable
 			
 			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel, nbEmprunt);
 			lierLecteur(L, numLecteur);
+                        EntreesSorties.afficherMessage("Le numéro de ce lecteur est : "+ numLecteur +);
 		}
 		else {
-			EntreesSorties.afficherMessage("Ce numero de lecteur existe deja.");
+			EntreesSorties.afficherMessage("Ce numero de lecteur existe déjà.");
 		}
 		
 	}
