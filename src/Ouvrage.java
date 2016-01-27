@@ -61,6 +61,7 @@ public class Ouvrage implements Serializable
                         _exemplaire = new HashSet<Exemplaire>();
 		}
 		
+                /*La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.*/
                  public void setExemplaire(HashSet<Exemplaire> _exemplaire)
                  {
                     this._exemplaire = _exemplaire;
@@ -243,13 +244,8 @@ public class Ouvrage implements Serializable
 			return _exemplaire;
 		}       
                 
-                /*
-                 * La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.
-                 */
-               /* private void lierExemplaire(Exemplaire e)
-                {
-                    _dicoOuvrage.put(e);
-                }*/
+                
+               
 
     /**
      * @param _exemplaire the _exemplaire to set
