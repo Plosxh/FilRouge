@@ -61,6 +61,10 @@ public class Ouvrage
                         _exemplaire = new HashSet<>();
 		}
 		
+                 public void setExemplaire(HashSet<Exemplaire> _exemplaire)
+                 {
+                    this._exemplaire = _exemplaire;
+                 }
 // -----------------------------------------------
 	// Public
 // -----------------------------------------------
@@ -111,14 +115,15 @@ public class Ouvrage
 		 */
 		public void infosOuvrage()
 		{
-                	
+                	HashSet<Exemplaire> ensE=mesExemplaires();
+                        Integer nbExemplaires = ensE.size();
                         System.out.println("Isbn    : " + this.getIsbn());
 			System.out.println("Titre   : " + this.getTitre());
 			System.out.println("Editeur : " + this.getNomEditeur());
 			System.out.println("Date de parution : " + this.getDateParution());
 			System.out.println("Auteur  : " + this.getNomAuteur());
                         System.out.println("Public  : " + this.getPublic());
-                        System.out.println("Nombre d'exemplaires  : ");
+                        System.out.println("Nombre d'exemplaires  : " + nbExemplaires);
 			EntreesSorties.afficherMessage("");
 		}
 		
@@ -249,9 +254,7 @@ public class Ouvrage
     /**
      * @param _exemplaire the _exemplaire to set
      */
-    public void setExemplaire(HashSet<Exemplaire> _exemplaire) {
-        this._exemplaire = _exemplaire;
-    }
+   
                 
                 
 }
