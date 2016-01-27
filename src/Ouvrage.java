@@ -133,7 +133,7 @@ public class Ouvrage
                    HashSet<Exemplaire> ensE=mesExemplaires();                   
                    Exemplaire e;
                    boolean test;
-                   boolean empruntable;
+                   boolean empruntable=false;
                    boolean disponible=true;
                    Integer empr = EntreesSorties.lireEntier("Entrez l'empruntabilité : 1 pour Oui, 2 pour Non : ");
                    GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
@@ -229,6 +229,7 @@ public class Ouvrage
 			// Methodes
 		// -----------------------------------------------
 		
+                
 		/*
 		 * La m�thode mesExemplaires demande d'accèder à tous les exemplaires de cet ouvrage.
 		 */
