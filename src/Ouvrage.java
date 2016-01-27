@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 // Classe de gestion de Ouvrage
 
-public class Ouvrage 
+public class Ouvrage implements Serializable
 {
     
 	/*private static final long serialVersionUID = 422L;*/
@@ -164,7 +164,7 @@ public class Ouvrage
                             }
                     } while (test);
                    
-                  e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible);
+                  e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
                   ensE.add(e);
                 }
 		

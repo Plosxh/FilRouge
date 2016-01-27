@@ -18,6 +18,7 @@ public class Exemplaire implements Serializable
 		private GregorianCalendar _dateReception;
                 private Boolean _empruntable;
                 private Boolean _disponibilite;
+                private Ouvrage _ouvrage;
 	
 	
 	
@@ -25,12 +26,13 @@ public class Exemplaire implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Exemplaire(Integer numExemplaire, GregorianCalendar dateReception, Boolean empruntable, Boolean disponibilite)
+		public Exemplaire(Integer numExemplaire, GregorianCalendar dateReception, Boolean empruntable, Boolean disponibilite, Ouvrage o)
 		{
 			this.setNumExemplaire(numExemplaire);
 			this.setDateReception(dateReception);
                         this.setEmpruntable(empruntable);
                         this.setDisponibilite(disponibilite);
+                        this.lierOuvrage(o);
 		}
 		
 // -----------------------------------------------
@@ -73,11 +75,11 @@ public class Exemplaire implements Serializable
                 
                 /*
                  * La méthode lierOuvrage permet d'ajouter un ouvrage a la base de donnée de Exemplaire.
-                 */
-                /*private void lierOuvrage(Ouvrage o, String isbn)
+                */
+                private void lierOuvrage(Ouvrage o)
                 {
-                    _dicoOuvrage.put(isbn, o);
-                }*/
+                    _ouvrage=o;
+                }
                       
                 
 // -----------------------------------------------

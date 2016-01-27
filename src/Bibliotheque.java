@@ -92,7 +92,7 @@ public class Bibliotheque implements Serializable
 			
 			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel, nbEmprunt);
 			lierLecteur(L, numLecteur);
-                        EntreesSorties.afficherMessage("Le numéro de ce lecteur est : "+ numLecteur +);
+                        EntreesSorties.afficherMessage("Le numéro de ce nouveau lecteur est : " + numLecteur + ".");
 		}
 		else {
 			EntreesSorties.afficherMessage("Ce numero de lecteur existe déjà.");
@@ -125,7 +125,7 @@ public class Bibliotheque implements Serializable
                     String nomEditeur = EntreesSorties.lireChaine("Entrez le nom d'editeur : ");
                     String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
                     GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
-                    Integer publique = EntreesSorties.lireEntier("1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
+                    Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
                     
                     do{
                         t = false;
