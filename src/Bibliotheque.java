@@ -17,6 +17,11 @@ public class Bibliotheque implements Serializable
 	
 		private HashMap<Integer, Lecteur> _dicoLecteur;
                 private HashMap<String, Ouvrage> _dicoOuvrage;
+                
+                //standby
+                private HashMap<Integer, Integer> _dicoEmprunt;
+                //
+                
                 private Integer _numLast=(1);
                 
 		
@@ -256,6 +261,26 @@ public class Bibliotheque implements Serializable
                
         }
         
+        
+        public void EmprunterExemplaire()
+        {
+            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+            
+            //Exemplaire e = unExemplaire(numExemplaire);
+            //e.infosReduitExemplaire();
+            
+            Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
+            
+            lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
+        
+        
+        }
+                
+                
+        
+        
+        
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
@@ -334,4 +359,26 @@ public class Bibliotheque implements Serializable
     }
 
 
+    
+
+
+    //les classes qui peuvent être utiles (fait par Antoine)
+    
+    private void lierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)
+    {
+        _dicoEmprunt.put(numLecteur, numExemplaire); 
     }
+
+    private void delierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)
+    {
+        _dicoEmprunt.remove(numLecteur, numExemplaire);
+    }
+
+    //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
+    {
+        //return _dicoOuvrage.get(xemplaire);
+        
+        //_exemplaire = new HashSet<Exemplaire>();
+        
+    }
+}

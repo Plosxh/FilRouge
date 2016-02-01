@@ -50,7 +50,7 @@ public class Ouvrage implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage)
+		public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage/*,*/ /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/  /*HashSet<Exemplaire> _exemplaires*/)
 		{
                      	this.setIsbn(isbn);
 			this.setTitre(titre);
@@ -58,6 +58,8 @@ public class Ouvrage implements Serializable
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
+                        
+                        //comment ça marche ?? Antoine
                         _exemplaire = new HashSet<Exemplaire>();
 		}
 		
@@ -239,6 +241,9 @@ public class Ouvrage implements Serializable
                 /**
                  * @param _numLast the _numLast to set
                  */
+                
+                
+                //C'est pas un private ?? Antoine
                 public void setNumLast(Integer _numLast) {
                     this._numLast = _numLast;
                 }
