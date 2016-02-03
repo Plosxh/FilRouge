@@ -374,9 +374,13 @@ public class Bibliotheque implements Serializable
         _dicoEmprunt.remove(numLecteur, numExemplaire);
     }
 
-    private boolean exemplaireEmpruntable(Ouvrage o,Exemplaire e)
+    
+    /*
+    exemplaireEmpruntable retourne true si l'exemplaire peut etre emprunté false sinon, il appelle des fonctions de ouvrage
+    */
+    private boolean exemplaireEmpruntable(Ouvrage o, int numExemplaire)
     {
-        return o.etatEmpruntabilite(e);
+        Exemplaire e = o.MonExemplaire(numExemplaire);
     }
     
     //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)

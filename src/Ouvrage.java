@@ -265,16 +265,24 @@ public class Ouvrage implements Serializable
                 La fonction monExemplaire(numExemplaire) retourne l'exemplaire e trouvé grâce à son numExemplaire
                 */
                 public Exemplaire monExemplaire(int numExemplaire)
-                {               
+                {
+               /*     Exemplaire pb;
+                    
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
                    {
+                       pb = e;
                         if (numExemplaire==e.getNumExemplaire())
                         {
                             return e;
                         }
                    } 
+                   
                    //pb de si l'exemplaire n'existe pas
+                   return pb;*/
+                    
+                    
+                    return _exemplaire.(numExemplaire);
                 }
                 
                /* 
