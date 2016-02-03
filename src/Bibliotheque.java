@@ -271,7 +271,7 @@ public class Bibliotheque implements Serializable
             
             Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
             
-            lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
+           // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
         
         
         }
@@ -298,7 +298,7 @@ public class Bibliotheque implements Serializable
 	}
 	
 	// -----------------------------------------------
-		// Mï¿½thodes
+		// Méthodes
 	// -----------------------------------------------
 	
 	/*
@@ -364,9 +364,9 @@ public class Bibliotheque implements Serializable
 
     //les classes qui peuvent être utiles (fait par Antoine)
     
-    private void lierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)
+    private void lierNumLecteurNumExemplaire(Lecteur l, Exemplaire e)
     {
-        _dicoEmprunt.put(numLecteur, numExemplaire); 
+        _dicoEmprunt.remove(l, e); 
     }
 
     private void delierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)
@@ -374,6 +374,11 @@ public class Bibliotheque implements Serializable
         _dicoEmprunt.remove(numLecteur, numExemplaire);
     }
 
+    private boolean exemplaireEmpruntable(Ouvrage o,Exemplaire e)
+    {
+        return o.etatEmpruntabilite(e);
+    }
+    
     //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
     {
         //return _dicoOuvrage.get(xemplaire);
