@@ -63,6 +63,8 @@ public class Ouvrage implements Serializable
                         _exemplaire = new HashSet<Exemplaire>();
 		}
 		
+                
+                //c'est quoi ce truc là ??
                 /*La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.*/
                  public void setExemplaire(HashSet<Exemplaire> _exemplaire)
                  {
@@ -266,7 +268,7 @@ public class Ouvrage implements Serializable
                 */
                 public Exemplaire monExemplaire(int numExemplaire)
                 {
-               /*     Exemplaire pb;
+                    Exemplaire pb;
                     
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
@@ -277,12 +279,6 @@ public class Ouvrage implements Serializable
                             return e;
                         }
                    } 
-                   
-                   //pb de si l'exemplaire n'existe pas
-                   return pb;*/
-                    
-                    
-                    return _exemplaire.(numExemplaire);
                 }
                 
                /* 
