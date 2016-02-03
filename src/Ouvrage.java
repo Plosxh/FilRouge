@@ -268,12 +268,9 @@ public class Ouvrage implements Serializable
                 */
                 public Exemplaire monExemplaire(int numExemplaire)
                 {
-                    Exemplaire pb;
-                    
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
                    {
-                       pb = e;
                         if (numExemplaire==e.getNumExemplaire())
                         {
                             return e;
