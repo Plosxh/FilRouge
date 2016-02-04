@@ -290,14 +290,9 @@ public class Bibliotheque implements Serializable
         {
             
         }
-            
-            
-            
+                                    
            // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
-        
-        
-        }
-        
+               
         public void rendreExemplaire()
         {
            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
