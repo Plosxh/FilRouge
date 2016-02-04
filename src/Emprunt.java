@@ -78,8 +78,8 @@ public class Emprunt implements Serializable
 		 */
 		public void afficherEmprunt()           //à renommer selon l'envie
 		{
-			System.out.println("Lecteur : " + this.getLecteur());               //je doute que ça marche comme ça mais à voir
-			System.out.println("Exemplaire: " + this.getExemplaire());
+			System.out.println("Lecteur : " + this.unLecteur());               //je doute que ça marche comme ça mais à voir
+			System.out.println("Exemplaire: " + this.unExemplaire());
 			System.out.println("Date d'emprunt : " + this.getDateEmprunt());
 			System.out.println("Date de retour : " + this.getDateRetour());
 			EntreesSorties.afficherMessage("");

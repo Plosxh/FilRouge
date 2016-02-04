@@ -22,7 +22,7 @@ public class Lecteur implements Serializable
 		private String _adresseLecteur;
 		private String _telephone;
                 private Integer _nbEmprunt;
-                private Emprunt _emprunt;
+                private HashSet<Emprunt> _collectionEmprunts;
 	
 	
 	// -----------------------------------------------
@@ -76,9 +76,9 @@ public class Lecteur implements Serializable
 			return _nbEmprunt;                      
         	}
                 
-                public Emprunt unEmprunt() {
-			return _emprunt;                      
-        	}
+                //public Emprunt unEmprunt() {
+		//	return _emprunt;                      
+        	//}
                 
                 
 		// -----------------------------------------------
@@ -125,6 +125,9 @@ public class Lecteur implements Serializable
                     _nbEmprunt=_nbEmprunt-1;                    
                 }
 		
+                public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts) {
+        this._collectionEmprunts = collectionEmprunts;
+    }
 	
 	
 // -----------------------------------------------
@@ -165,6 +168,7 @@ public class Lecteur implements Serializable
                 
                 private void delierEmprunt()
                 {
-                    _emprunt=null;
+                    //faire avec em comme dans exemplaire
+                    _collectionEmprunts=null;
                 }
 }

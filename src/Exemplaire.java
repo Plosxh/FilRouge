@@ -101,7 +101,7 @@ public class Exemplaire implements Serializable
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
-                 public Emprunt unEmprunt(Exemplaire e)
+                // public Emprunt unEmprunt(Exemplaire e)
                 {
                   
                 }
