@@ -72,7 +72,7 @@ public class Exemplaire implements Serializable
 			// Methodes
 		// -----------------------------------------------
 		
-		public void infosExemplaire()
+		public void afficheInfosExemplaire()
 		{
 			System.out.println("Numéro Exemplaire  : " + this.getNumExemplaire());
                         System.out.println("Date de réception  : " + EntreesSorties.ecrireDate(getDateReception()));
@@ -81,11 +81,15 @@ public class Exemplaire implements Serializable
 			EntreesSorties.afficherMessage("");
 		}
                 
+                public void infosEmpruntsExemplaire()
+		{
+                    em.infosEmpruntExemplaire(e);
+                }
+                
                 public void supEmprunt()
                 {
                     Emprunt em = unEmprunt();
-                    em.supEmprunt();
-                    
+                    em.supEmprunt();                    
                 }
                 
                 

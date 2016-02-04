@@ -85,8 +85,15 @@ public class Emprunt implements Serializable
 			EntreesSorties.afficherMessage("");
 		}
 		
-		
-		
+                /*
+                * Methode utilisée pour le use case ConsulterExemplaireOuvrage
+                */
+		infosEmpruntExemplaire()  
+		{
+                    System.out.println("Date d'emprunt : " + this.getDateEmprunt());
+                    System.out.println("Date de retour : " + this.getDateRetour());
+                    l.infosReduitLecteur();
+                }
 	
 	
 // -----------------------------------------------

@@ -194,7 +194,11 @@ public class Ouvrage implements Serializable
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
                    { 
-                        e.infosExemplaire();
+                        e.afficheInfosExemplaire();
+                        if(e.disponibilite==false)
+                         {
+                           e.afficheEmpruntsExemplaire();                               
+                         }
                    }                  
 		}
 		
