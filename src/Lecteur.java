@@ -21,7 +21,6 @@ public class Lecteur implements Serializable
 		private GregorianCalendar _dateNaissance;
 		private String _adresseLecteur;
 		private String _telephone;
-                private Integer _nbEmprunt;
                 private HashSet<Emprunt> _collectionEmprunts;
 	
 	
