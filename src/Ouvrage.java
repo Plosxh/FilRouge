@@ -184,6 +184,31 @@ public class Ouvrage implements Serializable
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
                   ensE.add(e);
                 }
+                
+                
+                public void editerExemplaire(Integer numExemplaire)
+                {
+                    Exemplaire e =monExemplaire(numExemplaire);
+                    Boolean empruntable=e.getEmpruntable();
+                    HashSet<Exemplaire> ensemblE=mesExemplaires();
+                      for(Exemplaire ex : ensemblE)
+                      {
+                           if (ex.getEmpruntable()==false)
+                           {
+                               EntreesSorties.afficherMessage("Il existe déjà un exemplaire non empruntable, celui-ci restera donc empruntable.");
+                           } 
+                           else{
+                           empruntable = false;
+                           }
+                      }
+                       
+                     e.editerExemplaire(empruntable);
+                      
+                 }
+                
+                
+                
+                
 		
                 /*
 		 * La m�thode afficherInfosExemplaire affiche l'ensemble des informations relatives aux exemplaires d'un ouvrage.
@@ -197,7 +222,7 @@ public class Ouvrage implements Serializable
                         e.afficheInfosExemplaire();
                         if(!etatDisponibilite(e))
                          {
-                             e.infosEmpruntsExemplaire();                         
+                             e.infosEmpruntExemplaire();                         
                          }
                    }                  
 		}

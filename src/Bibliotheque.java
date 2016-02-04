@@ -94,7 +94,7 @@ public class Bibliotheque implements Serializable
 			String tel = EntreesSorties.lireChaine("Entrez le numero de telephone :");
 			EntreesSorties.afficherMessage("Fin de saisie");
 			
-			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel, nbEmprunt);
+			L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel);
 			lierLecteur(L, numLecteur);
 
                         EntreesSorties.afficherMessage("Le numéro de ce nouveau lecteur est : " + numLecteur + ".");
@@ -286,7 +286,12 @@ public class Bibliotheque implements Serializable
         // une méthode pour passer un exemplaire de empruntable à en consultation sur place
         public void editerExemplaire()
         {
+            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+            String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
+            Ouvrage o = unOuvrage(isbn); 
             
+            o.editerExemplaire(numExemplaire);
+             EntreesSorties.afficherMessage("L'exemplaire à été modifié."); 
         }
                                     
            // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);

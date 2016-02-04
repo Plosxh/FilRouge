@@ -73,7 +73,8 @@ public class Emprunt implements Serializable
                 
                 // cette méthode calcule la différence entre la date de retour et la date du jour d'un emprunt. Si le résultat est supérieur à 15, retourne retard:=true
                // public boolean verifEmprunt()
-                {
+                public boolean verifEmprunt()
+                  {
                     GregorianCalendar dateReception = new GregorianCalendar();                    
                     GregorianCalendar dateRetourEstime= new GregorianCalendar(_dateRetour.get(GregorianCalendar.YEAR), _dateRetour.get(GregorianCalendar.MONTH),_dateRetour.get(GregorianCalendar.DATE));
                     Boolean test;
@@ -94,7 +95,7 @@ public class Emprunt implements Serializable
                     }
                 }
                
-               // public void afficheRetard()
+               public void afficheRetard()
                 {
                     Exemplaire e = unExemplaire();
                     e.infosReduitOuvrage();

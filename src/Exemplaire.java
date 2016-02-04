@@ -70,10 +70,6 @@ public class Exemplaire implements Serializable
                 public Emprunt unEmprunt() {
                     return _emprunt;
                 }
-                
-                public Ouvrage unOuvrage() {
-                    return _ouvrage;
-                }
 
                 
 		// -----------------------------------------------
@@ -117,6 +113,12 @@ public class Exemplaire implements Serializable
                 }
                 
                 
+                public void editerExemplaire(boolean empruntable)
+                {
+                  this.setEmpruntable(empruntable);
+                }
+                
+                
                 /*
                  * La méthode lierOuvrage permet d'ajouter un ouvrage a la base de donnée de Exemplaire.
                 */
@@ -124,15 +126,14 @@ public class Exemplaire implements Serializable
                 {
                     _ouvrage=o;
                 }
+                
+                
                       
                 
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
-                // public Emprunt unEmprunt(Exemplaire e)
-                {
-                  
-                }
+
 		// -----------------------------------------------
 			//Setters
 		// -----------------------------------------------

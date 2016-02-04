@@ -89,7 +89,7 @@ public class Lecteur implements Serializable
 			System.out.println("Age : " + this.calculAge() + " ans");
 			System.out.println("Adresse : " + this.getAdresse());
 			System.out.println("Telephone : " + this.getTel());
-                        System.out.println("Nombre d'exemplaire(s) emprunté(s) : " + this.getNbEmprunt());
+                        System.out.println("Nombre d'exemplaire(s) emprunté(s) : " + this._collectionEmprunts.size());
 			EntreesSorties.afficherMessage("");
 		}
 		
@@ -115,8 +115,7 @@ public class Lecteur implements Serializable
                 public void supEmprunt()
                 {
                     
-                    this.delierEmprunt();                                       
-                    _nbEmprunt=_nbEmprunt-1;                    
+                    this.delierEmprunt();                    
                 }
 		
                 public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts)
