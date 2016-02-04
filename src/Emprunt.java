@@ -42,11 +42,11 @@ public class Emprunt implements Serializable
 			//Getters
 		// -----------------------------------------------
 	
-		public Lecteur getLecteur() {
+		public Lecteur unLecteur() {
 			return _lecteur;
 		}
 
-		public Exemplaire getExemplaire() {
+		public Exemplaire unExemplaire() {
 			return _exemplaire;
 		}
                 
@@ -59,6 +59,8 @@ public class Emprunt implements Serializable
 		}
                 
                 // -----------------------------------------------
+			// Methodes
+		// -----------------------------------------------
                 
 		  public void supEmprunt()
                 {
@@ -70,7 +72,7 @@ public class Emprunt implements Serializable
                 }
                 
                 // cette méthode calcule la différence entre la date de retour et la date du jour d'un emprunt. Si le résultat est supérieur à 15, retourne retard:=true
-                public boolean verifEmprunt()
+               // public boolean verifEmprunt()
                 {
                     //dateEm := compDateRetour()
                     
@@ -91,34 +93,13 @@ public class Emprunt implements Serializable
                     //return ;
                 }
                
-                public void afficheRetard()
+               // public void afficheRetard()
                 {
                     
                 }
 		                
-		// -----------------------------------------------
-			//Getters
-		// -----------------------------------------------
-	
-		public Lecteur unLecteur() {
-			return _lecteur;
-		}
-
-		public Exemplaire unExemplaire() {
-			return _exemplaire;
-		}
-
-		public GregorianCalendar getDateEmprunt() {
-			return _dateEmprunt;
-		}
 		
-		public GregorianCalendar getDateRetour() {
-			return _dateRetour;
-		}
-                
-		// -----------------------------------------------
-			// Methodes
-		// -----------------------------------------------
+		
 		
 		/*
 		 * La m�thode afficherEmprunt affiche l'ensemble des informations relatives � un emprunt.
@@ -137,20 +118,22 @@ public class Emprunt implements Serializable
                 */
 		public void infosEmpruntExemplaire()  
 		{
+                    Lecteur l = unLecteur();
+                    l.infosReduitLecteur();
                     System.out.println("Date d'emprunt : " + this.getDateEmprunt());
                     System.out.println("Date de retour : " + this.getDateRetour());
                     EntreesSorties.afficherMessage("");
-                    l.infosReduitLecteur();
                 }
-                 /*
+               /*
                 * Methode utilisée pour le use case ConsulterLecteur (methode appelée par lecteur)
                 */
-                public void infosEmprunt(emprunt em)
+                public void infosEmprunt()
                 {
+                    Exemplaire e = unExemplaire();
                     System.out.println("Date d'emprunt : " + this.getDateEmprunt());
                     System.out.println("Date de retour : " + this.getDateRetour());
                     EntreesSorties.afficherMessage("");
-                    e.infosEmprunts();
+                    e.infosEmprunt();
                 }        
 	
 	

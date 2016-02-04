@@ -197,7 +197,7 @@ public class Ouvrage implements Serializable
                         e.afficheInfosExemplaire();
                         if(!etatDisponibilite(e))
                          {
-                           e.infosEmpruntsExemplaire();                               
+                             e.infosEmpruntsExemplaire();                         
                          }
                    }                  
 		}
