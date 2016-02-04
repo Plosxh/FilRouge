@@ -66,6 +66,10 @@ public class Exemplaire implements Serializable
                 public Emprunt unEmprunt() {
                     return _emprunt;
                 }
+                
+                public Ouvrage unOuvrage() {
+                    return _ouvrage;
+                }
 
                 
 		// -----------------------------------------------
@@ -97,6 +101,12 @@ public class Exemplaire implements Serializable
                 {
                     Emprunt em = unEmprunt();
                     em.supEmprunt();                    
+                }
+                
+                public void infosReduitOuvrage()
+                {
+                    Ouvrage o = unOuvrage();
+                    o.infosReduitOuvrage();
                 }
                 
                 

@@ -285,7 +285,7 @@ public class Bibliotheque implements Serializable
                 }
             }
             
-        // une méthode pour passer un exemplaire empruntable en consultation sur place
+        // une méthode pour passer un exemplaire de empruntable à en consultation sur place
         public void editerExemplaire()
         {
             
@@ -308,9 +308,10 @@ public class Bibliotheque implements Serializable
                 
         public void relancerLecteur()
         {
-            Lecteur l = lesLecteurs();
             
-            for(l!=null)
+            HashMap<Integer, Lecteur> ensL = lesLecteurs();
+                       
+            for(Lecteur l : ensL.values())
             { 
                 l.relancerLecteur();
             }                  
@@ -378,13 +379,11 @@ public class Bibliotheque implements Serializable
 	 * La méthode lesLecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir
 	 * pour eventuellement les relancer.
 	 */
-	private  lesLecteurs()
-	{
-            HashMap<Lecteur> ensL=unLecteur();
-            for(Lecteur l : ensL)
-            { 
+	private HashMap<Integer, Lecteur> lesLecteurs()
+	{       
                 return _dicoLecteur;
-            }
+                
+            
 	}  
             
     /**
@@ -508,10 +507,10 @@ public class Bibliotheque implements Serializable
     }
     
     //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
-    {
+    //{
         //return _dicoOuvrage.get(xemplaire);
         
         //_exemplaire = new HashSet<Exemplaire>();
         
-    }
+    //}
 }

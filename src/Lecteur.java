@@ -133,26 +133,30 @@ public class Lecteur implements Serializable
                
                 public void afficherInfosEmprunts()
                 {
+                    
                     HashSet<Emprunt> ensEm=mesEmprunts();
                    for(Emprunt em : ensEm)
                    { 
                         em.infosExmprunt();                       
                     }
                 
-                
                 public void relancerLecteur()
                 {
-                    HashSet<Emprunt> em = mesEmprunts(); 
                     
-                    for(em!=null)
+                    
+                    Boolean retard=false;   
+                    HashSet<Emprunt> ensEm = mesEmprunts(); 
+                    
+                    for(Emprunt em : ensEm)
                     {
-                        em.verifEmprunt();
-                        if(retard=1)
+                        retard = em.verifEmprunt();
+                        if(retard=true)
                         {
                            em.afficheRetard();
                         }
                     }
                 }
+              
 	
                 /*
 		 * La m�thode mesEmprunts demande d'accèder à tous les emprunts de cet ouvrage.
