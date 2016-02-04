@@ -19,9 +19,7 @@ public class Bibliotheque implements Serializable
 		private HashMap<Integer, Lecteur> _dicoLecteur;
                 private HashMap<String, Ouvrage> _dicoOuvrage;
                 
-                //standby
-                private HashMap<Integer, Integer> _dicoEmprunt;
-                //
+            
                 
                 private Integer _numLast=(1);
                 
@@ -264,7 +262,7 @@ public class Bibliotheque implements Serializable
         }
         
         
-        public void EmprunterExemplaire()
+        public void emprunterExemplaire()
         {
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
             String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
@@ -287,13 +285,14 @@ public class Bibliotheque implements Serializable
                 }
             }
             
+        // une méthode pour passer un exemplaire empruntable en consultation sur place
+        public void editerExemplaire()
+        {
             
-            
-           // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
-        
-        
         }
-        
+                                    
+           // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
+               
         public void rendreExemplaire()
         {
            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
@@ -379,12 +378,12 @@ public class Bibliotheque implements Serializable
 	 * La méthode lesLecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir
 	 * pour eventuellement les relancer.
 	 */
-	private Lecteur lesLecteurs(Integer numLecteur)
+	private  lesLecteurs()
 	{
             HashMap<Lecteur> ensL=unLecteur();
             for(Lecteur l : ensL)
             { 
-                return _dicoLecteur.get(numLecteur);
+                return _dicoLecteur;
             }
 	}  
             
@@ -410,7 +409,7 @@ public class Bibliotheque implements Serializable
     
     private void lierNumLecteurNumExemplaire(Lecteur l, Exemplaire e)
     {
-        _dicoEmprunt.remove(l, e); 
+        _dicoEmprunt.remove(l, e); //interdit ça!!
     }
 
     private void delierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)

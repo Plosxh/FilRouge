@@ -19,6 +19,7 @@ public void menuPrincipal() {
 		EntreesSorties.afficherMessage("| Menu Lecteur : 1                                       |");
                 EntreesSorties.afficherMessage("| Menu Ouvrage : 2                                       |");
                 EntreesSorties.afficherMessage("| Menu Exemplaire : 3                                    |");
+                EntreesSorties.afficherMessage("| Menu Emprunt : 4                                       |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -39,6 +40,12 @@ public void menuPrincipal() {
                         
                                  case 3 : {
                                         this.menuExemplaire();
+                                        break;
+                            
+                                        }
+                                 
+                                  case 4 : {
+                                        this.menuEmprunt();
                                         break;
                             
                                         }
@@ -119,6 +126,7 @@ public void menuExemplaire() {
 		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouveau Exemplaire : 1                                 |");
 		EntreesSorties.afficherMessage("| Consulter Exemplaire : 2                               |");
+                EntreesSorties.afficherMessage("| Editer Exemplaire : 3                                  |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
@@ -132,6 +140,10 @@ public void menuExemplaire() {
 					_bibliotheque.consulterExemplaireOuvrage();
 					break;
 				}
+                                case 3 : {
+					_bibliotheque.editerExemplaire();
+					break;
+				}
 				default : {
 					break;
 				}
@@ -139,6 +151,33 @@ public void menuExemplaire() {
                         
 	} while (menuExemp != 0);	
 }
-	
+
+public void menuEmprunt() {
+	Integer menuEmprunt;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
+		EntreesSorties.afficherMessage("| Emprunter un Exemplaire : 1                            |");
+		EntreesSorties.afficherMessage("| Rendre une Exemplaire : 2                               |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuEmprunt = EntreesSorties.lireEntier();
+			
+			switch (menuEmprunt){
+				case 1 : {
+					_bibliotheque.emprunterExemplaire();
+					break;
+				}
+				case 2 : {
+					_bibliotheque.rendreExemplaire();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                        
+	} while (menuEmprunt != 0);	
+}
 }
 
