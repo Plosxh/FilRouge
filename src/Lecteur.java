@@ -132,7 +132,7 @@ public class Lecteur implements Serializable
                 }
                 public void afficherInfosEmprunts()
                 {
-                    HashSet<Emprunts> ensEm=mesEmprunts();
+                    HashSet<Emprunt> ensEm=mesEmprunts();
                    for(Emprunt em : ensEm)
                    { 
                         em.infosExmprunt();                       
