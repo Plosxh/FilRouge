@@ -22,7 +22,7 @@ public class Lecteur implements Serializable
 		private String _adresseLecteur;
 		private String _telephone;
                 private Integer _nbEmprunt;
-	
+                private Emprunt _emprunt;
 	
 	
 	// -----------------------------------------------
@@ -76,6 +76,10 @@ public class Lecteur implements Serializable
 			return _nbEmprunt;                      
         	}
                 
+                public Emprunt unEmprunt() {
+			return _emprunt;                      
+        	}
+                
                 
 		// -----------------------------------------------
 			// Methodes
@@ -113,6 +117,13 @@ public class Lecteur implements Serializable
 			}
 			return age;
 		}
+                
+                public void supEmprunt()
+                {
+                    
+                    this.delierEmprunt();                                       
+                    _nbEmprunt=_nbEmprunt-1;                    
+                }
 		
 	
 	
@@ -151,4 +162,9 @@ public class Lecteur implements Serializable
 		private void setNbEmprunt(Integer nbEmprunt) {
 			this._nbEmprunt = nbEmprunt;
 		}
+                
+                private void delierEmprunt()
+                {
+                    _emprunt=null;
+                }
 }

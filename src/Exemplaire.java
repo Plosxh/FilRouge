@@ -19,6 +19,7 @@ public class Exemplaire implements Serializable
                 private Boolean _empruntable;
                 private Boolean _disponibilite;
                 private Ouvrage _ouvrage;
+                private Emprunt _emprunt;
 	
 	
 	
@@ -59,6 +60,13 @@ public class Exemplaire implements Serializable
                         return _disponibilite;
                 }
 
+                                /**
+                 * @return the Exemplaire
+                 */
+                public Emprunt unEmprunt() {
+                    return _emprunt;
+                }
+
                 
 		// -----------------------------------------------
 			// Methodes
@@ -73,6 +81,14 @@ public class Exemplaire implements Serializable
 			EntreesSorties.afficherMessage("");
 		}
                 
+                public void supEmprunt()
+                {
+                    Emprunt em = unEmprunt();
+                    em.supEmprunt();
+                    
+                }
+                
+                
                 /*
                  * La méthode lierOuvrage permet d'ajouter un ouvrage a la base de donnée de Exemplaire.
                 */
@@ -85,7 +101,10 @@ public class Exemplaire implements Serializable
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
-
+                 public Emprunt unEmprunt(Exemplaire e)
+                {
+                  
+                }
 		// -----------------------------------------------
 			//Setters
 		// -----------------------------------------------

@@ -19,6 +19,7 @@ public class Emprunt implements Serializable
 		private Exemplaire _exemplaire;
 		private GregorianCalendar _dateEmprunt;
                 private GregorianCalendar _dateRetour;
+  
 	
 	
 	// -----------------------------------------------
@@ -36,16 +37,27 @@ public class Emprunt implements Serializable
 // -----------------------------------------------
 	// Public
 // -----------------------------------------------
-		
+		  public void supEmprunt()
+                {
+                    Lecteur l = unLecteur();
+                    Exemplaire e = unExemplaire();
+                    this.delierExemplaire();
+                    this.delierLecteur();
+                    l.supEmprunt();
+                    
+                }
+                
+                
+                
 		// -----------------------------------------------
 			//Getters
 		// -----------------------------------------------
 	
-		public Lecteur getLecteur() {
+		public Lecteur unLecteur() {
 			return _lecteur;
 		}
 
-		public Exemplaire getExemplaire() {
+		public Exemplaire unExemplaire() {
 			return _exemplaire;
 		}
 
@@ -111,12 +123,22 @@ public class Emprunt implements Serializable
                 */
                 private void lierLecteur(Lecteur l)
                 {
-                    
+                    _lecteur=l;
                 }
                 
                 private void lierExemplaire(Exemplaire e)
                 {
-                    
+                    _exemplaire=e;
+                }
+                
+                private void delierExemplaire()
+                {
+                   _exemplaire=null; 
+                }
+                 
+                private void delierLecteur()
+                {
+                    _lecteur=null;
                 }
                 
                 

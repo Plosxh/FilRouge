@@ -291,6 +291,18 @@ public class Bibliotheque implements Serializable
         
         
         }
+        
+        public void rendreExemplaire()
+        {
+           Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+           String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
+        
+            Ouvrage o = unOuvrage(isbn);
+            
+            o.supEmprunt(numExemplaire);
+            EntreesSorties.afficherMessage("L'emprunt à été supprimé.");       
+        
+        }
                 
                 
         

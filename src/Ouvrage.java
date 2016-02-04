@@ -239,6 +239,15 @@ public class Ouvrage implements Serializable
                 {
                     return e.getDisponibilite();
                 }
+                
+                
+                public void supEmprunt(Integer numExemplaire)
+                {
+                    Exemplaire e = monExemplaire(numExemplaire);
+                    e.supEmprunt();
+                    
+                }
+                
 	
 // -----------------------------------------------
 	// Private
