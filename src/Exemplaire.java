@@ -86,6 +86,13 @@ public class Exemplaire implements Serializable
                     em.infosEmpruntExemplaire(e);
                 }
                 
+                public void infosEmprunt(emprunt e)
+                {
+                    System.out.println("Numéro Exemplaire  : " + this.getNumExemplaire());
+                    EntreesSorties.afficherMessage("");
+                    o.infosReduitOuvrage();
+                }
+                
                 public void supEmprunt()
                 {
                     Emprunt em = unEmprunt();
