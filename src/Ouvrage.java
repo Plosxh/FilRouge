@@ -207,7 +207,38 @@ public class Ouvrage implements Serializable
                     System.out.println("Titre   : " + this.getTitre());         
 		}
 		
-	
+                /*
+                La fonction monExemplaire(numExemplaire) retourne l'exemplaire e trouvé grâce à son numExemplaire
+                */
+                public Exemplaire monExemplaire(int numExemplaire)
+                {
+                   Exemplaire ex = null;
+                   HashSet<Exemplaire> ensE=mesExemplaires();
+                   for(Exemplaire e : ensE)
+                   {
+                        if (numExemplaire==e.getNumExemplaire())
+                        {
+                            ex = e;
+                        }
+                   }
+                   return ex;
+                }                
+                
+                /* 
+                la fonction etatEmpruntabilite()? retourne true si l'exemplaire est empruntable false sinon
+                */
+                public boolean etatEmpruntabilite(Exemplaire e)
+                {
+                    return e.getEmpruntable();
+                }
+                
+                /*
+                la fonction etatDisponibilite()? retourne true si l'exemplaire est disponible false sinon
+                */
+                public boolean etatDisponibilite(Exemplaire e)
+                {
+                    return e.getDisponibilite();
+                }
 	
 // -----------------------------------------------
 	// Private
@@ -263,38 +294,7 @@ public class Ouvrage implements Serializable
 			return _exemplaire;
 		}       
                 
-                /*
-                La fonction monExemplaire(numExemplaire) retourne l'exemplaire e trouvé grâce à son numExemplaire
-                */
-                public Exemplaire monExemplaire(int numExemplaire)
-                {
-                   Exemplaire ex = null;
-                   HashSet<Exemplaire> ensE=mesExemplaires();
-                   for(Exemplaire e : ensE)
-                   {
-                        if (numExemplaire==e.getNumExemplaire())
-                        {
-                            ex = e;
-                        }
-                   }
-                   return ex;
-                }
                 
-               /* 
-                la fonction etatEmpruntabilite()? retourne true si l'exemplaire est empruntable false sinon
-                */
-                public boolean etatEmpruntabilite(Exemplaire e)
-                {
-                    return e.getEmpruntable();
-                }
-                
-                /*
-                la fonction etatDisponibilite()? retourne true si l'exemplaire est disponible false sinon
-                */
-                public boolean etatDisponibilite(Exemplaire e)
-                {
-                    return e.getDisponibilite();
-                }
 
     /**
      * @param _exemplaire the _exemplaire to set

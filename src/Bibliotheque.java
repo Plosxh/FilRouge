@@ -475,6 +475,11 @@ public class Bibliotheque implements Serializable
         return retour;
     }
     
+    private void CreerEmprunt(Lecteur l, Exemplaire e)
+    {
+        
+    }
+    
     //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
     {
         //return _dicoOuvrage.get(xemplaire);
