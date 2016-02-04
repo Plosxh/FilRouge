@@ -70,15 +70,32 @@ public class Emprunt implements Serializable
                 }
                 
                 // cette méthode calcule la différence entre la date de retour et la date du jour d'un emprunt. Si le résultat est supérieur à 15, retourne retard:=true
-                public boolean verifEmprunt(dateRetour)
+                public boolean verifEmprunt()
                 {
-                    getDateRetour();
+                    //dateEm := compDateRetour()
                     
+                    /*
+                    Integer tempsRetard;
+                    GregorianCalendar dateRetourComp;
+                    GregorianCalendar dateActuelle = new GregorianCalendar();
                     
-                    return
+                    if(tempsRetard=1)
+                    {
+                        return retard=true;
+                    }
+                    else(tempsRetard=0)
+                    {
+                        return retard=false;
+                    }
+                    */
+                    return ;
                 }
-                
-                
+               
+                public void afficheRetard()
+                {
+                    
+                }
+		                
 		// -----------------------------------------------
 			//Getters
 		// -----------------------------------------------

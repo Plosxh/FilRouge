@@ -37,8 +37,7 @@ public class Lecteur implements Serializable
 			this.setDateNaiss(dateNaiss);
 			this.setAdresse(adresse);
 			this.setTel(tel);
-                        //this.setNbEmprunt(nbEmprunt);
-		}
+                }
 		
 // -----------------------------------------------
 	// Public
@@ -76,9 +75,9 @@ public class Lecteur implements Serializable
 			return _nbEmprunt;                      
         	}
                 
-                //public Emprunt unEmprunt() {
-		//	return _emprunt;                      
-        	//}
+                public Emprunt unEmprunt() {
+			return _emprunt;                      
+        	}
                 
                 
 		// -----------------------------------------------
