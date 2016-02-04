@@ -262,7 +262,7 @@ public class Bibliotheque implements Serializable
         }
         
         
-        public void EmprunterExemplaire()
+        public void emprunterExemplaire()
         {
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
             String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
@@ -284,6 +284,12 @@ public class Bibliotheque implements Serializable
                     
                 }
             }
+            
+        // une méthode pour passer un exemplaire empruntable en consultation sur place
+        public void editerExemplaire()
+        {
+            
+        }
             
             
             
