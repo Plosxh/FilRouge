@@ -125,9 +125,19 @@ public class Lecteur implements Serializable
                     _nbEmprunt=_nbEmprunt-1;                    
                 }
 		
-                public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts) {
-        this._collectionEmprunts = collectionEmprunts;
-    }
+                public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts)
+                {
+                    this._collectionEmprunts = collectionEmprunts;
+                }
+                
+                public void infosReduitLecteur()
+                {
+                    System.out.println("Numero lecteur : " + this.getNumLecteur());
+                    System.out.println("Nom et prenom du lecteur: " + this.getNom() + " " + this.getPrenom());
+                    EntreesSorties.afficherMessage("");
+                }
+                
+                
                 
                 public void relancerLecteur()
                 {
