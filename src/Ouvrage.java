@@ -268,14 +268,16 @@ public class Ouvrage implements Serializable
                 */
                 public Exemplaire monExemplaire(int numExemplaire)
                 {
+                   Exemplaire ex = null;
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
                    {
                         if (numExemplaire==e.getNumExemplaire())
                         {
-                            return e;
+                            ex = e;
                         }
-                   } 
+                   }
+                   return ex;
                 }
                 
                /* 

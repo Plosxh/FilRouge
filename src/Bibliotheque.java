@@ -265,11 +265,27 @@ public class Bibliotheque implements Serializable
         public void EmprunterExemplaire()
         {
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+            String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
+            Ouvrage o = unOuvrage(isbn);
             
-            //Exemplaire e = unExemplaire(numExemplaire);
-            //e.infosReduitExemplaire();
+            if(exemplaireEmpruntable(o, numExemplaire))
+            {
+                Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
+                Lecteur l = unLecteur(numLecteur);  //je pense qu'il faut ajouter if (l:=null) sinon on continu le programme avec un lecteur inexistant
+                if(!etatSature(numLecteur)) //si c'est false on continue
+                {
+                    int age = age(numLecteur);
+                    PublicCible publicO = o.getPublic();
+                    if(agePublic(age, publicO))
+                    {
+                        //CREER EMPRUNT
+                    }
+                 
+                    
+                }
+            }
             
-            Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
+            
             
            // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
         
@@ -380,7 +396,83 @@ public class Bibliotheque implements Serializable
     */
     private boolean exemplaireEmpruntable(Ouvrage o, int numExemplaire)
     {
-        Exemplaire e = o.MonExemplaire(numExemplaire);
+        Exemplaire e = o.monExemplaire(numExemplaire);
+        if(e!=null)
+        {
+            if(o.etatEmpruntabilite(e) && o.etatDisponibilite(e))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+              
+    }
+    
+    
+    /*
+    etatSature retourne true si le lecteur de numero numLecteur ne peut plus emprunter false sinon
+    */
+    
+    private boolean etatSature(int numLecteur)
+    {
+        Lecteur l = unLecteur(numLecteur);
+        int nb = l.getNbEmprunt();
+        if (nb<5)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
+    /*
+    age retourne l'age du lecteur de numero numLecteur
+    */
+    
+    private int age(int numLecteur)
+    {
+        Lecteur l = unLecteur(numLecteur);
+        return l.calculAge();        
+    }
+    
+    /*
+    agePublic retourne true si l'ouvrage correspond à la tranche d'âge correspondante false sinon
+    */
+    
+    private boolean agePublic(int age, PublicCible publiq)
+    {
+        boolean retour;
+        switch(publiq)
+        {
+            case ADOLESCENT :
+            {
+                if(age < 10)
+                    retour = false;
+                else    
+                    retour = true;
+            }
+            case ADULTE :
+            {
+                if(age < 16)
+                    retour = false;
+                else
+                    retour = true;
+            }   
+            default : 
+            {
+                retour = true;
+            }
+       }
+        return retour;
     }
     
     //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
