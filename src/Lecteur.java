@@ -130,7 +130,13 @@ public class Lecteur implements Serializable
                     System.out.println("Nom et prenom du lecteur: " + this.getNom() + " " + this.getPrenom());
                     EntreesSorties.afficherMessage("");
                 }
-                
+                public void afficherInfosEmprunts()
+                {
+                    HashSet<Emprunt> ensEm=mesEmprunts();
+                   for(Emprunt em : ensEm)
+                   { 
+                        em.infosExmprunt();                       
+                    }
                 
                 
                 public void relancerLecteur()
@@ -152,12 +158,8 @@ public class Lecteur implements Serializable
 		 */
 		public HashSet<Emprunt> mesEmprunts()
 		{
-                    HashSet<Emprunt> ensEm=mesEmprunts();
-                    for(Emprunt em : ensEm)
-                    { 
-                       return _collectionEmprunts;
-                    }
-		} 
+                   return _collectionEmprunts;
+                } 
 	
 // -----------------------------------------------
 	// Private
@@ -191,6 +193,9 @@ public class Lecteur implements Serializable
 			this._telephone = tel;
 		}
 		
+               
+                
+                
 		//private void setNbEmprunt(Integer nbEmprunt) {
 		//	this._nbEmprunt = nbEmprunt;
 		//}
@@ -201,3 +206,5 @@ public class Lecteur implements Serializable
                     _collectionEmprunts=null;
                 }
 }
+
+

@@ -204,7 +204,8 @@ public class Bibliotheque implements Serializable
 		Lecteur l = unLecteur(numLecteur);
 		
 		if (l!=null){
-			l.afficherLecteur();
+			l.infosReduitLecteur();
+                        l.afficherInfosEmprunts();
 		}
 		else {
 			EntreesSorties.afficherMessage("Aucun lecteur n'est associe a ce numero.");
