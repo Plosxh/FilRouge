@@ -133,7 +133,7 @@ public class Emprunt implements Serializable
 		}
 		
                 /*
-                * Methode utilisée pour le use case ConsulterExemplaireOuvrage
+                * Methode utilisée pour le use case ConsulterExemplaireOuvrage (méthode appelée par exemplaire)
                 */
 		public void infosEmpruntExemplaire()  
 		{
@@ -142,6 +142,16 @@ public class Emprunt implements Serializable
                     EntreesSorties.afficherMessage("");
                     l.infosReduitLecteur();
                 }
+                 /*
+                * Methode utilisée pour le use case ConsulterLecteur (methode appelée par lecteur)
+                */
+                public void infosEmprunt(emprunt em)
+                {
+                    System.out.println("Date d'emprunt : " + this.getDateEmprunt());
+                    System.out.println("Date de retour : " + this.getDateRetour());
+                    EntreesSorties.afficherMessage("");
+                    e.infosEmprunts();
+                }        
 	
 	
 // -----------------------------------------------

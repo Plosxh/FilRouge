@@ -130,6 +130,7 @@ public class Lecteur implements Serializable
                     System.out.println("Nom et prenom du lecteur: " + this.getNom() + " " + this.getPrenom());
                     EntreesSorties.afficherMessage("");
                 }
+               
                 public void afficherInfosEmprunts()
                 {
                     HashSet<Emprunt> ensEm=mesEmprunts();
