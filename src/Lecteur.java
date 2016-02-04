@@ -70,13 +70,9 @@ public class Lecteur implements Serializable
 		public String getTel() {
 			return _telephone;                      
         	}
-                
-                public Integer getNbEmprunt() {
-			return _nbEmprunt;                      
-        	}
-                
-                public Emprunt unEmprunt() {
-			return _emprunt;                      
+                               
+                public HashSet <Emprunt> unEmprunt() {
+			return _collectionEmprunts;                      
         	}
                 
                 
