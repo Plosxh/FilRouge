@@ -131,15 +131,16 @@ public class Lecteur implements Serializable
                 
                 public void relancerLecteur()
                 {
-                       mesEmprunts() 
-                       for(em!=null)
-                       {
-                           em.verifEmprunt();
-                           if(retard=1)
-                           {
-                               em.afficheRetard();
-                           }
-                       }
+                    HashSet<Emprunt> em = mesEmprunts(); 
+                    
+                    for(em!=null)
+                    {
+                        em.verifEmprunt();
+                        if(retard=1)
+                        {
+                           em.afficheRetard();
+                        }
+                    }
                 }
 	
                 /*
