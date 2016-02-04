@@ -59,6 +59,10 @@ public class Exemplaire implements Serializable
                 public Boolean getDisponibilite() {
                         return _disponibilite;
                 }
+                
+                public Ouvrage unOuvrage(){
+                    return _ouvrage;
+                }
 
                                 /**
                  * @return the Exemplaire
@@ -85,16 +89,19 @@ public class Exemplaire implements Serializable
 			EntreesSorties.afficherMessage("");
 		}
                 
-                public void infosEmpruntsExemplaire()
+                public void infosEmpruntExemplaire()
 		{
-                    em.infosEmpruntExemplaire(e);
+                    Emprunt em = unEmprunt();
+                    em.infosEmpruntExemplaire();
                 }
                 
-                public void infosEmprunt(emprunt e)
+                public void infosEmprunt()
                 {
+                    Ouvrage o = unOuvrage();
+                    o.infosReduitOuvrage();
                     System.out.println("Numéro Exemplaire  : " + this.getNumExemplaire());
                     EntreesSorties.afficherMessage("");
-                    o.infosReduitOuvrage();
+                    
                 }
                 
                 public void supEmprunt()

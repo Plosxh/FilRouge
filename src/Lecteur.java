@@ -137,7 +137,7 @@ public class Lecteur implements Serializable
                     HashSet<Emprunt> ensEm=mesEmprunts();
                    for(Emprunt em : ensEm)
                    { 
-                        em.infosExmprunt();                       
+                        em.infosEmprunt();                         
                     }
                 
                 public void relancerLecteur()

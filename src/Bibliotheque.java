@@ -206,14 +206,12 @@ public class Bibliotheque implements Serializable
                         l.afficherInfosEmprunts();
 		}
 		else {
-			EntreesSorties.afficherMessage("Aucun lecteur n'est associe a ce numero.");
+			EntreesSorties.afficherMessage("Aucun lecteur n'est associé à ce numero.");
 		}
 	}
         
-        
-        
-	
-               
+             
+	               
 	
 	/*
 	 * La méthode consulterOuvrage permet d'afficher l'ensemble des informations relatives à
