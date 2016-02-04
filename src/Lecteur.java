@@ -37,8 +37,7 @@ public class Lecteur implements Serializable
 			this.setDateNaiss(dateNaiss);
 			this.setAdresse(adresse);
 			this.setTel(tel);
-                        //this.setNbEmprunt(nbEmprunt);
-		}
+                }
 		
 // -----------------------------------------------
 	// Public
@@ -71,14 +70,10 @@ public class Lecteur implements Serializable
 		public String getTel() {
 			return _telephone;                      
         	}
-                
-                public Integer getNbEmprunt() {
-			return _nbEmprunt;                      
+                               
+                public HashSet <Emprunt> unEmprunt() {
+			return _collectionEmprunts;                      
         	}
-                
-                //public Emprunt unEmprunt() {
-		//	return _emprunt;                      
-        	//}
                 
                 
 		// -----------------------------------------------
@@ -147,15 +142,16 @@ public class Lecteur implements Serializable
                 
                 public void relancerLecteur()
                 {
-                       mesEmprunts() 
-                       for(em!=null)
-                       {
-                           em.verifEmprunt();
-                           if(retard=1)
-                           {
-                               em.afficheRetard();
-                           }
-                       }
+                    HashSet<Emprunt> em = mesEmprunts(); 
+                    
+                    for(em!=null)
+                    {
+                        em.verifEmprunt();
+                        if(retard=1)
+                        {
+                           em.afficheRetard();
+                        }
+                    }
                 }
 	
                 /*
