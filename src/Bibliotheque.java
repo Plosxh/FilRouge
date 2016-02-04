@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 
 
@@ -305,7 +306,16 @@ public class Bibliotheque implements Serializable
         }
                 
                 
-        
+        public void relancerLecteur()
+        {
+            Lecteur l = lesLecteurs();
+            
+            for(l!=null)
+            { 
+                l.relancerLecteur();
+            }                  
+            
+        }
         
         
         
@@ -368,10 +378,15 @@ public class Bibliotheque implements Serializable
 	 * La méthode lesLecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir
 	 * pour eventuellement les relancer.
 	 */
-	private Iterator<Lecteur> lesLecteurs() {
-		return _dicoLecteur.values().iterator();
-	}
-
+	private Lecteur lesLecteurs(Integer numLecteur)
+	{
+            HashMap<Lecteur> ensL=unLecteur();
+            for(Lecteur l : ensL)
+            { 
+                return _dicoLecteur.get(numLecteur);
+            }
+	}  
+            
     /**
      * @return the _numLast
      */

@@ -29,7 +29,7 @@ public class Lecteur implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 		
-		public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaiss, String adresse, String tel, Integer nbEmprunt)
+		public Lecteur(String nom, String prenom, Integer numLecteur, GregorianCalendar dateNaiss, String adresse, String tel)
 		{
 			this.setNom(nom);
 			this.setPrenom(prenom);
@@ -37,7 +37,7 @@ public class Lecteur implements Serializable
 			this.setDateNaiss(dateNaiss);
 			this.setAdresse(adresse);
 			this.setTel(tel);
-                        this.setNbEmprunt(nbEmprunt);
+                        //this.setNbEmprunt(nbEmprunt);
 		}
 		
 // -----------------------------------------------
@@ -128,7 +128,31 @@ public class Lecteur implements Serializable
                 public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts) {
         this._collectionEmprunts = collectionEmprunts;
     }
+                
+                public void relancerLecteur()
+                {
+                       mesEmprunts() 
+                       for(em!=null)
+                       {
+                           em.verifEmprunt();
+                           if(retard=1)
+                           {
+                               em.afficheRetard();
+                           }
+                       }
+                }
 	
+                /*
+		 * La m�thode mesEmprunts demande d'accèder à tous les emprunts de cet ouvrage.
+		 */
+		public HashSet<Emprunt> mesEmprunts()
+		{
+                    HashSet<Emprunt> ensEm=mesEmprunts();
+                    for(Emprunt em : ensEm)
+                    { 
+                       return _collectionEmprunts;
+                    }
+		} 
 	
 // -----------------------------------------------
 	// Private
@@ -162,9 +186,9 @@ public class Lecteur implements Serializable
 			this._telephone = tel;
 		}
 		
-		private void setNbEmprunt(Integer nbEmprunt) {
-			this._nbEmprunt = nbEmprunt;
-		}
+		//private void setNbEmprunt(Integer nbEmprunt) {
+		//	this._nbEmprunt = nbEmprunt;
+		//}
                 
                 private void delierEmprunt()
                 {
