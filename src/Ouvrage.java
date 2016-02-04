@@ -195,9 +195,9 @@ public class Ouvrage implements Serializable
                    for(Exemplaire e : ensE)
                    { 
                         e.afficheInfosExemplaire();
-                        if(e.disponibilite==false)
+                        if(!etatDisponibilite(e))
                          {
-                           e.afficheEmpruntsExemplaire();                               
+                           e.infosEmpruntsExemplaire();                               
                          }
                    }                  
 		}
@@ -208,7 +208,8 @@ public class Ouvrage implements Serializable
 		public void infosReduitOuvrage()
 		{
                     System.out.println("Isbn    : " + this.getIsbn());
-                    System.out.println("Titre   : " + this.getTitre());         
+                    System.out.println("Titre   : " + this.getTitre());
+                    EntreesSorties.afficherMessage("");
 		}
 		
                 /*
