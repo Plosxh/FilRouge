@@ -92,6 +92,7 @@ public class Emprunt implements Serializable
 		{
                     System.out.println("Date d'emprunt : " + this.getDateEmprunt());
                     System.out.println("Date de retour : " + this.getDateRetour());
+                    EntreesSorties.afficherMessage("");
                     l.infosReduitLecteur();
                 }
 	
