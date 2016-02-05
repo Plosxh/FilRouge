@@ -35,6 +35,7 @@ public class Lecteur implements Serializable
 			this.setDateNaiss(dateNaiss);
 			this.setAdresse(adresse);
 			this.setTel(tel);
+                        this.setEmprunt(new HashSet<Emprunt>());
                 }
 		
 // -----------------------------------------------
@@ -231,6 +232,11 @@ public class Lecteur implements Serializable
                 {
                     _collectionEmprunts.add(em);
                 }
+                
+                   private void setEmprunt(HashSet<Emprunt> _collectionEmprunts)
+                 {
+                    this._collectionEmprunts = _collectionEmprunts;
+                 }
 }
 
 

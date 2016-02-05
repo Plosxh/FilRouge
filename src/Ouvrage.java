@@ -51,6 +51,7 @@ public class Ouvrage implements Serializable
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
+                        this.setExemplaire(new HashSet<Exemplaire>());
 		}
 		
 // -----------------------------------------------

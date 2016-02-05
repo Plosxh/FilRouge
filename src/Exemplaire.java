@@ -34,6 +34,7 @@ public class Exemplaire implements Serializable
                         this.setEmpruntable(empruntable);
                         this.setDisponibilite(disponibilite);
                         this.lierOuvrage(o);
+                       
 		}
 		
 // -----------------------------------------------
@@ -160,5 +161,7 @@ public class Exemplaire implements Serializable
                 private void lierEmprunt(Emprunt e){
 			this._emprunt = e;
 		}
+                
+                
              
 }
