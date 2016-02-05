@@ -224,7 +224,7 @@ public class Bibliotheque implements Serializable
 	 */
         public void consulterExemplaireOuvrage()
         {         
-            String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
+            String isbn = EntreesSorties.lireChaine("Entrez le numero ISBN : ");
 		
 		Ouvrage o = unOuvrage(isbn);
 		
@@ -239,8 +239,8 @@ public class Bibliotheque implements Serializable
         
     public void emprunterExemplaire()
             {
+                String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
                 Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
-                String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
                 Ouvrage o = unOuvrage(isbn);
                 if(o!=null)
                 {
@@ -264,6 +264,7 @@ public class Bibliotheque implements Serializable
                                         dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
                                         Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
                                         em.ajouterEmprunt(l, e);
+                                        EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
                                     }
                                 }
                                 else{
@@ -288,16 +289,14 @@ public class Bibliotheque implements Serializable
                 {
                     EntreesSorties.afficherMessage("Aucun ouvrage n'est associe à ce numero.");
                 }
-
-                EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
-
             }
             
         // une méthode pour passer un exemplaire de empruntable à en consultation sur place
         public void editerExemplaire()
         {
+            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
-            String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
+            
             Ouvrage o = unOuvrage(isbn); 
             
             o.editerExemplaire(numExemplaire);
