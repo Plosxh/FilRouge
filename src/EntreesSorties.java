@@ -70,17 +70,7 @@ public class EntreesSorties  {
 		// Extrait le mois de cette variable et la renvoie
 		return dateCourante.get(GregorianCalendar.MONTH);
 	}	
-	
-        private static int jourCourant() {
-		// Instancie une variable date
-		GregorianCalendar dateCourante = new GregorianCalendar(); 
-		
-		// Affecte la date courante à cette variable
-		dateCourante.setTime(new Date());
 
-		// Extrait le mois de cette variable et la renvoie
-		return dateCourante.get(GregorianCalendar.DAY_OF_MONTH);
-	}
         
         
 	/**

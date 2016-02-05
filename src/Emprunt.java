@@ -2,10 +2,7 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
-/**
- *
- * @author bellenga
- */
+
 public class Emprunt implements Serializable 
 {
 	
@@ -21,7 +18,6 @@ public class Emprunt implements Serializable
                 private GregorianCalendar _dateRetour;
   
 	
-	
 	// -----------------------------------------------
 		//Constructeur
 	// -----------------------------------------------
@@ -32,6 +28,9 @@ public class Emprunt implements Serializable
 			this.setExemplaire(e);
 			this.setDateEmprunt(dateEmprunt);
 			this.setDateRetour(dateRetour);
+                        
+                        this.lierLecteur(l);
+                        this.lierExemplaire(e);
 		}
 		
 // -----------------------------------------------
@@ -76,15 +75,13 @@ public class Emprunt implements Serializable
                 public boolean verifEmprunt()
                   {
                     GregorianCalendar dateReception = new GregorianCalendar();                    
-                    GregorianCalendar dateRetourEstime= new GregorianCalendar(_dateRetour.get(GregorianCalendar.YEAR), _dateRetour.get(GregorianCalendar.MONTH),_dateRetour.get(GregorianCalendar.DATE));
+                    GregorianCalendar dateRetourEstime= new GregorianCalendar(_dateRetour.get(GregorianCalendar.YEAR), _dateRetour.get(GregorianCalendar.MONTH),_dateRetour.get(GregorianCalendar.DAY_OF_MONTH));
                     Boolean test;
                     Boolean retard=false;
                     Integer anneeRetard= dateRetourEstime.get(GregorianCalendar.YEAR)-_dateRetour.get(GregorianCalendar.YEAR);
                     Integer moisRetard = dateRetourEstime.get(GregorianCalendar.MONTH)-_dateRetour.get(GregorianCalendar.MONTH);
-                    Integer jourRetard = dateRetourEstime.get(GregorianCalendar.DATE)-_dateRetour.get(GregorianCalendar.DATE);
+                    Integer jourRetard = dateRetourEstime.get(GregorianCalendar.DAY_OF_MONTH)-_dateRetour.get(GregorianCalendar.DAY_OF_MONTH);
               
-                    
-          
                     if(anneeRetard>1 || moisRetard >1 || jourRetard>=15)
                     {
                         return retard=true;
@@ -101,10 +98,7 @@ public class Emprunt implements Serializable
                     e.infosReduitOuvrage();
                     e.infosEmpruntExemplaire();
                 }
-		                
-		
-		
-		
+		  
 		/*
 		 * La m�thode afficherEmprunt affiche l'ensemble des informations relatives � un emprunt.
 		 */
@@ -138,7 +132,13 @@ public class Emprunt implements Serializable
                     System.out.println("Date de retour : " + this.getDateRetour());
                     EntreesSorties.afficherMessage("");
                     e.infosEmprunt();
-                }        
+                }     
+                
+                public void ajouterEmprunt(Lecteur l, Exemplaire e)
+                {
+                    l.ajouterEmprunt(this);
+                    e.ajouterEmprunt(this);
+                }
 	
 	
 // -----------------------------------------------

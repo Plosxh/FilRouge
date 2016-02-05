@@ -64,9 +64,6 @@ public class Exemplaire implements Serializable
                     return _ouvrage;
                 }
 
-                                /**
-                 * @return the Exemplaire
-                 */
                 public Emprunt unEmprunt() {
                     return _emprunt;
                 }
@@ -106,6 +103,12 @@ public class Exemplaire implements Serializable
                     em.supEmprunt();                    
                 }
                 
+                 public void ajouterEmprunt(Emprunt em)
+                {
+                    lierEmprunt(em);
+                }
+                
+                
                 public void infosReduitOuvrage()
                 {
                     Ouvrage o = unOuvrage();
@@ -119,7 +122,13 @@ public class Exemplaire implements Serializable
                 }
                 
                 
-                /*
+               
+                
+// -----------------------------------------------
+	// Private
+// -----------------------------------------------
+
+                 /*
                  * La méthode lierOuvrage permet d'ajouter un ouvrage a la base de donnée de Exemplaire.
                 */
                 private void lierOuvrage(Ouvrage o)
@@ -128,12 +137,6 @@ public class Exemplaire implements Serializable
                 }
                 
                 
-                      
-                
-// -----------------------------------------------
-	// Private
-// -----------------------------------------------
-
 		// -----------------------------------------------
 			//Setters
 		// -----------------------------------------------
@@ -154,4 +157,8 @@ public class Exemplaire implements Serializable
 			this._disponibilite = disponibilite;
 		}
 			
+                private void lierEmprunt(Emprunt e){
+			this._emprunt = e;
+		}
+             
 }

@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-
 // Classe de gestion de la Bibliotheque
 
 public class Bibliotheque implements Serializable 
 {
-	
 	private static final long serialVersionUID = 262L;
 
 	// -----------------------------------------------
@@ -18,12 +16,8 @@ public class Bibliotheque implements Serializable
 	
 		private HashMap<Integer, Lecteur> _dicoLecteur;
                 private HashMap<String, Ouvrage> _dicoOuvrage;
-                
-            
-                
                 private Integer _numLast=(1);
-                
-		
+               
 		/*
 		 * Le dictionnaire de lecteur permet à bibliotheque de 
 		 * garantir l'unicité de ces derniers, et facilitent les recherches et créations.
@@ -33,11 +27,10 @@ public class Bibliotheque implements Serializable
 		//Constructeur
 	// -----------------------------------------------
 	
-
-		public Bibliotheque() {
+		public Bibliotheque() 
+                {
 			this.setLecteurs(new HashMap<Integer, Lecteur>());
                         this.setOuvrages(new HashMap<String, Ouvrage>());
-		
 		}
 	
 // -----------------------------------------------
@@ -59,9 +52,7 @@ public class Bibliotheque implements Serializable
 		 */
 	public void nouveauLecteur()
 	{
-		
-          
-            Integer numLecteur = getNumLast();
+	    Integer numLecteur = getNumLast();
             setNumLast(numLecteur+1);
 		
 		Lecteur L = unLecteur(numLecteur);
@@ -103,7 +94,6 @@ public class Bibliotheque implements Serializable
 		else {
 			EntreesSorties.afficherMessage("Ce numero de lecteur existe déjà.");
 		}
-		
 	}
 	
         /*
@@ -162,11 +152,7 @@ public class Bibliotheque implements Serializable
                    
                    EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
                    return o; 
-                   
 		} 
-        
-             
-        
         
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
@@ -183,12 +169,11 @@ public class Bibliotheque implements Serializable
             {
                EntreesSorties.afficherMessage("Cet ouvrage n'existe pas, nous allons le créer.");
                o =this.creationOuvrage(isbn);
-                
             }
                         
             o.ajouterExemplaire();
-            
         }
+        
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
 	 * un lecteur, par la saisie de son identifiant (numéro de lecteur).
@@ -210,9 +195,6 @@ public class Bibliotheque implements Serializable
 		}
 	}
         
-             
-	               
-	
 	/*
 	 * La méthode consulterOuvrage permet d'afficher l'ensemble des informations relatives à
 	 * un ouvrage, par la saisie de son ISBN.
@@ -221,10 +203,9 @@ public class Bibliotheque implements Serializable
 	 */
         public void consulterOuvrage()
         {
-         
             String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
 		
-		Ouvrage o = unOuvrage(isbn);
+            Ouvrage o = unOuvrage(isbn);
 		
 		if (o!=null){
 			o.infosOuvrage();
@@ -232,7 +213,6 @@ public class Bibliotheque implements Serializable
 		else {
 			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
 		}
-            
         }
         
         /*
@@ -254,33 +234,63 @@ public class Bibliotheque implements Serializable
                 }
                 else {
 			EntreesSorties.afficherMessage("Aucun Ouvrage n'est associe à ce numero.");
-		}
-            
-               
+		}              
         }
         
-        
-        public void emprunterExemplaire()
-        {
-            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
-            String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
-            Ouvrage o = unOuvrage(isbn);
-            
-            if(exemplaireEmpruntable(o, numExemplaire))
+    public void emprunterExemplaire()
             {
-                Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
-                Lecteur l = unLecteur(numLecteur);  //je pense qu'il faut ajouter if (l:=null) sinon on continu le programme avec un lecteur inexistant
-                if(!etatSature(numLecteur)) //si c'est false on continue
+                Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+                String isbn = EntreesSorties.lireChaine("Entrez l'isbn");
+                Ouvrage o = unOuvrage(isbn);
+                if(o!=null)
                 {
-                    int age = age(numLecteur);
-                    PublicCible publicO = o.getPublic();
-                    if(agePublic(age, publicO))
+                    Exemplaire e = o.monExemplaire(numExemplaire);
+                    if(e!=null)
                     {
-                        //CREER EMPRUNT
-                    }
-                 
-                    
+                        if(o.exemplaireEmpruntable(e))
+                        {
+                            Integer numLecteur = EntreesSorties.lireEntier("Entrez le numero du lecteur : ");
+                            Lecteur l = unLecteur(numLecteur); 
+                            if(l!=null)
+                            {
+                                if(!l.etatSature()) //si c'est false on continue
+                                {
+                                    int age = l.calculAge();
+                                    PublicCible publicO = o.getPublic();
+                                    if(comparePublicAge(age, publicO))
+                                    {
+                                        GregorianCalendar dateEmprunt = new GregorianCalendar();
+                                        GregorianCalendar dateRetour = dateEmprunt;
+                                        dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
+                                        Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
+                                        em.ajouterEmprunt(l, e);
+                                    }
+                                }
+                                else{
+                                    EntreesSorties.afficherMessage("Ce lecteur a déjà 5 exemplaires.");
+                                }
+                            }
+                            else
+                            {
+                                EntreesSorties.afficherMessage("Aucun lecteur n'est associe à ce numero.");
+                            }
+                        }
+                        else{
+                          EntreesSorties.afficherMessage("Cet exemplaire ne peut pas être emprunté (déjà emprunté ou en lecture sur place");// un seul booleen teste les 2
+                        }
+                    }                    
+                    else
+                    {
+                        EntreesSorties.afficherMessage("Aucun exemplaire n'est associé à ce numero");// un seul booleen teste les 2
+                         }
                 }
+                else
+                {
+                    EntreesSorties.afficherMessage("Aucun ouvrage n'est associe à ce numero.");
+                }
+
+                EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
+
             }
             
         // une méthode pour passer un exemplaire de empruntable à en consultation sur place
@@ -293,9 +303,7 @@ public class Bibliotheque implements Serializable
             o.editerExemplaire(numExemplaire);
              EntreesSorties.afficherMessage("L'exemplaire à été modifié."); 
         }
-                                    
-           // lierNumLecteurNumExemplaire(numLecteur, numExemplaire);
-               
+                                      
         public void rendreExemplaire()
         {
            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
@@ -305,23 +313,17 @@ public class Bibliotheque implements Serializable
             
             o.supEmprunt(numExemplaire);
             EntreesSorties.afficherMessage("L'emprunt à été supprimé.");       
-        
         }
-                
-                
+                    
         public void relancerLecteur()
         {
-            
             HashMap<Integer, Lecteur> ensL = lesLecteurs();
                        
             for(Lecteur l : ensL.values())
             { 
                 l.relancerLecteur();
-            }                  
-            
+            }                   
         }
-        
-        
         
 // -----------------------------------------------
 	// Private
@@ -352,8 +354,6 @@ public class Bibliotheque implements Serializable
 		return _dicoLecteur.get(numLecteur);
 	}
         
-        
-	
         /*
 	 * La méthode unOuvrage permet de rechercher dans la base de donnée de bibliotheque un objet 
 	 * ouvrage identifié par son ISBN, et de renvoyer l'objet. (ou la donnée null s'il n'est pas trouvé)
@@ -362,8 +362,7 @@ public class Bibliotheque implements Serializable
 	{
 		return _dicoOuvrage.get(isbn);
 	}
-	
-        
+
 	/*
 	 * La méthode lierLecteur permet d'ajouter un lecteur a la base de donnée de bibliotheque.
 	 */
@@ -372,7 +371,6 @@ public class Bibliotheque implements Serializable
 		_dicoLecteur.put(numLecteur, L);
 	}
 	
-        
         private void lierOuvrage(Ouvrage o, String isbn)
 	{
 		_dicoOuvrage.put(isbn, o);
@@ -385,135 +383,53 @@ public class Bibliotheque implements Serializable
 	private HashMap<Integer, Lecteur> lesLecteurs()
 	{       
                 return _dicoLecteur;
-                
-            
 	}  
             
-    /**
-     * @return the _numLast
-     */
-    public Integer getNumLast() {
-        return _numLast;
-    }
-
-    /**
-     * @param _numLast the _numLast to set
-     */
-    public void setNumLast(Integer _numLast) {
-        this._numLast = _numLast;
-    }
-
-
-    
-
-
-    //les classes qui peuvent être utiles (fait par Antoine)
-    
-    private void lierNumLecteurNumExemplaire(Lecteur l, Exemplaire e)
-    {
-        _dicoEmprunt.remove(l, e); //interdit ça!!
-    }
-
-    private void delierNumLecteurNumExemplaire(Integer numLecteur, Integer numExemplaire)
-    {
-        _dicoEmprunt.remove(numLecteur, numExemplaire);
-    }
-
-    
-    /*
-    exemplaireEmpruntable retourne true si l'exemplaire peut etre emprunté false sinon, il appelle des fonctions de ouvrage
-    */
-    private boolean exemplaireEmpruntable(Ouvrage o, int numExemplaire)
-    {
-        Exemplaire e = o.monExemplaire(numExemplaire);
-        if(e!=null)
-        {
-            if(o.etatEmpruntabilite(e) && o.etatDisponibilite(e))
-            {
-                return true;
+            /**
+             * @return the _numLast
+             */
+            public Integer getNumLast() {
+                return _numLast;
             }
-            else
-            {
-                return false;
+
+            /**
+             * @param _numLast the _numLast to set
+             */
+            public void setNumLast(Integer _numLast) {
+                this._numLast = _numLast;
             }
-        }
-        else
-        {
-            return false;
-        }
-              
-    }
-    
-    
-    /*
-    etatSature retourne true si le lecteur de numero numLecteur ne peut plus emprunter false sinon
-    */
-    
-    private boolean etatSature(int numLecteur)
-    {
-        Lecteur l = unLecteur(numLecteur);
-        int nb = l.getNbEmprunt();
-        if (nb<5)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-    
-    /*
-    age retourne l'age du lecteur de numero numLecteur
-    */
-    
-    private int age(int numLecteur)
-    {
-        Lecteur l = unLecteur(numLecteur);
-        return l.calculAge();        
-    }
-    
-    /*
-    agePublic retourne true si l'ouvrage correspond à la tranche d'âge correspondante false sinon
-    */
-    
-    private boolean agePublic(int age, PublicCible publiq)
-    {
-        boolean retour;
-        switch(publiq)
-        {
-            case ADOLESCENT :
-            {
-                if(age < 10)
-                    retour = false;
-                else    
-                    retour = true;
+            
+        /*
+            agePublic retourne true si l'ouvrage correspond à la tranche d'âge correspondante false sinon
+            */
+
+            private boolean comparePublicAge(int age, PublicCible publiq)
+            {        
+                boolean retour;
+                switch(publiq)
+                {
+                    case ADOLESCENT :
+                    {
+                        if(age < 10)
+                            retour = false;
+                        else    
+                            retour = true;
+                    }
+                    case ADULTE :
+                    {
+                        if(age < 16)
+                            retour = false;
+                        else
+                            retour = true;
+                    }   
+                    default : 
+                    {
+                        retour = true;
+                    }
+               }
+                return retour;
             }
-            case ADULTE :
-            {
-                if(age < 16)
-                    retour = false;
-                else
-                    retour = true;
-            }   
-            default : 
-            {
-                retour = true;
-            }
-       }
-        return retour;
+
     }
+
     
-    private void CreerEmprunt(Lecteur l, Exemplaire e)
-    {
-        
-    }
-    
-    //private Exemplaire unExemplaire(String isbn, Integer numExemplaire)
-    //{
-        //return _dicoOuvrage.get(xemplaire);
-        
-        //_exemplaire = new HashSet<Exemplaire>();
-        
-    //}
-}

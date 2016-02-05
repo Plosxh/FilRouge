@@ -17,7 +17,6 @@ public class Lecteur implements Serializable
 		private String _nomLecteur;
 		private String _prenomLecteur;
 		private Integer _numLecteur;
-                private Integer _numEmprunt;
 		private GregorianCalendar _dateNaissance;
 		private String _adresseLecteur;
 		private String _telephone;
@@ -138,7 +137,7 @@ public class Lecteur implements Serializable
                    { 
                         em.infosEmprunt();                         
                     }
-                
+                }
                 public void relancerLecteur()
                 {
                     
@@ -164,6 +163,24 @@ public class Lecteur implements Serializable
 		{
                    return _collectionEmprunts;
                 } 
+                
+                public boolean etatSature()
+                {
+                    int nb = _collectionEmprunts.size();
+                    if (nb < 5)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                
+                public void ajouterEmprunt(Emprunt em)
+                {
+                    lierEmprunt(em);
+                }
 	
 // -----------------------------------------------
 	// Private
@@ -197,18 +214,17 @@ public class Lecteur implements Serializable
 			this._telephone = tel;
 		}
 		
-               
-                
-                
-		//private void setNbEmprunt(Integer nbEmprunt) {
-		//	this._nbEmprunt = nbEmprunt;
-		//}
-                
                 private void delierEmprunt()
                 {
                     //faire avec em comme dans exemplaire
                     _collectionEmprunts=null;
                 }
+                
+                private void lierEmprunt(Emprunt em)
+                {
+                    _collectionEmprunts.add(em);
+                }
 }
+
 
 

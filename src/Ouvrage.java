@@ -19,13 +19,6 @@ import java.util.HashMap;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author bellenga
- */
-
-
-
 // Classe de gestion de Ouvrage
 
 public class Ouvrage implements Serializable
@@ -58,18 +51,8 @@ public class Ouvrage implements Serializable
 			this.setDateParution(dateParution);
 			this.setNomAuteur(nomAuteur);
 			this.setPublic(publicOuvrage);
-                        
-                        //comment ça marche ?? Antoine
-                        _exemplaire = new HashSet<Exemplaire>();
 		}
 		
-                
-                //c'est quoi ce truc là ??
-                /*La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.*/
-                 public void setExemplaire(HashSet<Exemplaire> _exemplaire)
-                 {
-                    this._exemplaire = _exemplaire;
-                 }
 // -----------------------------------------------
 	// Public
 // -----------------------------------------------
@@ -108,9 +91,12 @@ public class Ouvrage implements Serializable
                    return _numLast;
                }
                
-                
-                
-                
+               public HashSet <Exemplaire> unExemplaire() 
+                {
+			return _exemplaire;                      
+        	}
+               
+              
 		// -----------------------------------------------
 			// Methodes
 		// -----------------------------------------------
@@ -120,23 +106,18 @@ public class Ouvrage implements Serializable
 		 */
 		public void infosOuvrage()
 		{
-                	HashSet<Exemplaire> ensE=mesExemplaires();
-                        Integer nbExemplaires = ensE.size();
-                        System.out.println("Isbn    : " + this.getIsbn());
+                	System.out.println("Isbn    : " + this.getIsbn());
 			System.out.println("Titre   : " + this.getTitre());
 			System.out.println("Editeur : " + this.getNomEditeur());
 			System.out.println("Date de parution : " + EntreesSorties.ecrireDate(getDateParution()));
 			System.out.println("Auteur  : " + this.getNomAuteur());
                         System.out.println("Public  : " + this.getPublic());
-                        System.out.println("Nombre d'exemplaires  : " + nbExemplaires);
+                        System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
 			EntreesSorties.afficherMessage("");
 		}
 		
-                
-                
 		public void ajouterExemplaire()
 		{
-                
                    Integer numExemplaire = getNumLast();
                    setNumLast(numExemplaire+1);
                    
@@ -146,7 +127,6 @@ public class Ouvrage implements Serializable
                    boolean empruntable=false;
                    boolean disponible=true;
                    Integer empr = EntreesSorties.lireEntier("Entrez l'empruntabilité : 1 pour Oui, 2 pour Non : ");
-                   
                    
                    do{
                         test = false;
@@ -206,10 +186,6 @@ public class Ouvrage implements Serializable
                       
                  }
                 
-                
-                
-                
-		
                 /*
 		 * La m�thode afficherInfosExemplaire affiche l'ensemble des informations relatives aux exemplaires d'un ouvrage.
 		 */
@@ -220,7 +196,7 @@ public class Ouvrage implements Serializable
                    for(Exemplaire e : ensE)
                    { 
                         e.afficheInfosExemplaire();
-                        if(!etatDisponibilite(e))
+                        if(!e.getDisponibilite())
                          {
                              e.infosEmpruntExemplaire();                         
                          }
@@ -252,24 +228,22 @@ public class Ouvrage implements Serializable
                         }
                    }
                    return ex;
-                }                
-                
-                /* 
-                la fonction etatEmpruntabilite()? retourne true si l'exemplaire est empruntable false sinon
-                */
-                public boolean etatEmpruntabilite(Exemplaire e)
-                {
-                    return e.getEmpruntable();
-                }
+                }              
                 
                 /*
-                la fonction etatDisponibilite()? retourne true si l'exemplaire est disponible false sinon
+                exemplaireEmpruntable retourne true si l'exemplaire peut etre emprunté false sinon, il appelle des fonctions de ouvrage
                 */
-                public boolean etatDisponibilite(Exemplaire e)
-                {
-                    return e.getDisponibilite();
+                public boolean exemplaireEmpruntable(Exemplaire e)
+                {    
+                    if(e.getDisponibilite() && e.getEmpruntable())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                
                 
                 public void supEmprunt(Integer numExemplaire)
                 {
@@ -310,35 +284,28 @@ public class Ouvrage implements Serializable
 		private void setPublic(PublicCible publicOuvrage) {
 			this._public = publicOuvrage;
 		}
-                /**
-                 * @param _numLast the _numLast to set
-                 */
-                
-                
-                //C'est pas un private ?? Antoine
-                public void setNumLast(Integer _numLast) {
+               
+                private void setNumLast(Integer _numLast) {
                     this._numLast = _numLast;
                 }
+                
+                /*La méthode lierExemplaire permet d'ajouter un exemplaire a la base de donnée de Ouvrage.*/
+                 private void setExemplaire(HashSet<Exemplaire> _exemplaire)
+                 {
+                    this._exemplaire = _exemplaire;
+                 }
                 
                 // -----------------------------------------------
 			// Methodes
 		// -----------------------------------------------
 		
-                
 		/*
 		 * La m�thode mesExemplaires demande d'accèder à tous les exemplaires de cet ouvrage.
 		 */
-		public HashSet<Exemplaire> mesExemplaires()
+		private HashSet<Exemplaire> mesExemplaires()
 		{
 			return _exemplaire;
 		}       
                 
-                
-
-    /**
-     * @param _exemplaire the _exemplaire to set
-     */
-   
-                
-                
+             
 }
