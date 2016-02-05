@@ -103,56 +103,17 @@ public class Bibliotheque implements Serializable
         public void nouvelOuvrage()
         {
                 String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
-                System.out.println(isbn);
-              
-                Ouvrage o = _dicoOuvrage.get(isbn);
-                System.out.println(isbn+"toto");
-                //Ouvrage o = unOuvrage(isbn);
-                if (o!=null){
-                    PublicCible p=PublicCible.ADULTE;
-                    boolean t;
-                    String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
-                    String nomEditeur = EntreesSorties.lireChaine("Entrez le nom d'editeur : ");
-                    String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
-                    GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
-                    Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
-                    
-                    do{
-                        t = false;
-                        
-                        switch (publique){
-                                    case 1 : {
-                                            p=PublicCible.ENFANT;
-                                            break;
-                                    }
-                                    case 2 : {
-                                             p=PublicCible.ADOLESCENT;
-                                            break;
-                                    }
-                                    case 3 : {
-                                             p=PublicCible.ADULTE;
-                                            break;
-                                    }
-                                    default : {
-                                             EntreesSorties.afficherMessage("Inserez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
-                                             t=true;
-                                            break;
-                                    }
-                            }
-                    } while (t);
-                    
-                     o = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p);
-                    lierOuvrage(o, isbn);
-                   
-                   EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
-                  
+                Ouvrage o = unOuvrage(isbn);
+                if (o==null){
+                    this.creationOuvrage(isbn);
                 }
                 else{
                     EntreesSorties.afficherMessage("Cet ouvrage existe deja.");
 		}
         }
         
-	/*private Ouvrage creationOuvrage(String isbn)
+        
+	private Ouvrage creationOuvrage(String isbn)
         {	
                     PublicCible p=PublicCible.ADULTE;
                     boolean t;
@@ -192,7 +153,7 @@ public class Bibliotheque implements Serializable
                    EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
                    return o; 
 		} 
-        */
+        
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
 	 * date de parution.

@@ -162,7 +162,7 @@ public class Ouvrage implements Serializable
                   GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
                    
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
-                  ensE.add(e);
+                  _exemplaire.add(e);
                 }
                 
                 
