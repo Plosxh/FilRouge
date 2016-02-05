@@ -305,9 +305,9 @@ public class Bibliotheque implements Serializable
                                       
         public void rendreExemplaire()
         {
-           Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
-           String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
-        
+            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
+            Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
+                   
             Ouvrage o = unOuvrage(isbn);
             
             o.supEmprunt(numExemplaire);

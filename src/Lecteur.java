@@ -115,7 +115,11 @@ public class Lecteur implements Serializable
                 public void supEmprunt()
                 {
                     
-                    this.delierEmprunt();                    
+                    this.delierEmprunt();
+                    if(_collectionEmprunts.isEmpty())
+                    {
+                        this.setEmprunt(new HashSet<Emprunt>());
+                    }
                 }
 		
                 public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts)
@@ -144,6 +148,7 @@ public class Lecteur implements Serializable
                     else
                     {
                         EntreesSorties.afficherMessage("Ce lecteur n'a pas d'emprunt.");
+                        
                     }
                 }
                 public void relancerLecteur()

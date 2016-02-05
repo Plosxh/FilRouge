@@ -164,6 +164,7 @@ public class Ouvrage implements Serializable
                    
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
                   _exemplaire.add(e);
+                  EntreesSorties.afficherMessage("L'exemplaire a bien été ajouté à cet ouvrage.");
                 }
                 
                 
@@ -179,7 +180,8 @@ public class Ouvrage implements Serializable
                                EntreesSorties.afficherMessage("Il existe déjà un exemplaire non empruntable, celui-ci restera donc empruntable.");
                            } 
                            else{
-                           empruntable = false;
+                           empruntable = true;
+                           
                            }
                       }
                        
