@@ -30,7 +30,8 @@ public class Bibliotheque implements Serializable
 		public Bibliotheque() 
                 {
 			this.setLecteurs(new HashMap<Integer, Lecteur>());
-                        this.setOuvrages(new HashMap<String, Ouvrage>());
+                        this.setOuvrages();
+                        
 		}
 	
 // -----------------------------------------------
@@ -62,8 +63,7 @@ public class Bibliotheque implements Serializable
 			String nom = EntreesSorties.lireChaine("Entrez le nom :");
 			String prenom = EntreesSorties.lireChaine("Entrez le prenom :");
 			Integer age;
-                        Integer nbEmprunt=0;
-			GregorianCalendar dateNaiss, dateNaissComp;
+                        GregorianCalendar dateNaiss, dateNaissComp;
 			GregorianCalendar dateActuelle = new GregorianCalendar();
 			do {
 				dateNaiss = EntreesSorties.lireDate("Entrez la date de naissance du lecteur :");
@@ -102,18 +102,57 @@ public class Bibliotheque implements Serializable
 	 */
         public void nouvelOuvrage()
         {
-                Integer NB = 1;
                 String isbn = EntreesSorties.lireChaine("Entrez le numero d'isbn : ");
-		Ouvrage o = unOuvrage(isbn);
-                if (o==null){
-                this.creationOuvrage(isbn);
+                System.out.println(isbn);
+              
+                Ouvrage o = _dicoOuvrage.get(isbn);
+                System.out.println(isbn+"toto");
+                //Ouvrage o = unOuvrage(isbn);
+                if (o!=null){
+                    PublicCible p=PublicCible.ADULTE;
+                    boolean t;
+                    String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
+                    String nomEditeur = EntreesSorties.lireChaine("Entrez le nom d'editeur : ");
+                    String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
+                    GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution :");
+                    Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
+                    
+                    do{
+                        t = false;
+                        
+                        switch (publique){
+                                    case 1 : {
+                                            p=PublicCible.ENFANT;
+                                            break;
+                                    }
+                                    case 2 : {
+                                             p=PublicCible.ADOLESCENT;
+                                            break;
+                                    }
+                                    case 3 : {
+                                             p=PublicCible.ADULTE;
+                                            break;
+                                    }
+                                    default : {
+                                             EntreesSorties.afficherMessage("Inserez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
+                                             t=true;
+                                            break;
+                                    }
+                            }
+                    } while (t);
+                    
+                     o = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p);
+                    lierOuvrage(o, isbn);
+                   
+                   EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
+                  
                 }
                 else{
                     EntreesSorties.afficherMessage("Cet ouvrage existe deja.");
 		}
         }
         
-	private Ouvrage creationOuvrage(String isbn)
+	/*private Ouvrage creationOuvrage(String isbn)
         {	
                     PublicCible p=PublicCible.ADULTE;
                     boolean t;
@@ -153,7 +192,7 @@ public class Bibliotheque implements Serializable
                    EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
                    return o; 
 		} 
-        
+        */
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
 	 * date de parution.
@@ -168,7 +207,7 @@ public class Bibliotheque implements Serializable
             if (o == null)
             {
                EntreesSorties.afficherMessage("Cet ouvrage n'existe pas, nous allons le créer.");
-               o =this.creationOuvrage(isbn);
+               //o =this.creationOuvrage(isbn);
             }
                         
             o.ajouterExemplaire();
@@ -330,14 +369,15 @@ public class Bibliotheque implements Serializable
 // -----------------------------------------------
 	
 	// -----------------------------------------------
-		// Setters
+		// SettersBibliotheque.java:108
 	// -----------------------------------------------
 	
 	private void setLecteurs(HashMap<Integer, Lecteur> dicoLecteur) {
 		_dicoLecteur = dicoLecteur;
 	}
 
-	private void setOuvrages(HashMap<String, Ouvrage> dicoOuvrage) {
+	private void setOuvrages() {
+             HashMap   dicoOuvrage = new HashMap<String, Ouvrage>();
 		_dicoOuvrage = dicoOuvrage;
 	}
 	

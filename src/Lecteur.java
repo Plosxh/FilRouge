@@ -101,7 +101,7 @@ public class Lecteur implements Serializable
 			Integer age;
 			GregorianCalendar dateNaissComp;
 			GregorianCalendar dateActuelle = new GregorianCalendar();
-			dateNaissComp = new GregorianCalendar(dateActuelle.get(GregorianCalendar.YEAR), _dateNaissance.get(GregorianCalendar.MONTH), _dateNaissance.get(GregorianCalendar.DATE));
+			dateNaissComp = new GregorianCalendar(dateActuelle.get(GregorianCalendar.YEAR), _dateNaissance.get(GregorianCalendar.MONTH), _dateNaissance.get(GregorianCalendar.DAY_OF_MONTH));
 			if(dateNaissComp.before(dateActuelle)){
 				age=dateActuelle.get(GregorianCalendar.YEAR)-_dateNaissance.get(GregorianCalendar.YEAR);
 			}
@@ -133,9 +133,16 @@ public class Lecteur implements Serializable
                 {
                     
                     HashSet<Emprunt> ensEm=mesEmprunts();
-                   for(Emprunt em : ensEm)
-                   { 
-                        em.infosEmprunt();                         
+                    if(ensEm.size()>0)
+                    {
+                        for(Emprunt em : ensEm)
+                        { 
+                             em.infosEmprunt();                         
+                         }
+                    }
+                    else
+                    {
+                        EntreesSorties.afficherMessage("Ce lecteur n'a pas d'emprunt.");
                     }
                 }
                 public void relancerLecteur()
