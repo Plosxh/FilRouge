@@ -70,8 +70,8 @@ public class Bibliotheque implements Serializable
 		
             if (L == null) 
             {
-		String nom = EntreesSorties.lireChaine("Entrez le nom                        : ");
-		String prenom = EntreesSorties.lireChaine("Entrez le prénom                     : ");
+		String nom = EntreesSorties.lireChaine("Entrez le nom : ");
+		String prenom = EntreesSorties.lireChaine("Entrez le prénom : ");
 		Integer age;
                 GregorianCalendar dateNaiss, dateNaissComp;
 		GregorianCalendar dateActuelle = new GregorianCalendar();
@@ -91,8 +91,8 @@ public class Bibliotheque implements Serializable
 			EntreesSorties.afficherMessage("Age du lecteur : " + age + " ans.");
                     }
 		} while ((age<=3) | (age>=110));
-                String adresse = EntreesSorties.lireChaine("Entrez l'adresse                    : ");
-                String tel = EntreesSorties.lireChaine("Entrez le numéro de téléphone       : ");
+                String adresse = EntreesSorties.lireChaine("Entrez l'adresse : ");
+                String tel = EntreesSorties.lireChaine("Entrez le numéro de téléphone : ");
                 EntreesSorties.afficherMessage("Fin de saisie.");
 			 
                 L = new Lecteur(nom, prenom, numLecteur, dateNaiss, adresse, tel);
@@ -130,9 +130,9 @@ public class Bibliotheque implements Serializable
             PublicCible p=PublicCible.ADULTE;
             boolean t;
             String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
-            String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur   : ");
-            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur       : ");
-            GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution     : ");
+            String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
+            GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
             Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
                     
             do{
@@ -248,7 +248,7 @@ public class Bibliotheque implements Serializable
         // une méthode qui permet d'emprunter un exemplaire d'un ouvrage et de l'associer à un lecteur
         public void emprunterExemplaire()
         {
-            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN                    : ");
+            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numero de l'exemplaire : ");
             Ouvrage o = unOuvrage(isbn);
             
@@ -301,7 +301,7 @@ public class Bibliotheque implements Serializable
         // une méthode pour passer un exemplaire de empruntable à en consultation sur place (mais pas dans l'autre sens attention)
         public void editerExemplaire()
         {
-            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN                    : ");
+            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numéro de l'exemplaire : ");
             Ouvrage o = unOuvrage(isbn); 
             o.editerExemplaire(numExemplaire);
@@ -311,7 +311,7 @@ public class Bibliotheque implements Serializable
         // une méthode qui permet de délier les emprunts d'un lecteur
         public void rendreExemplaire()
         {
-            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN                    : ");
+            String isbn = EntreesSorties.lireChaine("Entrez l'ISBN : ");
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numéro de l'exemplaire : ");                  
             Ouvrage o = unOuvrage(isbn);            
             o.supEmprunt(numExemplaire);
