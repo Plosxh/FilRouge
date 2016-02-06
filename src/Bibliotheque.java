@@ -197,7 +197,7 @@ public class Bibliotheque implements Serializable
             Lecteur l = unLecteur(numLecteur);
 		
             if (l!=null){
-		l.infosReduitLecteur();
+		l.afficherLecteur();
                 l.infosEmprunts();
             }
             else {
@@ -286,7 +286,7 @@ public class Bibliotheque implements Serializable
                         }
                     }
                     else{
-                        EntreesSorties.afficherMessage("Cet exemplaire ne peut pas être emprunté (déjà emprunté ou en lecture sur place");// un seul booleen teste les 2
+                        EntreesSorties.afficherMessage("Cet exemplaire ne peut pas être emprunté (déjà emprunté ou en lecture sur place). ");// un seul booleen teste les 2
                     }
                 }                    
                 else{

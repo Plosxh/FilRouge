@@ -125,8 +125,8 @@ public void menuExemplaire() {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouvel Exemplaire : 1                                  |");
-		EntreesSorties.afficherMessage("| Consulter un Exemplaire : 2                            |");
-                EntreesSorties.afficherMessage("| Editer un Exemplaire : 3                               |");
+		EntreesSorties.afficherMessage("| Consulter les exemplaires d'un ouvrage : 2                            |");
+                EntreesSorties.afficherMessage("| Editer un Exemplaire (= le rendre empruntable) : 3                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
