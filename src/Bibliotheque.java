@@ -276,6 +276,9 @@ public class Bibliotheque implements Serializable
                                     em.ajouterEmprunt(l, e);
                                     EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
                                 }
+                                else{
+                                    EntreesSorties.afficherMessage("Ce lecteur est trop jeune pour emprunter cet Ouvrage.");
+                                }
                             }
                             else{
                                 EntreesSorties.afficherMessage("Ce lecteur a déjà 5 exemplaires.");
@@ -399,32 +402,13 @@ public class Bibliotheque implements Serializable
         /*
          * agePublic retourne true si l'ouvrage correspond à la tranche d'âge correspondante, false sinon
          */
-        private boolean comparePublicAge(int age, PublicCible publiq)
-        {        
-            boolean retour;
-            switch(publiq)
-            {
-                case ADOLESCENT :
-                {
-                    if(age < 10)
-                        retour = false;
-                    else    
-                        retour = true;
-                    }
-                case ADULTE :
-                {
-                    if(age < 16)
-                        retour = false;
-                    else
-                        retour = true;
-                }   
-                default : 
-                {
-                    retour = true;
-                }
-            }
-            return retour;
+        private boolean comparePublicAge (int age, PublicCible publicOuvrage)
+        {
+           if (publicOuvrage == PublicCible.ADULTE && age < 16) 
+              return false;
+           else return !(publicOuvrage == PublicCible.ADOLESCENT && age < 10);
         }
+        
     }
 
     
