@@ -116,10 +116,10 @@ public class Lecteur implements Serializable
                 {
                     
                     this.delierEmprunt();
-                    if(_collectionEmprunts.isEmpty())
+                    /*if(_collectionEmprunts.isEmpty())
                     {
                         this.setEmprunt(new HashSet<Emprunt>());
-                    }
+                    }*/
                 }
 		
                 public void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts)
