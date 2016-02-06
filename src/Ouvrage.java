@@ -160,7 +160,7 @@ public class Ouvrage implements Serializable
                             }
                     } while (test);
                    
-                  GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de reception :");
+                  GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de récéption : ");
                    
                   e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
                   _exemplaire.add(e);
@@ -170,7 +170,7 @@ public class Ouvrage implements Serializable
                 
                 public void editerExemplaire(Integer numExemplaire)
                 {
-                    Exemplaire e =monExemplaire(numExemplaire);
+                    Exemplaire e =unExemplaire(numExemplaire);
                     Boolean empruntable=e.getEmpruntable();
                     HashSet<Exemplaire> ensemblE=mesExemplaires();
                       for(Exemplaire ex : ensemblE)
@@ -192,13 +192,13 @@ public class Ouvrage implements Serializable
                 /*
 		 * La m�thode afficherInfosExemplaire affiche l'ensemble des informations relatives aux exemplaires d'un ouvrage.
 		 */
-		public void afficherInfosExemplaire()
+		public void infosExemplaire()
 		{
           
                    HashSet<Exemplaire> ensE=mesExemplaires();
                    for(Exemplaire e : ensE)
                    { 
-                        e.afficheInfosExemplaire();
+                        e.infosExemplaire();
                         if(!e.getDisponibilite())
                          {
                              e.infosEmpruntExemplaire();                         
@@ -219,7 +219,7 @@ public class Ouvrage implements Serializable
                 /*
                 La fonction monExemplaire(numExemplaire) retourne l'exemplaire e trouvé grâce à son numExemplaire
                 */
-                public Exemplaire monExemplaire(int numExemplaire)
+                public Exemplaire unExemplaire(int numExemplaire)
                 {
                    Exemplaire ex = null;
                    HashSet<Exemplaire> ensE=mesExemplaires();
@@ -250,7 +250,7 @@ public class Ouvrage implements Serializable
                 
                 public void supEmprunt(Integer numExemplaire)
                 {
-                    Exemplaire e = monExemplaire(numExemplaire);
+                    Exemplaire e = unExemplaire(numExemplaire);
                     e.supEmprunt();
                     
                 }

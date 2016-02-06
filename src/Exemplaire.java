@@ -74,7 +74,7 @@ public class Exemplaire implements Serializable
 			// Methodes
 		// -----------------------------------------------
 		
-		public void afficheInfosExemplaire()
+		public void infosExemplaire()
 		{
 			System.out.println("Numéro Exemplaire  : " + this.getNumExemplaire());
                         System.out.println("Date de réception  : " + EntreesSorties.ecrireDate(getDateReception()));

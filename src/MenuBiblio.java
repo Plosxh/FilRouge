@@ -15,7 +15,7 @@ public void menuPrincipal() {
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("|                   Menu Principal                       |");
-		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Menu Lecteur : 1                                       |");
                 EntreesSorties.afficherMessage("| Menu Ouvrage : 2                                       |");
                 EntreesSorties.afficherMessage("| Menu Exemplaire : 3                                    |");
@@ -66,9 +66,9 @@ public void menuLecteur() {
 	Integer menuLect;
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
-		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouveau Lecteur : 1                                    |");
-		EntreesSorties.afficherMessage("| Consulter Lecteur : 2                                  |");
+		EntreesSorties.afficherMessage("| Consulter un Lecteur : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuLect = EntreesSorties.lireEntier();
@@ -93,9 +93,9 @@ public void menuOuvrage() {
 	Integer menuOuvr;
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
-		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouvel Ouvrage : 1                                     |");
-		EntreesSorties.afficherMessage("| Consulter Ouvrage : 2                                  |");
+		EntreesSorties.afficherMessage("| Consulter un Ouvrage : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuOuvr = EntreesSorties.lireEntier();
@@ -123,10 +123,10 @@ public void menuExemplaire() {
 	Integer menuExemp;
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
-		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
-		EntreesSorties.afficherMessage("| Nouveau Exemplaire : 1                                 |");
-		EntreesSorties.afficherMessage("| Consulter Exemplaire : 2                               |");
-                EntreesSorties.afficherMessage("| Editer Exemplaire : 3                                  |");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Nouvel Exemplaire : 1                                  |");
+		EntreesSorties.afficherMessage("| Consulter un Exemplaire : 2                            |");
+                EntreesSorties.afficherMessage("| Editer un Exemplaire : 3                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
@@ -156,9 +156,9 @@ public void menuEmprunt() {
 	Integer menuEmprunt;
 	do {
 		EntreesSorties.afficherMessage(" ========================================================");
-		EntreesSorties.afficherMessage("| Saisissez un numero correspondant :                    |");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Emprunter un Exemplaire : 1                            |");
-		EntreesSorties.afficherMessage("| Rendre une Exemplaire : 2                               |");
+		EntreesSorties.afficherMessage("| Rendre un Exemplaire : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuEmprunt = EntreesSorties.lireEntier();
