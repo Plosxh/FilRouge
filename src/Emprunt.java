@@ -100,7 +100,8 @@ public class Emprunt implements Serializable
             e.infosEmpruntExemplaire();
         }
 		  
-//	/*
+//	Miléna : a priori cette méthode est en double mais un autre oeil peut vérifier avant de supprimer? :)
+        /*
 //	 * La m�thode afficherEmprunt affiche l'ensemble des informations relatives � un emprunt.
 //	 */
 //	public void afficherEmprunt()

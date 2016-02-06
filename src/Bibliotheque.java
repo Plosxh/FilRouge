@@ -231,7 +231,7 @@ public class Bibliotheque implements Serializable
          * Si le numéro ISBN n'est pas dans la base de données de bibliotheque un message d'erreur est
          * renvoyé a l'utilisateur.
 	 */
-        public void consulterExemplaireOuvrage() //manque des choses dans cette méthodes!!
+        public void consulterExemplaireOuvrage()
         {         
             String isbn = EntreesSorties.lireChaine("Entrez le numero ISBN : ");
             Ouvrage o = unOuvrage(isbn);
