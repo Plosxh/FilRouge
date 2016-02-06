@@ -110,12 +110,12 @@ public class Ouvrage implements Serializable
 	 */
 	public void infosOuvrage()
 	{
-            System.out.println("Isbn    : " + this.getIsbn());
-            System.out.println("Titre   : " + this.getTitre());
-            System.out.println("Editeur : " + this.getNomEditeur());
-            System.out.println("Date de parution : " + EntreesSorties.ecrireDate(getDateParution()));
-            System.out.println("Auteur  : " + this.getNomAuteur());
-            System.out.println("Public  : " + this.getPublic());
+            System.out.println("Isbn                  : " + this.getIsbn());
+            System.out.println("Titre                 : " + this.getTitre());
+            System.out.println("Editeur               : " + this.getNomEditeur());
+            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
+            System.out.println("Auteur                : " + this.getNomAuteur());
+            System.out.println("Public                : " + this.getPublic());
             System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
             EntreesSorties.afficherMessage("");
 	}
@@ -156,7 +156,7 @@ public class Ouvrage implements Serializable
                     }
                                     
                     default : {
-                        EntreesSorties.afficherMessage("Inserez : 1 pour Oui, 2 pour Non.");
+                        EntreesSorties.afficherMessage("Insérez : 1 pour Oui, 2 pour Non.");
                         test=true;
                         break;
                     }
@@ -206,7 +206,7 @@ public class Ouvrage implements Serializable
 	 */
 	public void infosReduitOuvrage()
 	{
-            System.out.println("Isbn    : " + this.getIsbn());
+            System.out.println("ISBN    : " + this.getIsbn());
             System.out.println("Titre   : " + this.getTitre());
             EntreesSorties.afficherMessage("");
 	}

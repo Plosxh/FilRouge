@@ -88,19 +88,19 @@ public class Lecteur implements Serializable
              */
             public void afficherLecteur()
             {
-		System.out.println("Numero lecteur : " + this.getNumLecteur());
-		System.out.println("Nom et prenom du lecteur: " + this.getNom() + " " + this.getPrenom());
-		System.out.println("Age : " + this.calculAge() + " ans");
-		System.out.println("Adresse : " + this.getAdresse());
-		System.out.println("Telephone : " + this.getTel());
+		System.out.println("Numéro lecteur                     : " + this.getNumLecteur());
+		System.out.println("Nom et prénom du lecteur           : " + this.getNom() + " " + this.getPrenom());
+		System.out.println("Age                                : " + this.calculAge() + " ans");
+		System.out.println("Adresse                            : " + this.getAdresse());
+		System.out.println("Téléphone                          : " + this.getTel());
                 System.out.println("Nombre d'exemplaire(s) emprunté(s) : " + this._collectionEmprunts.size());
                 EntreesSorties.afficherMessage("");
             }
 		
             public void infosReduitLecteur()
             {
-                System.out.println("Numero lecteur : " + this.getNumLecteur());
-                System.out.println("Nom et prenom du lecteur: " + this.getNom() + " " + this.getPrenom());
+                System.out.println("Numéro lecteur           : " + this.getNumLecteur());
+                System.out.println("Nom et prénom du lecteur : " + this.getNom() + " " + this.getPrenom());
                 EntreesSorties.afficherMessage("");
             }
                
