@@ -21,8 +21,6 @@ public class Exemplaire implements Serializable
     private Ouvrage _ouvrage;
     private Emprunt _emprunt;
 	
-	
-	
 // -----------------------------------------------
         //Constructeur
 // -----------------------------------------------

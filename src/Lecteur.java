@@ -216,11 +216,6 @@ public class Lecteur implements Serializable
                 this._collectionEmprunts = _collectionEmprunts;
             }
             
-            private void setCollectionEmprunts(HashSet<Emprunt> collectionEmprunts)
-            {
-                this._collectionEmprunts = collectionEmprunts;
-            }
-            
         // -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
