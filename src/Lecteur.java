@@ -122,12 +122,11 @@ public class Lecteur implements Serializable
                 lierEmprunt(em);
             }
             
-            public void supEmprunt()
+            public void supEmprunt(Emprunt em)
             {
-                this.delierEmprunt();
-                if(_collectionEmprunts.isEmpty()){
-                    this.setEmprunt(new HashSet<Emprunt>());
-                }
+                this.delierEmprunt(em);
+
+                
             }
             
             public void relancerLecteur()
@@ -236,10 +235,10 @@ public class Lecteur implements Serializable
                 _collectionEmprunts.add(em);
             }
             
-            private void delierEmprunt()
+            private void delierEmprunt(Emprunt em)
             {
                 //faire avec em comme dans exemplaire
-                _collectionEmprunts=null;
+                _collectionEmprunts.remove(em);
             }        
 }
 

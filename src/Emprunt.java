@@ -71,7 +71,7 @@ public class Emprunt implements Serializable
             Exemplaire e = unExemplaire();
             this.delierExemplaire();
             this.delierLecteur();
-            l.supEmprunt();
+            l.supEmprunt(this);
         }
                 
         // cette méthode calcule la différence entre la date de retour et la date du jour d'un emprunt. Si le résultat est supérieur à 15, retourne retard:=true
