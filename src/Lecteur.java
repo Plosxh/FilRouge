@@ -141,6 +141,9 @@ public class Lecteur implements Serializable
                         em.afficheRetard();
                     }
                 }
+                if (retard == false){
+                    EntreesSorties.afficherMessage("Aucun lecteur n'a de retard pour le retour de ses emprunts.");
+                }
             }
             
             /*

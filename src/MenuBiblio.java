@@ -20,6 +20,7 @@ public void menuPrincipal() {
                 EntreesSorties.afficherMessage("| Menu Ouvrage : 2                                       |");
                 EntreesSorties.afficherMessage("| Menu Exemplaire : 3                                    |");
                 EntreesSorties.afficherMessage("| Menu Emprunt : 4                                       |");
+                EntreesSorties.afficherMessage("| Relancer Lecteurs : 5                                       |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -28,7 +29,7 @@ public void menuPrincipal() {
 				case 1 : {
 					this.menuLecteur();
 					break;
-				}
+                                        }
                                 
                         
                                 case 2 : {
@@ -38,16 +39,19 @@ public void menuPrincipal() {
                         
                                 
                         
-                                 case 3 : {
+                                case 3 : {
                                         this.menuExemplaire();
                                         break;
-                            
                                         }
                                  
-                                  case 4 : {
+                                case 4 : {
                                         this.menuEmprunt();
                                         break;
-                            
+                                        }
+                                
+                                case 5 : {
+                                        _bibliotheque.relancerLecteur();
+                                        break;
                                         }
 				
 				default : {
