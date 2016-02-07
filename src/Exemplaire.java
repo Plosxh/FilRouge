@@ -102,7 +102,8 @@ public class Exemplaire implements Serializable
         public void supEmprunt()
         {
             Emprunt em = unEmprunt();
-            em.supEmprunt();                    
+            em.supEmprunt();
+            this.setDisponibilite(true);
         }
                 
         public void ajouterEmprunt(Emprunt em)
