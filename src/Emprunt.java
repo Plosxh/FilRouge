@@ -76,9 +76,8 @@ public class Emprunt implements Serializable
                 
         // cette méthode calcule la différence entre la date de retour et la date du jour d'un emprunt. Si le résultat est supérieur à 15, retourne retard:=true
         public boolean verifEmprunt()
-        {
-            GregorianCalendar dateReception = new GregorianCalendar();                    
-            GregorianCalendar dateRetourEstime= new GregorianCalendar(_dateRetour.get(GregorianCalendar.YEAR), _dateRetour.get(GregorianCalendar.MONTH),_dateRetour.get(GregorianCalendar.DAY_OF_MONTH));
+        {                
+            GregorianCalendar dateRetourEstime= new GregorianCalendar();
             Boolean test;
             Boolean retard=false;
             Integer anneeRetard= dateRetourEstime.get(GregorianCalendar.YEAR)-_dateRetour.get(GregorianCalendar.YEAR);
@@ -139,8 +138,8 @@ public class Emprunt implements Serializable
             GregorianCalendar dateEmprunt = this.getDateEmprunt();
             GregorianCalendar dateRetour = this.getDateRetour();
             
-            System.out.println("Date d'emprunt : " + dateEmprunt.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateEmprunt.get(GregorianCalendar.MONTH) + "/" + dateEmprunt.get(GregorianCalendar.YEAR));
-            System.out.println("Date de retour : " + dateRetour.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateRetour.get(GregorianCalendar.MONTH) + "/" + dateRetour.get(GregorianCalendar.YEAR));
+            EntreesSorties.afficherMessage("Date d'emprunt : " + EntreesSorties.ecrireDate(dateEmprunt));
+            EntreesSorties.afficherMessage("Date de retour : " + EntreesSorties.ecrireDate(dateRetour));
             EntreesSorties.afficherMessage("");
             e.infosEmprunt();
         }     

@@ -134,12 +134,12 @@ public class Lecteur implements Serializable
                 Boolean retard=false;   
                 HashSet<Emprunt> ensEm = mesEmprunts(); 
                     
-                for(Emprunt em : ensEm){
+               /* for(Emprunt em : ensEm){
                     retard = em.verifEmprunt();
-                    if(retard=true){
+                    if(retard==true){
                         em.afficheRetard();
                     }
-                }
+                }*/
                 if (retard == false){
                     EntreesSorties.afficherMessage("Il n'y a aucun lecteur à relancer.");
                 }

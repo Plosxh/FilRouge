@@ -273,11 +273,11 @@ public class Bibliotheque implements Serializable
                                     GregorianCalendar dateEmprunt = new GregorianCalendar();
                                     GregorianCalendar dateRetour = new GregorianCalendar();
                                     
-                                    
                                     dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
                                     Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
                                     em.ajouterEmprunt(l, e);
-                                                                                                       
+                                    EntreesSorties.afficherMessage("Vous avez saisi : " + EntreesSorties.ecrireDate(dateEmprunt));
+                                    EntreesSorties.afficherMessage("Vous avez saisi : " + EntreesSorties.ecrireDate(dateRetour));
                                     EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
                                 }
                                 else{
