@@ -120,8 +120,12 @@ public class Emprunt implements Serializable
 	{
             Lecteur l = unLecteur();
             l.infosReduitLecteur();
-            System.out.println("Date d'emprunt : " + this.getDateEmprunt());
-            System.out.println("Date de retour : " + this.getDateRetour());
+            
+            GregorianCalendar dateEmprunt = this.getDateEmprunt();
+            GregorianCalendar dateRetour = this.getDateRetour();
+            
+            System.out.println("Date d'emprunt : " + dateEmprunt.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateEmprunt.get(GregorianCalendar.MONTH) + "/" + dateEmprunt.get(GregorianCalendar.YEAR));
+            System.out.println("Date de retour : " + dateRetour.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateRetour.get(GregorianCalendar.MONTH) + "/" + dateRetour.get(GregorianCalendar.YEAR));
             EntreesSorties.afficherMessage("");
         }
         
@@ -131,8 +135,13 @@ public class Emprunt implements Serializable
         public void infosEmprunt()
         {
             Exemplaire e = unExemplaire();
-            System.out.println("Date d'emprunt : " + this.getDateEmprunt());
-            System.out.println("Date de retour : " + this.getDateRetour());
+            
+            GregorianCalendar dateEmprunt = this.getDateEmprunt();
+            GregorianCalendar dateRetour = this.getDateRetour();
+            
+            System.out.println("Date d'emprunt : " + dateEmprunt.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateEmprunt.get(GregorianCalendar.MONTH) + "/" + dateEmprunt.get(GregorianCalendar.YEAR));
+            System.out.println("Date de retour : " + dateRetour.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateRetour.get(GregorianCalendar.MONTH) + "/" + dateRetour.get(GregorianCalendar.YEAR));
+            
             EntreesSorties.afficherMessage("");
             e.infosEmprunt();
         }     

@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -270,13 +271,9 @@ public class Bibliotheque implements Serializable
                                 if(comparePublicAge(age, publicO))
                                 {
                                     GregorianCalendar dateEmprunt = new GregorianCalendar();
-                                    GregorianCalendar dateRetour = dateEmprunt;
+                                    GregorianCalendar dateRetour = new GregorianCalendar();
                                     
-                                    
-                   
-                                    //GregorianCalendar dateRetour = new GregorianCalendar(dateEmprunt.add(GregorianCalendar.DATE,8));
-                                    //dateRetour.add((GregorianCalendar.DATE),8);
-                                    //dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
+                                    dateRetour.add((Calendar.DAY_OF_MONTH),8);
                                     Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
                                     em.ajouterEmprunt(l, e);
                                                                                                        
