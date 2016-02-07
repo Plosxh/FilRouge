@@ -142,7 +142,7 @@ public class Lecteur implements Serializable
                     }
                 }
                 if (retard == false){
-                    EntreesSorties.afficherMessage("Aucun lecteur n'a de retard pour le retour de ses emprunts.");
+                    EntreesSorties.afficherMessage("Il n'y a aucun lecteur à relancer.");
                 }
             }
             
