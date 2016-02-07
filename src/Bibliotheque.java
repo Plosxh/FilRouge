@@ -279,12 +279,7 @@ public class Bibliotheque implements Serializable
                                     //dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
                                     Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
                                     em.ajouterEmprunt(l, e);
-                                    
-                                    //ajouté par Antoine, et ça marche
-                                    e.changerDispoEmprunt();
-                                    //
-                                    
-                                    
+                                                                                                       
                                     EntreesSorties.afficherMessage("L'exemplaire a bien été emprunté.");
                                 }
                                 else{

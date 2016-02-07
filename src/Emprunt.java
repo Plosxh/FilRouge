@@ -142,6 +142,7 @@ public class Emprunt implements Serializable
         {
             l.ajouterEmprunt(this);
             e.ajouterEmprunt(this);
+            e.changerDispoEmprunt();
         }
 	
 // -----------------------------------------------
