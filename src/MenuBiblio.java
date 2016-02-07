@@ -20,7 +20,7 @@ public void menuPrincipal() {
                 EntreesSorties.afficherMessage("| Menu Ouvrage : 2                                       |");
                 EntreesSorties.afficherMessage("| Menu Exemplaire : 3                                    |");
                 EntreesSorties.afficherMessage("| Menu Emprunt : 4                                       |");
-                EntreesSorties.afficherMessage("| Relancer Lecteurs : 5                                       |");
+                EntreesSorties.afficherMessage("| Relancer Lecteurs : 5                                  |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -129,8 +129,8 @@ public void menuExemplaire() {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouvel Exemplaire : 1                                  |");
-		EntreesSorties.afficherMessage("| Consulter les exemplaires d'un ouvrage : 2                            |");
-                EntreesSorties.afficherMessage("| Editer un Exemplaire (= le rendre empruntable) : 3                               |");
+		EntreesSorties.afficherMessage("| Consulter les exemplaires d'un ouvrage : 2             |");
+                EntreesSorties.afficherMessage("| Editer un Exemplaire (= le rendre empruntable) : 3     |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuExemp = EntreesSorties.lireEntier();
