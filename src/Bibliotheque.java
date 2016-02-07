@@ -273,7 +273,8 @@ public class Bibliotheque implements Serializable
                                     GregorianCalendar dateEmprunt = new GregorianCalendar();
                                     GregorianCalendar dateRetour = new GregorianCalendar();
                                     
-                                    dateRetour.add((Calendar.DAY_OF_MONTH),8);
+                                    
+                                    dateRetour.add((GregorianCalendar.DAY_OF_MONTH),8);
                                     Emprunt em = new Emprunt(l, e, dateEmprunt, dateRetour);
                                     em.ajouterEmprunt(l, e);
                                                                                                        

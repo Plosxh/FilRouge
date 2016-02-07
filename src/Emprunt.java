@@ -141,7 +141,6 @@ public class Emprunt implements Serializable
             
             System.out.println("Date d'emprunt : " + dateEmprunt.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateEmprunt.get(GregorianCalendar.MONTH) + "/" + dateEmprunt.get(GregorianCalendar.YEAR));
             System.out.println("Date de retour : " + dateRetour.get(GregorianCalendar.DAY_OF_MONTH) + "/" + dateRetour.get(GregorianCalendar.MONTH) + "/" + dateRetour.get(GregorianCalendar.YEAR));
-            
             EntreesSorties.afficherMessage("");
             e.infosEmprunt();
         }     
