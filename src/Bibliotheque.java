@@ -322,7 +322,7 @@ public class Bibliotheque implements Serializable
             Integer numExemplaire = EntreesSorties.lireEntier("Entrez le numéro de l'exemplaire : ");                  
             Ouvrage o = unOuvrage(isbn);            
             o.supEmprunt(numExemplaire);
-            EntreesSorties.afficherMessage("L'emprunt à été supprimé.");       
+            EntreesSorties.afficherMessage("L'exemplaire a bien été rendu.");       
         }
                 
         // une méthode qui sert à visualiser tous les exemplaires en retard tous les lecteurs de la bibliothèques
