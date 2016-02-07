@@ -108,6 +108,7 @@ public class Exemplaire implements Serializable
         public void ajouterEmprunt(Emprunt em)
         {
             lierEmprunt(em);
+            this.setDisponibilite(false);
         }
               
         public void infosReduitOuvrage()
@@ -121,11 +122,6 @@ public class Exemplaire implements Serializable
             this.setEmpruntable(empruntable);
         }
        
-        //ajouté par Antoine
-        public void changerDispoEmprunt()
-        {
-            this.setDisponibilite(false);
-        }
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
