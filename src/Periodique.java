@@ -100,15 +100,15 @@ public class Periodique implements Serializable
             
 	}
         
-        public void consulterPeriodique()
+        public void infosPeriodique()
         {
             
         }
 	
-        public void consulterParutionPeriodique()
+        /*public void consulterParutionPeriodique()
         {
             
-        }
+        }*/
                        
 // -----------------------------------------------
 	// Private
@@ -137,5 +137,10 @@ public class Periodique implements Serializable
 		// Methodes
 	// -----------------------------------------------
 		           
-  
+        private HashSet<Parution> mesParutions()
+	{
+            return _parution;
+	}
+        
+        
 }

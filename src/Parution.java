@@ -93,6 +93,18 @@ public class Parution implements Serializable
 	
         public Article unArticle(Integer numPage)
         {
+            Article ar = null;
+            HashSet<Article> ensA=mesArticles();
+            for(Article a : ensA){
+                if (numPage==a.getNumeroPage()){
+                    ar = a;
+                }
+            }
+            return ar;
+        }
+        
+        public void infosParution()
+        {
             
         }
                        
@@ -128,5 +140,8 @@ public class Parution implements Serializable
 		// Methodes
 	// -----------------------------------------------
 
-    
+        private HashSet<Article> mesArticles()
+	{
+            return _article;
+	}
 }
