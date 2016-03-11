@@ -50,11 +50,9 @@ public class Titre extends Index implements Serializable {
 	    public void infosTitre() 
                 {
                      
-                } 
+                }       
             
-            
-
-            
+  
             public void ajouterOuvrage(Ouvrage o) 
                 {
                      
