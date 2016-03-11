@@ -49,14 +49,6 @@ public class Auteur extends Index implements Serializable  {
                 {
                      
                 } 	
-            public HashSet<Ouvrage> mesOuvrages() 
-                {
-                     
-                } 
-            public HashSet<Article> mesArticles() 
-                {
-                     
-                }
             
             public void ajouterOuvrage(Ouvrage o) 
                 {

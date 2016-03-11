@@ -18,13 +18,13 @@ public class Index implements Serializable {
 	private HashMap<Integer, Ouvrage> _dicoOuvrage;
         private HashMap<Integer, Article> _dicoArticle;
     
-            public mesOuvrages() 
+            public HashMap<Integer, Ouvrage> mesOuvrages() 
                 {
                      
                 } 
             
             
-            public HashSet<Article> mesArticles() 
+            public HashMap<Integer, Article> mesArticles() 
                 {
                      
                 }
