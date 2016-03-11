@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 
 
-public class Index {
+public class Index implements Serializable {
     
     
           private static final long serialVersionUID = 422L;

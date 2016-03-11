@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 
 
-public class MotCle extends Index {
+public class MotCle extends Index implements Serializable {
 
   
         private static final long serialVersionUID = 422L;
@@ -92,9 +92,9 @@ public class MotCle extends Index {
 	// -----------------------------------------------
 		//Setters
 	// -----------------------------------------------
-            private void setMotcle(String motcle) 
+            private void setMotCle(String mot) 
                {
-                   this._motcle = motcle;
+                   this._motcle = mot;
                }
             
             private void setArticle(HashSet<Article> _collectionArticles)
