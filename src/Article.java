@@ -32,19 +32,17 @@ public class Article implements Serializable
 // -----------------------------------------------
 	
     private Integer _numeroPage;
-    private String _nomPeriodique;
-    private HashSet<Parution> _parution;
+    private Parution _parution;
 	
 // -----------------------------------------------
 	//Constructeur
 // -----------------------------------------------
 		
-    /*creationPeriodique ???*/
-    public Periodique(String issn, String nomPeriodique)
+    /*creationArticle ???*/
+    public Article(Integer numeroPage, Parution parution)
     {
-        this.setIssn(issn);
-	this.setNomPeriodique(nomPeriodique);
-        this.setParution(new HashSet<Parution>());
+        this.setNumeroPage(numeroPage);
+	this.setParution(parution);
     }
 		
 // -----------------------------------------------
@@ -55,61 +53,36 @@ public class Article implements Serializable
 		//Getters
 	// -----------------------------------------------
 	
-	public String getIssn() 
+	public Integer getNumeroPage() 
         {
-            return _issn;
+            return _numeroPage;
 	}
 
-	public String getNomPeriodique() 
+	public Parution getParution() 
         {
-            return _nomPeriodique;
+            return _parution;
 	}
-
-        public HashSet <Parution> uneParution() 
-        {
-            return _parution;                      
-        }
-               
+            
               
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
 		
-	public void ajouterParution()
+	public void infosReduitArticles()
 	{
             
 	}
 	
-	public void verifParution(Integer numParution)
+	public void ajouterAuteur(Auteur au)
 	{
             
         }
                 
-        public Parution uneParution(Integer numParution)
+        public void lierAuteur(Auteur au)
         {
             
         }
-        
-	public void creationParution(Integer numParution, GregorianCalendar dateParution)
-	{
-                              
-	}
-	
-	public void lierParution()
-	{
-            
-	}
-        
-        public void consulterPeriodique()
-        {
-            
-        }
-	
-        public void consulterParutionPeriodique()
-        {
-            
-        }
-                       
+                               
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
@@ -118,21 +91,16 @@ public class Article implements Serializable
 		//Setters
 	// -----------------------------------------------
 
-	private void setIssn(String issn) 
+	private void setNumeroPage(Integer numeroPage) 
         {
-            this._issn = issn;
+            this._numeroPage = numeroPage;
 	}
 
-	private void setNomPeriodique(String nomPeriodique) 
+	private void setParution(Parution parution) 
         {
-            this._nomPeriodique = nomPeriodique;
+            this._parution = parution;
 	}
-                
-        private void setParution(HashSet<Parution> _parution)
-        {
-            this._parution = _parution;
-        }
-                
+                                
         // -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
