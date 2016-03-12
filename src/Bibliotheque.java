@@ -17,6 +17,10 @@ public class Bibliotheque implements Serializable
 	
 	private HashMap<Integer, Lecteur> _dicoLecteur;
         private HashMap<String, Ouvrage> _dicoOuvrage;
+        private HashMap<String, Periodique> _dicoPeriodique;
+        private HashMap<String, Titre> _dicoTitre;
+        private HashMap<String, MotCle> _dicoMotCle;
+        private HashMap<String, Auteur> _dicoAuteur;
         private Integer _numLast=(1);
                
 	/*
@@ -121,6 +125,18 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Cet ouvrage existe déjà.");
             }
         }
+        
+        public void nouveauPeriodique()
+        {
+            
+        }
+        
+        
+        public void nouvelleParution()
+        {
+        
+        }
+        
         
         /*
 	 * La méthode creationOuvrage permet de créer un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
@@ -380,6 +396,16 @@ public class Bibliotheque implements Serializable
 	{
             return _dicoOuvrage.get(isbn);
 	}
+        
+        private Auteur unAuteur(String nom)
+        {
+            return _dicoAuteur.get(nom);
+        }
+        
+        private Titre unTitre(String titre)
+        {
+            return _dicoTitre.get(titre);
+        }
         
         /*
 	 * La méthode lesLecteurs permet de créer un iterator sur les lecteurs, dans le but de les parcourir

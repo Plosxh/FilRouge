@@ -17,10 +17,11 @@ public void menuPrincipal() {
 		EntreesSorties.afficherMessage("|                   Menu Principal                       |");
 		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Menu Lecteur : 1                                       |");
-                EntreesSorties.afficherMessage("| Menu Ouvrage : 2                                       |");
-                EntreesSorties.afficherMessage("| Menu Exemplaire : 3                                    |");
-                EntreesSorties.afficherMessage("| Menu Emprunt : 4                                       |");
-                EntreesSorties.afficherMessage("| Relancer Lecteurs : 5                                  |");
+                EntreesSorties.afficherMessage("| Menu Periodique :2                                     |");
+                EntreesSorties.afficherMessage("| Menu Ouvrage : 3                                       |");
+                EntreesSorties.afficherMessage("| Menu Exemplaire : 4                                    |");
+                EntreesSorties.afficherMessage("| Menu Emprunt : 5                                       |");
+                EntreesSorties.afficherMessage("| Relancer Lecteurs : 6                                  |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -33,23 +34,29 @@ public void menuPrincipal() {
                                 
                         
                                 case 2 : {
+                                        this.menuPeriodique();
+                                        break;
+                                         }
+
+
+                                case 3 : {
                                         this.menuOuvrage();
                                         break;
                                          }
                         
                                 
                         
-                                case 3 : {
+                                case 4 : {
                                         this.menuExemplaire();
                                         break;
                                         }
                                  
-                                case 4 : {
+                                case 5 : {
                                         this.menuEmprunt();
                                         break;
                                         }
                                 
-                                case 5 : {
+                                case 6 : {
                                         _bibliotheque.relancerLecteur();
                                         break;
                                         }
@@ -92,6 +99,37 @@ public void menuLecteur() {
 			}
 	} while (menuLect != 0);	
 }
+
+
+
+
+public void menuPeriodique() {
+	Integer menuPerio;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Nouvel Periodique : 1                                  |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuPerio = EntreesSorties.lireEntier();
+			
+			switch (menuPerio){
+				case 1 : {
+					_bibliotheque.nouveauPeriodique();
+					break;
+				}
+
+				default : {
+					break;
+				}
+                                
+        }
+     
+  
+	} while (menuPerio != 0);	
+}
+
+
 
 public void menuOuvrage() {
 	Integer menuOuvr;

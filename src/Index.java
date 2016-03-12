@@ -18,7 +18,7 @@ public class Index implements Serializable {
 	private HashMap<Integer, Ouvrage> _dicoOuvrage;
         private HashMap<Integer, Article> _dicoArticle;
     
-            public HashMap<Integer, Ouvrage> mesOuvrages() 
+         /*   public HashMap<Integer, Ouvrage> mesOuvrages() 
                 {
                      
                 } 
@@ -27,7 +27,7 @@ public class Index implements Serializable {
             public HashMap<Integer, Article> mesArticles() 
                 {
                      
-                }
+                }*/
 
 
 

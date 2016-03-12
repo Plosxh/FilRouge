@@ -38,7 +38,7 @@ public class MotCle extends Index implements Serializable {
 	// -----------------------------------------------
 		//Getters
 	// -----------------------------------------------
-            public String getMotcle() 
+            public String getMotCle() 
                 {
                     return _motcle;
                 }        
@@ -49,30 +49,22 @@ public class MotCle extends Index implements Serializable {
 	// -----------------------------------------------
 	    public void infosMotcle() 
                 {
-                     
+                  System.out.println("Mot Cle                     : " + this.getMotCle());   
+                  EntreesSorties.afficherMessage("");    
                 } 
             
             
             
             public void ajouterOuvrage(Ouvrage o) 
                 {
-                     
+                  lierOuvrage(o);   
                 }
             
             public void ajouterArticle(Article a) 
                 {
-                     
+                 lierArticle(a);    
                 }
-            
-            public void lierOuvrage() 
-                {
-                     
-                }
-            
-            public void lierArticle() 
-                {
-                     
-                } 
+             
             
         
 // -----------------------------------------------
@@ -102,8 +94,17 @@ public class MotCle extends Index implements Serializable {
         // -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
-           
-        
+            
+            
+            private void lierArticle(Article a)
+            {
+                _collectionArticles.add(a);
+            }
+            
+            private void lierOuvrage(Ouvrage o)
+            {
+                _collectionOuvrages.add(o);
+            }  
             
 
 

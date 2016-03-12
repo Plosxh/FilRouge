@@ -36,7 +36,7 @@ public class Auteur extends Index implements Serializable  {
 	// -----------------------------------------------
 		//Getters
 	// -----------------------------------------------
-            public String getNom() 
+            public String getNomAuteur() 
                 {
                     return _nomAuteur;
                 }        
@@ -47,28 +47,21 @@ public class Auteur extends Index implements Serializable  {
 	// -----------------------------------------------
 	    public void infosAuteur() 
                 {
-                     
-                } 	
+                  System.out.println("Auteur                     : " + this.getNomAuteur());   
+                  EntreesSorties.afficherMessage("");
+                }
+
             
             public void ajouterOuvrage(Ouvrage o) 
                 {
-                     
+                     lierOuvrage(o);
                 }
             
             public void ajouterArticle(Article a) 
                 {
-                     
+                     lierArticle(a);
                 }
-            
-            public void lierOuvrage() 
-                {
-                     
-                }
-            
-            public void lierArticle() 
-                {
-                     
-                } 
+
             
         
 // -----------------------------------------------
@@ -99,6 +92,16 @@ public class Auteur extends Index implements Serializable  {
 		// Methodes
 	// -----------------------------------------------
            
+            
+            private void lierArticle(Article a)
+            {
+                _collectionArticles.add(a);
+            }
+            
+            private void lierOuvrage(Ouvrage o)
+            {
+                _collectionOuvrages.add(o);
+            } 
         
         
 }
