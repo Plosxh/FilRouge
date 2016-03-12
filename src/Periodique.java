@@ -74,41 +74,89 @@ public class Periodique implements Serializable
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
-		
+	
+        /*appelé par nouvelleParution() depuis bibliotheque*/
 	public void ajouterParution()
 	{
+            EntreesSorties.afficherMessage("Veuillez entrer un numero de parution : ");
             
 	}
 	
+        /*appelé par nouvelleParution() depuis bibliotheque*/
 	public void verifParution(Integer numParution)
 	{
-            
+            Parution pa = uneParution(numParution);
+            if(pa == null)
+            {
+                GregorianCalendar dateParution = EntreesSorties.lireDate("Veuillez entrer la date de parution :");
+                creationParution(numParution, dateParution);
+                
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("La parution existe déjà.");
+            }
         }
                 
         public Parution uneParution(Integer numParution)
         {
-            
+            Parution par = null;
+            HashSet<Parution> ensPa=mesParutions();
+            for(Parution pa : ensPa){
+                if (numParution==pa.getNumParution()){
+                    par = pa;
+                }
+            }
+            return par;
         }
         
 	public void creationParution(Integer numParution, GregorianCalendar dateParution)
 	{
-                              
+            Parution pa = new Parution(numParution, dateParution, this);
+            lierParution(pa);  
+            EntreesSorties.afficherMessage("Création avec succès!");     
 	}
 	
-	public void lierParution()
+	public void lierParution(Parution pa)
 	{
-            
+            _parution.add(pa);
 	}
         
+        /*appelé par consulterPeriodique() depuis bibliotheque*/
         public void infosPeriodique()
         {
+            System.out.println("Issn                  : " + this.getIssn());
+            System.out.println("Nom Periodique        : " + this.getNomPeriodique());
             
+            HashSet<Parution> ensPa=mesParutions();
+            for(Parution pa : ensPa) { 
+                pa.infosParution();               
+            }   
+        }
+        
+        public void infosPeriodiqueReduit()
+        {
+            System.out.println("Issn                  : " + this.getIssn());
+            System.out.println("Nom Periodique        : " + this.getNomPeriodique());
+        }
+        
+        public void consulterParutionPeriodique(Integer numParution)
+        {
+            Parution pa = uneParution(numParution);
+            if(pa != null)
+            {
+                pa.infosParution();
+            }
+        }
+        
+        /*appelé par consulterArticle() depuis bibliotheque*/
+        public void consulterArticle(Integer numParution, Integer numPage)   /*erreur vpp, numParution à ajouter*/
+        {
+           Parution pa = uneParution(numParution);
+           this.infosPeriodiqueReduit();
+           pa.consulterArticle(numPage);
         }
 	
-        /*public void consulterParutionPeriodique()
-        {
-            
-        }*/
                        
 // -----------------------------------------------
 	// Private

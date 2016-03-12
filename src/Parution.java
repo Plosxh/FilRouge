@@ -45,8 +45,10 @@ public class Parution implements Serializable
     {
         this.setNumParution(numParution);
         this.setDateParution(dateParution);
-	this.setPeriodique(periodique);
+	/*this.setPeriodique(periodique);*/
+        this.lierPeriodique(periodique);
         this.setArticle(new HashSet<Article>());
+        
     }
 		
 // -----------------------------------------------
@@ -80,15 +82,10 @@ public class Parution implements Serializable
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
-		
-	public void lierPeriodique()
-	{
-            
-	}
         
         public void verifierArticle(Integer numPage)
 	{
-                              
+              /*n'existe pas*/                
 	}
 	
         public Article unArticle(Integer numPage)
@@ -103,10 +100,38 @@ public class Parution implements Serializable
             return ar;
         }
         
+        /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
         {
+            System.out.println("Numero de parution    : " + this.getNumParution());
+            System.out.println("Date de parution      : " + this.getDateParution());
             
+            HashSet<Article> ensA=mesArticles();
+            for(Article a : ensA) { 
+                a.infosArticle();               
+            }
         }
+        
+        public void infosParutionReduit()
+        {
+            System.out.println("Numero de parution    : " + this.getNumParution());
+            System.out.println("Date de parution      : " + this.getDateParution());
+        }
+        
+        public void consulterArticle(Integer numPage)
+        {
+            Article a = unArticle(numPage);
+            if(a == null)
+            {
+                this.infosParutionReduit();
+                a.consulterArticle();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("L'article n'existe pas");
+            }
+        }
+        
                        
 // -----------------------------------------------
 	// Private
@@ -143,5 +168,10 @@ public class Parution implements Serializable
         private HashSet<Article> mesArticles()
 	{
             return _article;
+	}
+        
+        private void lierPeriodique(Periodique pe)
+	{
+            _periodique=pe;
 	}
 }
