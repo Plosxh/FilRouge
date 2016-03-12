@@ -33,6 +33,9 @@ public class Article implements Serializable
 	
     private Integer _numeroPage;
     private Parution _parution;
+    private Titre _titre;
+    private HashSet<Auteur> _auteur;
+    private HashSet<MotCle> _motCle;
 	
 // -----------------------------------------------
 	//Constructeur
@@ -63,26 +66,59 @@ public class Article implements Serializable
             return _parution;
 	}
             
+        public Titre getTitre()
+        {
+            return _titre;
+        }
+        
+        public HashSet <Auteur> unAuteur() 
+        {
+            return _auteur;                      
+        }
+        
+        public HashSet <MotCle> unMotCle() 
+        {
+            return _motCle;                      
+        }
               
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
 		
-	public void infosReduitArticles()
-	{
+	public void ajouterMotCle(MotCle mc)
+        {
             
-	}
+        }
 	
 	public void ajouterAuteur(Auteur au)
 	{
             
         }
-                
+          
+        /*passera privée*/
         public void lierAuteur(Auteur au)
         {
             
         }
-                               
+        
+        public void consulterArticle()
+        {
+            
+        }
+            
+        public void infosArticle()
+        {
+            System.out.println("Numero de page        : " + this.getNumeroPage());
+            //System.out.println("Date de parution      : " + this.getDateParution());
+        }
+        
+        public void infosReduitArticles()
+	{
+            
+	}
+        
+        
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
@@ -105,4 +141,9 @@ public class Article implements Serializable
 		// Methodes
 	// -----------------------------------------------
     
+        /*ça ne peux pas être dans cette méthode, il y a une erreur sur le VPP*/
+        private Article unArticle(Integer numPage)
+        {
+            
+        }
 }

@@ -96,25 +96,6 @@ public class Periodique implements Serializable
                 EntreesSorties.afficherMessage("La parution existe déjà.");
             }
         }
-                
-        public Parution uneParution(Integer numParution)
-        {
-            Parution par = null;
-            HashSet<Parution> ensPa=mesParutions();
-            for(Parution pa : ensPa){
-                if (numParution==pa.getNumParution()){
-                    par = pa;
-                }
-            }
-            return par;
-        }
-        
-	public void creationParution(Integer numParution, GregorianCalendar dateParution)
-	{
-            Parution pa = new Parution(numParution, dateParution, this);
-            lierParution(pa);  
-            EntreesSorties.afficherMessage("Création avec succès!");     
-	}
 	
 	public void lierParution(Parution pa)
 	{
@@ -189,5 +170,23 @@ public class Periodique implements Serializable
             return _parution;
 	}
         
+        private Parution uneParution(Integer numParution)
+        {
+            Parution par = null;
+            HashSet<Parution> ensPa=mesParutions();
+            for(Parution pa : ensPa){
+                if (numParution==pa.getNumParution()){
+                    par = pa;
+                }
+            }
+            return par;
+        }
         
+        private void creationParution(Integer numParution, GregorianCalendar dateParution)
+	{
+            Parution pa = new Parution(numParution, dateParution, this);
+            lierParution(pa);  
+            EntreesSorties.afficherMessage("Création avec succès!");     
+	}
+	
 }

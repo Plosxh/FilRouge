@@ -87,18 +87,6 @@ public class Parution implements Serializable
 	{
               /*n'existe pas*/                
 	}
-	
-        public Article unArticle(Integer numPage)
-        {
-            Article ar = null;
-            HashSet<Article> ensA=mesArticles();
-            for(Article a : ensA){
-                if (numPage==a.getNumeroPage()){
-                    ar = a;
-                }
-            }
-            return ar;
-        }
         
         /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
@@ -174,4 +162,16 @@ public class Parution implements Serializable
 	{
             _periodique=pe;
 	}
+        
+        private Article unArticle(Integer numPage)
+        {
+            Article ar = null;
+            HashSet<Article> ensA=mesArticles();
+            for(Article a : ensA){
+                if (numPage==a.getNumeroPage()){
+                    ar = a;
+                }
+            }
+            return ar;
+        }
 }

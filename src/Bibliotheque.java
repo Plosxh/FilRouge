@@ -144,17 +144,15 @@ public class Bibliotheque implements Serializable
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
             Periodique pe = unPeriodique(issn);
             
-    /* Miléna : Ici il y aun gros truc qui bloque sur les diagrammes, j'arrive plus à travailler dessus donc je passe à autre chose! */
+    /* Miléna : Ici il y aun gros truc qui bloque sur les diagrammes, j'arrive plus à travailler dessus donc je passe à autre chose! 
+     Antoine : c'est bon je l'ai modifié y'a plus besoin de modifier ici*/
             
             if (pe==null) {
                 this.creationPeriodique(issn);
             }
             else{
-                /*Integer numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
-                Periodique pe.uneParution(numParution);
-                
-                GregorianCalendar dateParution = EntreesSorties.lireChaine("Entrez la date de parution : ");
-                Periodique pe = unPeriodique(issn);*/
+                Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
+                pe.verifParution(numParution);
             }
         }
         
