@@ -29,27 +29,29 @@ public class Ouvrage implements Serializable
 // -----------------------------------------------
 	
     private String _isbn;
-    private String _titre;
+    private Titre _titre;
     private String _nomEditeur;
     private GregorianCalendar _dateParution;
-    private String _nomAuteur;
+    private Auteur _auteur;
     private PublicCible _public;
     private HashSet<Exemplaire> _exemplaire;
     private Integer _numLast=(1);
+    private MotCle _motCle;
 	
 // -----------------------------------------------
 	//Constructeur
 // -----------------------------------------------
 		
-    public Ouvrage(String isbn, String titre, String nomEditeur, GregorianCalendar dateParution, String nomAuteur, PublicCible publicOuvrage/*,*/ /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/  /*HashSet<Exemplaire> _exemplaires*/)
+    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution, HashSet<Auteur> _auteur, PublicCible publicOuvrage, /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/  HashSet<Exemplaire> _exemplaire, HashSet<MotCle> _motCle)
     {
         this.setIsbn(isbn);
 	this.setTitre(titre);
 	this.setNomEditeur(nomEditeur);
 	this.setDateParution(dateParution);
-	this.setNomAuteur(nomAuteur);
+	this.setNomAuteur(new HashSet<Auteur>());
 	this.setPublic(publicOuvrage);
         this.setExemplaire(new HashSet<Exemplaire>());
+        this.setMotCle(new HashSet<MotCle>());
     }
 		
 // -----------------------------------------------
@@ -65,7 +67,7 @@ public class Ouvrage implements Serializable
             return _isbn;
 	}
 
-	public String getTitre() 
+	public Titre getTitre() 
         {
             return _titre;
 	}
@@ -80,9 +82,9 @@ public class Ouvrage implements Serializable
             return _dateParution;
 	}
 
-	public String getNomAuteur() 
+	public HashSet <Auteur> unAuteur() 
         {
-            return _nomAuteur;
+            return _auteur;
         }
 
 	public PublicCible getPublic() 
@@ -99,6 +101,11 @@ public class Ouvrage implements Serializable
         {
             return _exemplaire;                      
         }
+        
+        public HashSet <MotCle> unMotCle() 
+        {
+            return _motCle;                      
+        }
                
               
 	// -----------------------------------------------
@@ -114,7 +121,11 @@ public class Ouvrage implements Serializable
             System.out.println("Titre                 : " + this.getTitre());
             System.out.println("Editeur               : " + this.getNomEditeur());
             System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
-            System.out.println("Auteur                : " + this.getNomAuteur());
+            
+            // encastré dans un while??
+            System.out.println("Auteur                : " + this.mesAuteurs());
+            System.out.println("Mot Clé               : " + this.mesMotCles());
+            
             System.out.println("Public                : " + this.getPublic());
             System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
             EntreesSorties.afficherMessage("");
@@ -258,7 +269,7 @@ public class Ouvrage implements Serializable
             this._isbn = isbn;
 	}
 
-	private void setTitre(String titre) 
+	private void setTitre(Titre titre) 
         {
             this._titre = titre;
 	}
@@ -273,9 +284,9 @@ public class Ouvrage implements Serializable
             this._dateParution = dateParution;
 	}
 
-	private void setNomAuteur(String nomAuteur) 
+	private void setNomAuteur(HashSet<Auteur> _auteur) 
         {
-            this._nomAuteur = nomAuteur;
+            this._auteur = _auteur;
 	}
 
 	private void setPublic(PublicCible publicOuvrage) 
@@ -292,6 +303,11 @@ public class Ouvrage implements Serializable
         {
             this._exemplaire = _exemplaire;
         }
+        
+        private void setMotCle(HashSet<MotCle> _motCle)
+        {
+            this._motCle = _motCle;
+        }
                 
         // -----------------------------------------------
 		// Methodes
@@ -303,5 +319,15 @@ public class Ouvrage implements Serializable
 	private HashSet<Exemplaire> mesExemplaires()
 	{
             return _exemplaire;
-	}           
+	}
+        
+        private HashSet<Auteur> mesAuteurs()
+	{
+            return _auteur;
+	}
+        
+        private HashSet<MotCle> mesMotCles()
+	{
+            return _motCle;
+	}
 }

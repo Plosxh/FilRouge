@@ -132,15 +132,13 @@ public class Bibliotheque implements Serializable
             Periodique pe = unPeriodique(issn);
             
             if (pe==null) {
-                String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
-                lierPeriodique(pe, nomPeriodique);
-                EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+                this.creationPeriodique(issn);
             }
             else{
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
             }           
         }
-     
+        
         public void nouvelleParution()
         {
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
@@ -148,25 +146,97 @@ public class Bibliotheque implements Serializable
             
     /* Miléna : Ici il y aun gros truc qui bloque sur les diagrammes, j'arrive plus à travailler dessus donc je passe à autre chose! */
             
-            /*if (pe==null) {
-                String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
-                lierPeriodique(pe, nomPeriodique);
-                EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+            if (pe==null) {
+                this.creationPeriodique(issn);
             }
             else{
-                Integer numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
+                /*Integer numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
                 Periodique pe.uneParution(numParution);
                 
                 GregorianCalendar dateParution = EntreesSorties.lireChaine("Entrez la date de parution : ");
-                Periodique pe = unPeriodique(issn);
-            }*/
+                Periodique pe = unPeriodique(issn);*/
+            }
         }
         
         public void nouvelArticle()
         {
+            String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
+            Periodique pe = unPeriodique(issn);
             
+            /* ensuite une ref au passage qui ne marche pas dans NouveauPeriodique et Nouvelle Parution */
+            
+            if (pe==null)
+            {
+                this.creationPeriodique(issn);
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce périodique existe déjà.");
+            }
+            
+            String numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
+            Parution pa = pa.verifParution(numParution);
+            
+            // ensuite dans ce périodique, vérifier sans le hashset si il existe un objet parution au même numéro que celui demandé
+            // et si retourne ok alors :
+            
+            String titre = EntreesSorties.lireChaine("Entrez un titre : ");
+            Titre t = unTitre(titre);
+            if (t==null) {
+                t.ajouterTitre(titre);
+                /*String titre = EntreesSorties.lireChaine("Entrez le titre de l'article : ");
+                Titre t.creationTitre(titre);
+                lierTitre(t, titre);
+                EntreesSorties.afficherMessage("Le titre a bien été créé.");*/
+            }
+            else{
+                EntreesSorties.afficherMessage("Le titre existe déjà.");
+            }   
+            
+            String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
+            Auteur au = unAuteur(nomAuteur);
+            if (au==null) {
+                au.ajouterAuteur(nomAuteur);
+                /*String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur de l'article : ");
+                Auteur au.creationAuteur(nomAuteur);
+                lierAuteur(au, nomAuteurcherMessage("L'auteur a bien été créé.");*/
+            }
+            else{
+                EntreesSorties.afficherMessage("L'auteur existe déjà.");
+            }   
+            
+            Article a = a.creationArticle(numPage, pa, t, au);
+            
+            Article a;
+            boolean test;
+            Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour Oui, 2 pour Non : ");
+                   
+            do{
+                test = false;
+                        
+                switch (ajout){
+                    case 1 : {
+                        ajouterInfosArticle();
+                        break;
+                    }
+                    
+                    case 2 : {
+                        EntreesSorties.afficherMessage("L'article a bien été créé.");
+                        break;
+                    }
+                                    
+                    default : {
+                        EntreesSorties.afficherMessage("Insérez : 1 pour Oui, 2 pour Non.");
+                        test=true;
+                        break;
+                    }
+                }
+            } while (test);
         }
         
+        public void ajouterInfosArticle()
+        {
+            // pouic
+        }
         
         /*
 	 * La méthode creationOuvrage permet de créer un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
@@ -211,6 +281,15 @@ public class Bibliotheque implements Serializable
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
             return o; 
 	} 
+        
+        public Periodique creationPeriodique(String issn)
+        {
+            String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
+            Periodique pe = new Periodique(issn, nomPeriodique);
+            lierPeriodique(pe, issn);
+            EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+            return pe;
+        }
         
         /*
 	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
