@@ -22,11 +22,8 @@ public class Bibliotheque implements Serializable
         private HashMap<String, MotCle> _dicoMotCle;
         private HashMap<String, Auteur> _dicoAuteur;
         private Integer _numLast=(1);
-               
-	/*
-	* Les dictionnaires de Lecteur et Ouvrage permettent à bibliotheque de 
-	* garantir l'unicité de ces derniers, et facilitent les recherches et créations.
-	*/
+        
+   
 	
 // -----------------------------------------------
         //Constructeur
@@ -36,7 +33,10 @@ public class Bibliotheque implements Serializable
         {
             this.setLecteurs(new HashMap<Integer, Lecteur>());
             this.setOuvrages();
-                        
+            this.setPeriodiques();
+            this.setMotCles();
+            this.setAuteurs();
+            this.setTitres();
         }
 	
 // -----------------------------------------------
@@ -128,13 +128,43 @@ public class Bibliotheque implements Serializable
         
         public void nouveauPeriodique()
         {
+            String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
+            Periodique pe = unPeriodique(issn);
             
+            if (pe==null) {
+                String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
+                lierPeriodique(pe, nomPeriodique);
+                EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce périodique existe déjà.");
+            }           
         }
-        
-        
+     
         public void nouvelleParution()
         {
+            String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
+            Periodique pe = unPeriodique(issn);
+            
+    /* Miléna : Ici il y aun gros truc qui bloque sur les diagrammes, j'arrive plus à travailler dessus donc je passe à autre chose! */
+            
+            /*if (pe==null) {
+                String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
+                lierPeriodique(pe, nomPeriodique);
+                EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+            }
+            else{
+                Integer numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
+                Periodique pe.uneParution(numParution);
+                
+                GregorianCalendar dateParution = EntreesSorties.lireChaine("Entrez la date de parution : ");
+                Periodique pe = unPeriodique(issn);
+            }*/
+        }
         
+        public void nouvelArticle()
+        {
+            
         }
         
         
@@ -370,6 +400,30 @@ public class Bibliotheque implements Serializable
             _dicoOuvrage = dicoOuvrage;
 	}
         
+        private void setPeriodiques() 
+        {
+            HashMap   dicoPeriodique = new HashMap<String, Periodique>();
+            _dicoPeriodique = dicoPeriodique;
+	}
+        
+        private void setMotCles() 
+        {
+            HashMap   dicoMotCle = new HashMap<String, MotCle>();
+            _dicoMotCle = dicoMotCle;
+	}
+        
+        private void setAuteurs() 
+        {
+            HashMap   dicoAuteur = new HashMap<String, Auteur>();
+            _dicoAuteur = dicoAuteur;
+	}
+        
+        private void setTitres() 
+        {
+            HashMap   dicoTitre = new HashMap<String, Titre>();
+            _dicoTitre = dicoTitre;
+	}
+        
         private void setNumLast(Integer _numLast) 
         {
             this._numLast = _numLast;
@@ -397,6 +451,11 @@ public class Bibliotheque implements Serializable
             return _dicoOuvrage.get(isbn);
 	}
         
+        private Periodique unPeriodique(String issn)
+	{
+            return _dicoPeriodique.get(issn);
+	}
+        
         private Auteur unAuteur(String nom)
         {
             return _dicoAuteur.get(nom);
@@ -405,6 +464,11 @@ public class Bibliotheque implements Serializable
         private Titre unTitre(String titre)
         {
             return _dicoTitre.get(titre);
+        }
+        
+        private MotCle unMotCle(String motCle)
+        {
+            return _dicoMotCle.get(motCle);
         }
         
         /*
@@ -427,6 +491,26 @@ public class Bibliotheque implements Serializable
         private void lierOuvrage(Ouvrage o, String isbn)
 	{
             _dicoOuvrage.put(isbn, o);
+	}
+        
+        private void lierPeriodique(Periodique pe, String issn)
+	{
+            _dicoPeriodique.put(issn, pe);
+	}
+        
+        private void lierTitre(Titre t, String titre)
+	{
+            _dicoTitre.put(titre, t);
+	}
+        
+        private void lierAuteur(Auteur au, String nomAuteur)
+	{
+            _dicoAuteur.put(nomAuteur, au);
+	}
+        
+        private void lierMotCle(MotCle mc, String motCle)
+	{
+            _dicoMotCle.put(motCle, mc);
 	}
 	
         /*

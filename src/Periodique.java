@@ -40,7 +40,7 @@ public class Periodique implements Serializable
 // -----------------------------------------------
 		
     /*creationPeriodique ???*/
-    public Periodique(String issn, String nomPeriodique)
+    public Periodique(String issn, String nomPeriodique, Parution parution)
     {
         this.setIssn(issn);
 	this.setNomPeriodique(nomPeriodique);
@@ -79,7 +79,6 @@ public class Periodique implements Serializable
 	public void ajouterParution()
 	{
             EntreesSorties.afficherMessage("Veuillez entrer un numero de parution : ");
-            
 	}
 	
         /*appelé par nouvelleParution() depuis bibliotheque*/
