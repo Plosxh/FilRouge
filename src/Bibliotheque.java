@@ -155,8 +155,12 @@ public class Bibliotheque implements Serializable
             pe.verifParution(numParution);          
         }
         
-        public void nouvelArticle()
+        public void nouvelArticle ()
         {
+            
+        // -----------------------------------------------
+	// Creation Periodique
+	// -----------------------------------------------
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
             Periodique pe = unPeriodique(issn);
             
@@ -170,39 +174,55 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
             }
             
+            // -----------------------------------------------
+            // Creation Parution
+            // -----------------------------------------------
+            
             Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
             pe.verifParution(numParution);
             
             Parution pa = pe.uneParution(numParution);
             
+            // -----------------------------------------------
+            // Creation Titre
+            // -----------------------------------------------
+            
             String titre = EntreesSorties.lireChaine("Entrez un titre : ");
             Titre t = unTitre(titre);
             if (t==null) {
-                t.ajouterTitre(titre);
-                /*String titre = EntreesSorties.lireChaine("Entrez le titre de l'article : ");
-                Titre t.creationTitre(titre);
-                lierTitre(t, titre);
-                EntreesSorties.afficherMessage("Le titre a bien été créé.");*/
+                t = new Titre(titre);
+                lierTitre(t, titre); // lier à l'hashmap de bib
+                EntreesSorties.afficherMessage("Le titre a bien été créé.");
             }
             else{
                 EntreesSorties.afficherMessage("Le titre existe déjà.");
-            }   
+            } 
+                         
+            // -----------------------------------------------
+            // Creation Article
+            // -----------------------------------------------
+            
+            Integer numPage = EntreesSorties.lireEntier("Entrez un numéro de page : ");
+            Article a = new Article(numPage, pa, t);
+            t.ajouterArticle(a); // fait les liens entre titre et article
+            
+            // -----------------------------------------------
+            // Creation Auteur
+            // -----------------------------------------------
             
             String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
             Auteur au = unAuteur(nomAuteur);
             if (au==null) {
-                au.ajouterAuteur(nomAuteur);
-                /*String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur de l'article : ");
-                Auteur au.creationAuteur(nomAuteur);
-                lierAuteur(au, nomAuteurcherMessage("L'auteur a bien été créé.");*/
+                au = new Auteur(nomAuteur);
+                lierAuteur(au, nomAuteur);
+                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
             }
             else{
                 EntreesSorties.afficherMessage("L'auteur existe déjà.");
-            }   
+            }
+            au.ajouterArticle(a); // fait les liens entre auteur et article
+                      
             
-            Article a = a.creationArticle(numPage, pa, t, au);
-            
-            Article a;
             boolean test;
             Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour Oui, 2 pour Non : ");
                    
@@ -211,7 +231,7 @@ public class Bibliotheque implements Serializable
                         
                 switch (ajout){
                     case 1 : {
-                        ajouterInfosArticle();
+                        ajouterInfosArticle(a);
                         break;
                     }
                     
@@ -229,9 +249,61 @@ public class Bibliotheque implements Serializable
             } while (test);
         }
         
-        public void ajouterInfosArticle()
+        public void ajouterInfosArticle(Article a)
         {
-            // pouic
+            boolean testage;
+            Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour auteur, 2 pour mot clé, 3 pour sortir : ");
+                   
+            do{
+                testage = false;
+                        
+                switch (ajout){
+                    case 1 : {
+                        String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
+                        Auteur au = unAuteur(nomAuteur);
+                        if (au==null) {
+                            au = new Auteur(nomAuteur);
+                            lierAuteur(au, nomAuteur);
+                            EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+                        }
+                        else{
+                            EntreesSorties.afficherMessage("L'auteur existe déjà.");
+                        }
+                        au.ajouterArticle(a); // fait les liens entre auteur et article
+                        
+                        testage=true;
+                        break;
+                    }
+                    
+                    case 2 : {
+                        String motCle = EntreesSorties.lireChaine("Entrez un mot clé : ");
+                        MotCle mc = unMotCle(motCle);
+                        if (mc==null) {
+                            mc = new MotCle(motCle);
+                            lierMotCle(mc, motCle);
+                            EntreesSorties.afficherMessage("Le mot clé a bien été créé.");
+                        }
+                        else{
+                            EntreesSorties.afficherMessage("Le mot clé existe déjà.");
+                        }
+                        mc.ajouterArticle(a); // fait les liens entre auteur et article
+                        
+                        testage=true;
+                        break;
+                    }
+                    
+                    case 3 : {
+                        EntreesSorties.afficherMessage("L'article a bien été créé.");
+                        break;
+                    }
+                                    
+                    default : {
+                        EntreesSorties.afficherMessage("Insérez : 1 pour auteur, 2 pour mot clé, 3 pour sortir.");
+                        testage=true;
+                        break;
+                    }
+                }
+            } while (testage);
         }
         
         /*
@@ -241,7 +313,7 @@ public class Bibliotheque implements Serializable
 	public Ouvrage creationOuvrage(String isbn)
         {	
             PublicCible p=PublicCible.ADULTE;
-            boolean t;
+            boolean test;
             String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
             String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
@@ -249,7 +321,7 @@ public class Bibliotheque implements Serializable
             Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
                     
             do{
-                t = false;
+                test = false;
                         
                 switch (publique){
                     case 1 : {
@@ -266,11 +338,11 @@ public class Bibliotheque implements Serializable
                     }
                     default : {
                         EntreesSorties.afficherMessage("Insérez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
-                        t=true;
+                        test=true;
                         break;
                     }
                 }
-            } while (t);
+            } while (test);
                     
             Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
             lierOuvrage(o, isbn);  

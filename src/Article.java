@@ -42,10 +42,11 @@ public class Article implements Serializable
 // -----------------------------------------------
 		
     /*creationArticle ???*/
-    public Article(Integer numeroPage, Parution parution)
+    public Article(Integer numeroPage, Parution parution, Titre titre)
     {
         this.setNumeroPage(numeroPage);
 	this.setParution(parution);
+        this.setTitre(titre);
     }
 		
 // -----------------------------------------------
@@ -135,6 +136,11 @@ public class Article implements Serializable
 	private void setParution(Parution parution) 
         {
             this._parution = parution;
+	}
+        
+        private void setTitre(Titre titre) 
+        {
+            this._titre = titre;
 	}
                                 
         // -----------------------------------------------
