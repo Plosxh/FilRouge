@@ -74,9 +74,21 @@ public class Parution implements Serializable
             return _periodique;
 	}    
         
-        public HashSet <Article> unArticle() 
+        public HashSet <Article> mesArticles() 
         {
             return _article;                      
+        }
+        
+        public Article unArticle(Integer numPage)
+        {
+            Article ar = null;
+            HashSet<Article> ensA=mesArticles();
+            for(Article a : ensA){
+                if (numPage==a.getNumeroPage()){
+                    ar = a;
+                }
+            }
+            return ar;
         }
               
 	// -----------------------------------------------
@@ -153,25 +165,11 @@ public class Parution implements Serializable
 		// Methodes
 	// -----------------------------------------------
 
-        private HashSet<Article> mesArticles()
-	{
-            return _article;
-	}
         
         private void lierPeriodique(Periodique pe)
 	{
             _periodique=pe;
 	}
         
-        private Article unArticle(Integer numPage)
-        {
-            Article ar = null;
-            HashSet<Article> ensA=mesArticles();
-            for(Article a : ensA){
-                if (numPage==a.getNumeroPage()){
-                    ar = a;
-                }
-            }
-            return ar;
-        }
+
 }

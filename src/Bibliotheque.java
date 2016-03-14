@@ -249,6 +249,28 @@ public class Bibliotheque implements Serializable
             } while (test);
         }
         
+        
+        public void ajouterInformationsArticle()        
+        {
+            String issn = EntreesSorties.lireChaine("Entrez l'issn : ");
+            Periodique pe =unPeriodique(issn);
+            
+            Integer numParution = EntreesSorties.lireEntier("Entrez le numéro d la parution : ");
+            Parution pa = pe.uneParution(numParution);
+            
+            Integer numPage =EntreesSorties.lireEntier("Entrez le numéro de page : ");
+            Article a = pa.unArticle(numPage);
+            ajouterInfosArticle(a);
+        }
+        
+        
+        public void ajouterInformationsOuvrage()        
+        {
+            String isbn = EntreesSorties.lireChaine("Entrez l'isbn : ");
+            Ouvrage o =unOuvrage(isbn);
+            ajouterInfosOuvrage(o);
+        }
+        
         public void ajouterInfosArticle(Article a)
         {
             boolean testage;
@@ -343,12 +365,96 @@ public class Bibliotheque implements Serializable
                     }
                 }
             } while (test);
+            
+            
+            Titre t = unTitre(titre);
+            if (t==null) {
+                t = new Titre(titre);
+                lierTitre(t, titre); // lier à l'hashmap de bib
+                EntreesSorties.afficherMessage("Le titre a bien été créé.");
+            }
+            else{
+                EntreesSorties.afficherMessage("Le titre existe déjà.");
+            } 
+            
+            Auteur au = unAuteur(nomAuteur);
+            if (au==null) {
+                au = new Auteur(nomAuteur);
+                lierAuteur(au, nomAuteur);
+                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+            }
+            else{
+                EntreesSorties.afficherMessage("L'auteur existe déjà.");
+            }
+
+                      
                     
             Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
+            au.ajouterOuvrage(o); // fait les liens entre auteur et article
+            t.ajouterOuvrage(o); // fait les liens entre auteur et article
             lierOuvrage(o, isbn);  
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
+            
             return o; 
-	} 
+	}
+        
+        
+        public void ajouterInfosOuvrage(Ouvrage o)
+        {
+            boolean testage;
+            Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour auteur, 2 pour mot clé, 3 pour sortir : ");
+                   
+            do{
+                testage = false;
+                        
+                switch (ajout){
+                    case 1 : {
+                        String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
+                        Auteur au = unAuteur(nomAuteur);
+                        if (au==null) {
+                            au = new Auteur(nomAuteur);
+                            lierAuteur(au, nomAuteur);
+                            EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+                        }
+                        else{
+                            EntreesSorties.afficherMessage("L'auteur existe déjà.");
+                        }
+                        au.ajouterOuvrage(o); // fait les liens entre auteur et article
+                        
+                        testage=true;
+                        break;
+                    }
+                    
+                    case 2 : {
+                        String motCle = EntreesSorties.lireChaine("Entrez un mot clé : ");
+                        MotCle mc = unMotCle(motCle);
+                        if (mc==null) {
+                            mc = new MotCle(motCle);
+                            lierMotCle(mc, motCle);
+                            EntreesSorties.afficherMessage("Le mot clé a bien été créé.");
+                        }
+                        else{
+                            EntreesSorties.afficherMessage("Le mot clé existe déjà.");
+                        }
+                        mc.ajouterOuvrage(o); // fait les liens entre auteur et article
+                        
+                        testage=true;
+                        break;
+                    }
+                    
+                    case 3 : {
+                        EntreesSorties.afficherMessage("L'article a bien été créé.");
+                        break;
+                    }
+                                    
+                    default : {
+                        EntreesSorties.afficherMessage("Insérez : 1 pour auteur, 2 pour mot clé, 3 pour sortir.");
+                        testage=true;
+                        break;
+                    }
+                }
+            } while (testage);
+        }
         
         public Periodique creationPeriodique(String issn)
         {
@@ -438,6 +544,22 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Aucun Ouvrage n'est associé à ce numéro.");
             }              
         }
+        
+        public void consulterPeriodique()
+        {
+            
+        }
+        
+        public void consulterParutionPeriodique()
+        {
+            
+        }
+        
+        public void consulterArticle()
+        {
+            
+        }
+        
         
         // une méthode qui permet d'emprunter un exemplaire d'un ouvrage et de l'associer à un lecteur
         public void emprunterExemplaire()

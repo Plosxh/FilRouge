@@ -42,13 +42,13 @@ public class Ouvrage implements Serializable
 	//Constructeur
 // -----------------------------------------------
 		
-    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution, HashSet<Auteur> _auteur, PublicCible publicOuvrage, /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/  HashSet<Exemplaire> _exemplaire, HashSet<MotCle> _motCle)
+    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution,Auteur _auteur, PublicCible publicOuvrage /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/)
     {
         this.setIsbn(isbn);
 	this.setTitre(titre);
 	this.setNomEditeur(nomEditeur);
 	this.setDateParution(dateParution);
-	this.setNomAuteur(new HashSet<Auteur>());
+	this.setAuteur(new HashSet<Auteur>());
 	this.setPublic(publicOuvrage);
         this.setExemplaire(new HashSet<Exemplaire>());
         this.setMotCle(new HashSet<MotCle>());
