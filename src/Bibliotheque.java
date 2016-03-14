@@ -150,10 +150,9 @@ public class Bibliotheque implements Serializable
             if (pe==null) {
                 this.creationPeriodique(issn);
             }
-            else{
-                Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
-                pe.verifParution(numParution);
-            }
+            
+            Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
+            pe.verifParution(numParution);          
         }
         
         public void nouvelArticle()
@@ -171,11 +170,10 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
             }
             
-            String numParution = EntreesSorties.lireChaine("Entrez le numéro de la parution : ");
-            Parution pa = pa.verifParution(numParution);
+            Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
+            pe.verifParution(numParution);
             
-            // ensuite dans ce périodique, vérifier sans le hashset si il existe un objet parution au même numéro que celui demandé
-            // et si retourne ok alors :
+            Parution pa = pe.uneParution(numParution);
             
             String titre = EntreesSorties.lireChaine("Entrez un titre : ");
             Titre t = unTitre(titre);
@@ -274,7 +272,7 @@ public class Bibliotheque implements Serializable
                 }
             } while (t);
                     
-            Ouvrage o = new Ouvrage(isbn, titre, nomEditeur, dateParution, nomAuteur, p);
+            Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
             lierOuvrage(o, isbn);  
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
             return o; 

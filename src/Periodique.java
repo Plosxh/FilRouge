@@ -40,7 +40,7 @@ public class Periodique implements Serializable
 // -----------------------------------------------
 		
     /*creationPeriodique ???*/
-    public Periodique(String issn, String nomPeriodique, Parution parution)
+    public Periodique(String issn, String nomPeriodique)
     {
         this.setIssn(issn);
 	this.setNomPeriodique(nomPeriodique);
@@ -65,11 +65,22 @@ public class Periodique implements Serializable
             return _nomPeriodique;
 	}
 
-        public HashSet <Parution> uneParution() 
+        public HashSet <Parution> mesParutions() 
         {
             return _parution;                      
         }
-               
+        
+        public Parution uneParution(Integer numParution)
+        {
+            Parution par = null;
+            HashSet<Parution> ensPa=mesParutions();
+            for(Parution pa : ensPa){
+                if (numParution==pa.getNumParution()){
+                    par = pa;
+                }
+            }
+            return par;
+        }               
               
 	// -----------------------------------------------
 		// Methodes
@@ -89,7 +100,7 @@ public class Periodique implements Serializable
             {
                 GregorianCalendar dateParution = EntreesSorties.lireDate("Veuillez entrer la date de parution :");
                 creationParution(numParution, dateParution);
-                
+                EntreesSorties.afficherMessage("La parution a bien été créée.");
             }
             else
             {
@@ -163,25 +174,8 @@ public class Periodique implements Serializable
                 
         // -----------------------------------------------
 		// Methodes
-	// -----------------------------------------------
-		           
-        private HashSet<Parution> mesParutions()
-	{
-            return _parution;
-	}
-        
-        private Parution uneParution(Integer numParution)
-        {
-            Parution par = null;
-            HashSet<Parution> ensPa=mesParutions();
-            for(Parution pa : ensPa){
-                if (numParution==pa.getNumParution()){
-                    par = pa;
-                }
-            }
-            return par;
-        }
-        
+	// ----------------------------------------------
+              
         private void creationParution(Integer numParution, GregorianCalendar dateParution)
 	{
             Parution pa = new Parution(numParution, dateParution, this);
