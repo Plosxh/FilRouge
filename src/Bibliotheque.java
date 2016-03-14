@@ -528,6 +528,25 @@ public class Bibliotheque implements Serializable
             }                   
         }
         
+        public void consulterPeriodique()
+        {
+             String issn = EntreesSorties.lireChaine("Entrez l'ISSN : ");
+             Periodique pe = unPeriodique(issn);
+             if (pe!=null){
+                pe.infosPeriodique();
+            }
+        }
+        
+        public void consulterParutionPeriodique()
+        {
+            String issn = EntreesSorties.lireChaine("Entrez l'ISSN : ");
+            Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : "); 
+            Periodique pe = unPeriodique(issn);
+            if (pe!=null){
+                pe.consulterParutionPeriodique(numParution);
+            }
+        }
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------

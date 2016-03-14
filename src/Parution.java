@@ -88,6 +88,12 @@ public class Parution implements Serializable
               /*n'existe pas*/                
 	}
         
+        public void infosReduitParution()
+        {
+            System.out.println("Numero de parution    : " + this.getNumParution());
+            System.out.println("Date de parution      : " + this.getDateParution());
+        }
+        
         /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
         {
@@ -100,12 +106,7 @@ public class Parution implements Serializable
             }
         }
         
-        public void infosParutionReduit()
-        {
-            System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + this.getDateParution());
-        }
-        
+            
         public void consulterArticle(Integer numPage)
         {
             Article a = unArticle(numPage);
