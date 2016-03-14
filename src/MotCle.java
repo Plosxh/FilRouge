@@ -47,7 +47,7 @@ public class MotCle extends Index implements Serializable {
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
-	    public void infosMotcle() 
+	    public void infosMotCle() 
                 {
                   System.out.println("Mot Cle                     : " + this.getMotCle());   
                   EntreesSorties.afficherMessage("");    

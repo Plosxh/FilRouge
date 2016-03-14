@@ -17,11 +17,14 @@ public void menuPrincipal() {
 		EntreesSorties.afficherMessage("|                   Menu Principal                       |");
 		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Menu Lecteur : 1                                       |");
-                EntreesSorties.afficherMessage("| Menu Periodique :2                                     |");
-                EntreesSorties.afficherMessage("| Menu Ouvrage : 3                                       |");
-                EntreesSorties.afficherMessage("| Menu Exemplaire : 4                                    |");
-                EntreesSorties.afficherMessage("| Menu Emprunt : 5                                       |");
-                EntreesSorties.afficherMessage("| Relancer Lecteurs : 6                                  |");
+                EntreesSorties.afficherMessage("| Menu Periodique : 2                                    |");
+                EntreesSorties.afficherMessage("| Menu Parution : 3                                      |");
+                EntreesSorties.afficherMessage("| Menu Article : 4                                       |");
+                EntreesSorties.afficherMessage("| Menu Ouvrage : 5                                       |");
+                EntreesSorties.afficherMessage("| Menu Exemplaire : 6                                    |");
+                EntreesSorties.afficherMessage("| Menu Emprunt : 7                                       |");
+                EntreesSorties.afficherMessage("| Relancer Lecteurs : 8                                  |");
+                EntreesSorties.afficherMessage("| Ajouter informations : 9                               |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -37,27 +40,39 @@ public void menuPrincipal() {
                                         this.menuPeriodique();
                                         break;
                                          }
-
-
+                                
                                 case 3 : {
+                                        this.menuParution();
+                                        break;
+                                         }
+                                
+                                case 4 : {
+                                        this.menuArticle();
+                                        break;
+                                         }
+                             
+                                case 5 : {
                                         this.menuOuvrage();
                                         break;
                                          }
-                        
-                                
-                        
-                                case 4 : {
+                       
+                                case 6 : {
                                         this.menuExemplaire();
                                         break;
                                         }
                                  
-                                case 5 : {
+                                case 7 : {
                                         this.menuEmprunt();
                                         break;
                                         }
                                 
-                                case 6 : {
+                                case 8 : {
                                         _bibliotheque.relancerLecteur();
+                                        break;
+                                        }
+                                
+                                case 9 : {
+                                        this.menuInformation();
                                         break;
                                         }
 				
@@ -109,6 +124,7 @@ public void menuPeriodique() {
 		EntreesSorties.afficherMessage(" ========================================================");
 		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
 		EntreesSorties.afficherMessage("| Nouvel Periodique : 1                                  |");
+                EntreesSorties.afficherMessage("| Consulter Periodique : 2                               |");
 		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menuPerio = EntreesSorties.lireEntier();
@@ -116,6 +132,11 @@ public void menuPeriodique() {
 			switch (menuPerio){
 				case 1 : {
 					_bibliotheque.nouveauPeriodique();
+					break;
+				}
+                                
+                                case 2 : {
+					_bibliotheque.consulterPeriodique();
 					break;
 				}
 
@@ -127,6 +148,70 @@ public void menuPeriodique() {
      
   
 	} while (menuPerio != 0);	
+}
+
+public void menuParution() {
+	Integer menuParu;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Nouvelle Parution : 1                                  |");
+                EntreesSorties.afficherMessage("| Consulter Parution Periodique : 2                      |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuParu = EntreesSorties.lireEntier();
+			
+			switch (menuParu){
+				case 1 : {
+					_bibliotheque.nouvelleParution();
+					break;
+				}
+                                
+                                case 2 : {
+					_bibliotheque.consulterParutionPeriodique();
+					break;
+				}
+
+				default : {
+					break;
+				}
+                                
+        }
+     
+  
+	} while (menuParu != 0);	
+}
+
+public void menuArticle() {
+	Integer menuArti;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Nouvel Article : 1                                     |");
+                EntreesSorties.afficherMessage("| Consulter Article : 2                                  |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuArti = EntreesSorties.lireEntier();
+			
+			switch (menuArti){
+				case 1 : {
+					_bibliotheque.nouvelArticle();
+					break;
+				}
+                                
+                                case 2 : {
+					_bibliotheque.consulterArticle();
+					break;
+				}
+
+				default : {
+					break;
+				}
+                                
+        }
+     
+  
+	} while (menuArti != 0);	
 }
 
 
@@ -147,10 +232,12 @@ public void menuOuvrage() {
 					_bibliotheque.nouvelOuvrage();
 					break;
 				}
+                                
 				case 2 : {
 					_bibliotheque.consulterOuvrage();
 					break;
 				}
+                                
 				default : {
 					break;
 				}
@@ -221,5 +308,35 @@ public void menuEmprunt() {
                         
 	} while (menuEmprunt != 0);	
 }
+
+public void menuInformation() {
+	Integer menuInfo;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Ajouter Infos Article : 1                              |");
+		EntreesSorties.afficherMessage("| Ajouter Infos Ouvrage : 2                              |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuInfo = EntreesSorties.lireEntier();
+			
+			switch (menuInfo){
+				case 1 : {
+					_bibliotheque.ajouterInformationsArticle();
+					break;
+				}
+                                
+				case 2 : {
+					_bibliotheque.ajouterInformationsOuvrage();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                        
+	} while (menuInfo != 0);	
+}
+
 }
 

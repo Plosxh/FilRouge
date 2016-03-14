@@ -74,9 +74,21 @@ public class Parution implements Serializable
             return _periodique;
 	}    
         
-        public HashSet <Article> unArticle() 
+        public HashSet <Article> mesArticles() 
         {
             return _article;                      
+        }
+        
+        public Article unArticle(Integer numPage)
+        {
+            Article ar = null;
+            HashSet<Article> ensA=mesArticles();
+            for(Article a : ensA){
+                if (numPage==a.getNumeroPage()){
+                    ar = a;
+                }
+            }
+            return ar;
         }
               
 	// -----------------------------------------------
@@ -87,6 +99,12 @@ public class Parution implements Serializable
 	{
               /*n'existe pas*/                
 	}
+        
+        public void infosReduitParution()
+        {
+            System.out.println("Numero de parution    : " + this.getNumParution());
+            System.out.println("Date de parution      : " + this.getDateParution());
+        }
         
         /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
@@ -100,12 +118,7 @@ public class Parution implements Serializable
             }
         }
         
-        public void infosParutionReduit()
-        {
-            System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + this.getDateParution());
-        }
-        
+            
         public void consulterArticle(Integer numPage)
         {
             Article a = unArticle(numPage);
@@ -153,25 +166,11 @@ public class Parution implements Serializable
 		// Methodes
 	// -----------------------------------------------
 
-        private HashSet<Article> mesArticles()
-	{
-            return _article;
-	}
         
         private void lierPeriodique(Periodique pe)
 	{
             _periodique=pe;
 	}
         
-        private Article unArticle(Integer numPage)
-        {
-            Article ar = null;
-            HashSet<Article> ensA=mesArticles();
-            for(Article a : ensA){
-                if (numPage==a.getNumeroPage()){
-                    ar = a;
-                }
-            }
-            return ar;
-        }
+
 }

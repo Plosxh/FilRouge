@@ -22,9 +22,9 @@ public class Titre extends Index implements Serializable {
 	//Constructeur
 // -----------------------------------------------
 		
-            public Titre(String libelle)
+            public Titre(String titre)
                 {
-                    this.setTitre(libelle);
+                    this.setTitre(titre);
                     this.setArticle(new HashSet<Article>());
                     this.setOuvrage(new HashSet<Ouvrage>());
                 }		
@@ -42,7 +42,6 @@ public class Titre extends Index implements Serializable {
                 {
                     return _titre;
                 }        
-
                         
 	// -----------------------------------------------
 		// Methodes
@@ -76,8 +75,7 @@ public class Titre extends Index implements Serializable {
                     }
                     
                 }       
-            
-  
+              
             public void ajouterOuvrage(Ouvrage o) 
                 {
                      lierOuvrage(o);
@@ -89,8 +87,6 @@ public class Titre extends Index implements Serializable {
                 }
             
             
-            
-        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------

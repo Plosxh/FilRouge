@@ -32,23 +32,23 @@ public class Ouvrage implements Serializable
     private Titre _titre;
     private String _nomEditeur;
     private GregorianCalendar _dateParution;
-    private Auteur _auteur;
     private PublicCible _public;
     private HashSet<Exemplaire> _exemplaire;
     private Integer _numLast=(1);
-    private MotCle _motCle;
+    private HashSet<Auteur> _collectionAuteurs;
+    private HashSet<MotCle> _collectionMotCles;
 	
 // -----------------------------------------------
 	//Constructeur
 // -----------------------------------------------
 		
-    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution, HashSet<Auteur> _auteur, PublicCible publicOuvrage, /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/  HashSet<Exemplaire> _exemplaire, HashSet<MotCle> _motCle)
+    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution,Auteur _auteur, PublicCible publicOuvrage /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/)
     {
         this.setIsbn(isbn);
 	this.setTitre(titre);
 	this.setNomEditeur(nomEditeur);
 	this.setDateParution(dateParution);
-	this.setNomAuteur(new HashSet<Auteur>());
+	this.setAuteur(new HashSet<Auteur>());
 	this.setPublic(publicOuvrage);
         this.setExemplaire(new HashSet<Exemplaire>());
         this.setMotCle(new HashSet<MotCle>());
@@ -119,19 +119,30 @@ public class Ouvrage implements Serializable
 	{
             System.out.println("Isbn                  : " + this.getIsbn());
             System.out.println("Titre                 : " + this.getTitre());
+                        
+            HashSet<Auteur> ensAu=mesAuteurs();
+            System.out.print("Auteurs               : ");
+            for(Auteur au : ensAu) { 
+                System.out.print(au.getNomAuteur()+", ");                               
+            } 
+            EntreesSorties.afficherMessage("");
+            
             System.out.println("Editeur               : " + this.getNomEditeur());
             System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
-            
-            // encastré dans un while??
-            System.out.println("Auteur                : " + this.mesAuteurs());
-            System.out.println("Mot Clé               : " + this.mesMotCles());
-            
             System.out.println("Public                : " + this.getPublic());
-            System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
+                        
+            HashSet<MotCle> ensMc=mesMotCles();
+            System.out.print("Mot-clés               : ");
+            for(MotCle mc : ensMc) { 
+                System.out.print(mc.getMotCle()+", ");                               
+            } 
             EntreesSorties.afficherMessage("");
+            
+            System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
+            
 	}
 	
-        // La méthode ajouterExemplaire permet de lier un exemplaire avec son ouvrage (dont ajouter l'explaire au set de son ouvrage)
+        // La méthode ajouterExemplaire permet de lier un exemplaire avec son ouvrage (dont ajouter l'exemplaire au set de son ouvrage)
 	public void ajouterExemplaire()
 	{
             Integer numExemplaire = getNumLast();
@@ -284,11 +295,6 @@ public class Ouvrage implements Serializable
             this._dateParution = dateParution;
 	}
 
-	private void setNomAuteur(HashSet<Auteur> _auteur) 
-        {
-            this._auteur = _auteur;
-	}
-
 	private void setPublic(PublicCible publicOuvrage) 
         {
             this._public = publicOuvrage;
@@ -304,9 +310,14 @@ public class Ouvrage implements Serializable
             this._exemplaire = _exemplaire;
         }
         
-        private void setMotCle(HashSet<MotCle> _motCle)
+         private void setMotCle(HashSet<MotCle> _collectionMotCles)
         {
-            this._motCle = _motCle;
+            this._collectionMotCles = _collectionMotCles;
+        }
+        
+        private void setAuteur(HashSet<Auteur> _collectionAuteurs)
+        {
+            this._collectionAuteurs = _collectionAuteurs;
         }
                 
         // -----------------------------------------------
@@ -323,11 +334,11 @@ public class Ouvrage implements Serializable
         
         private HashSet<Auteur> mesAuteurs()
 	{
-            return _auteur;
+            return _collectionAuteurs;
 	}
         
         private HashSet<MotCle> mesMotCles()
 	{
-            return _motCle;
+            return _collectionMotCles;
 	}
 }

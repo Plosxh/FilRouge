@@ -32,17 +32,21 @@ public class Article implements Serializable
     private Parution _parution;
     private Titre _titre;
     private HashSet<Auteur> _collectionAuteurs;
-    private HashSet<MotCle> _collectionMotsCles;
+    private HashSet<MotCle> _collectionMotCles;
 	
 // -----------------------------------------------
 	//Constructeur
 // -----------------------------------------------
 		
-    /*creationArticle*/
-    public Article(Integer numeroPage, Parution pa)
+
+    /*creationArticle ???*/
+    public Article(Titre titre, Integer numeroPage, Parution pa)
     {
+        this.setTitre(titre);
         this.setNumeroPage(numeroPage);
 	this.lierParution(pa);
+        
+
     }
 		
 // -----------------------------------------------
@@ -92,10 +96,10 @@ public class Article implements Serializable
             { 
                 au.infosAuteur();
             }
-            HashSet<MotCle> ensMc=mesMotsCles();
+            HashSet<MotCle> ensMc=mesMotCles();
             for(MotCle mc : ensMc) 
             { 
-                mc.infosMotCle();
+               mc.infosMotCle();
             }
         }
             
@@ -105,12 +109,12 @@ public class Article implements Serializable
             System.out.println("Numero de page : " + this.getNumeroPage());
             EntreesSorties.afficherMessage("");
         }
-        /* Elodie : A enlever dans VPP car plus réduit que titre et numPage, pas très pertient"
+        /* Elodie : A enlever dans VPP ?*/
         public void infosReduitArticles()
 	{
             
 	}
-        */
+        
         
         
         
@@ -133,14 +137,20 @@ public class Article implements Serializable
 	}
         
         private void setAuteur(HashSet<Auteur> _collectionAuteurs)
-                {
-                    this._collectionAuteurs = _collectionAuteurs;
-                }
+        {
+            this._collectionAuteurs = _collectionAuteurs;
+        }
         
         private void setMotCle(HashSet<MotCle> _collectionMotsCles)
-                {
-                    this._collectionMotsCles = _collectionMotsCles;
-                }
+        {
+            this._collectionMotCles = _collectionMotsCles;
+        }
+
+        private void setTitre(Titre titre) 
+        {
+            this._titre = titre;
+	}
+
                                 
         // -----------------------------------------------
 		// Methodes
@@ -153,7 +163,7 @@ public class Article implements Serializable
         
         private void lierMotCle(MotCle mc)
         {
-            _collectionMotsCles.add(mc);
+            _collectionMotCles.add(mc);
         }
         
         private HashSet <Auteur> mesAuteurs() 
@@ -161,16 +171,16 @@ public class Article implements Serializable
             return _collectionAuteurs;                      
         }
         
-        private HashSet <MotCle> mesMotsCles() 
+        private HashSet <MotCle> mesMotCles() 
         {
-            return _collectionMotsCles;                      
+            return _collectionMotCles;                      
         }
         
-        /*Antoine : ça ne peux pas être dans cette méthode, il y a une erreur sur le VPP*/
+        /*Antoine : ça ne peux pas être dans cette méthode, il y a une erreur sur le VPP
         private Article unArticle(Integer numPage)
         {
             
-        }
+        }*/
 
     
 }
