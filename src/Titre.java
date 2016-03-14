@@ -49,29 +49,46 @@ public class Titre extends Index implements Serializable {
 	// -----------------------------------------------
 	    public void infosTitre() 
                 {
-                     
+                    HashSet<Ouvrage> ensO=mesOuvrages();
+                    if (ensO.isEmpty())
+                    {
+                        EntreesSorties.afficherMessage("Pas d'ouvrages pour cette requête.");
+                    }
+                    else
+                    {
+                      for(Ouvrage o : ensO) 
+                        { 
+                            o.infosReduitOuvrage();
+                        }  
+                    }
+                    
+                    HashSet<Article> ensA=mesArticles();
+                    if (ensA.isEmpty())
+                    {
+                        EntreesSorties.afficherMessage("Pas d'articles pour cette requête.");
+                    }
+                    else
+                    {
+                      for(Article a : ensA) 
+                        { 
+                            a.infosArticle();
+                        }  
+                    }
+                    
                 }       
             
   
             public void ajouterOuvrage(Ouvrage o) 
                 {
-                     
+                     lierOuvrage(o);
                 }
             
             public void ajouterArticle(Article a) 
                 {
-                     
+                     lierArticle(a);
                 }
             
-            public void lierOuvrage() 
-                {
-                     
-                }
             
-            public void lierArticle() 
-                {
-                     
-                } 
             
         
 // -----------------------------------------------
@@ -102,13 +119,25 @@ public class Titre extends Index implements Serializable {
 		// Methodes
 	// -----------------------------------------------
            
-        
+            private HashSet <Ouvrage> mesOuvrages() 
+            {
+                return _collectionOuvrages;                      
+            }
             
-
-
-
-
-
+            private HashSet <Article> mesArticles() 
+            {
+                return _collectionArticles;                      
+            }
+            
+            private void lierOuvrage(Ouvrage o) 
+                {
+                      _collectionOuvrages.add(o);
+                }
+            
+            private void lierArticle(Article a) 
+                {
+                     _collectionArticles.add(a);
+                } 
 
 
 }
