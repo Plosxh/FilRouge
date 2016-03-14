@@ -119,26 +119,27 @@ public class Ouvrage implements Serializable
 	{
             System.out.println("Isbn                  : " + this.getIsbn());
             System.out.println("Titre                 : " + this.getTitre());
+                        
+            HashSet<Auteur> ensAu=mesAuteurs();
+            System.out.print("Auteurs               : ");
+            for(Auteur au : ensAu) { 
+                System.out.print(au.getNomAuteur()+", ");                               
+            } 
+            EntreesSorties.afficherMessage("");
+            
             System.out.println("Editeur               : " + this.getNomEditeur());
             System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
-            
-            HashSet<MotCle> ensMc=mesMotCles();
-            for(MotCle mc : ensMc) { 
-                e.infosExemplaire();
-                if(!e.getDisponibilite()){
-                    e.infosEmpruntExemplaire();                         
-                }
-            } 
-            
-            
-            
-            /* encastré dans un while??
-            System.out.println("Auteur                : " + this.mesAuteurs());
-            System.out.println("Mot Clé               : " + this.mesMotCles());
-            
             System.out.println("Public                : " + this.getPublic());
+                        
+            HashSet<MotCle> ensMc=mesMotCles();
+            System.out.print("Mot-clés               : ");
+            for(MotCle mc : ensMc) { 
+                System.out.print(mc.getMotCle()+", ");                               
+            } 
+            EntreesSorties.afficherMessage("");
+            
             System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
-            EntreesSorties.afficherMessage("");*/
+            
 	}
 	
         // La méthode ajouterExemplaire permet de lier un exemplaire avec son ouvrage (dont ajouter l'exemplaire au set de son ouvrage)

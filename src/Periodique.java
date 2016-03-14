@@ -121,11 +121,11 @@ public class Periodique implements Serializable
             
             HashSet<Parution> ensPa=mesParutions();
             for(Parution pa : ensPa) { 
-                pa.infosParution();               
+                pa.infosReduitParution();               
             }   
         }
         
-        public void infosPeriodiqueReduit()
+        public void infosReduitPeriodique()
         {
             System.out.println("Issn                  : " + this.getIssn());
             System.out.println("Nom Periodique        : " + this.getNomPeriodique());
@@ -133,6 +133,7 @@ public class Periodique implements Serializable
         
         public void consulterParutionPeriodique(Integer numParution)
         {
+            this.infosReduitPeriodique();
             Parution pa = uneParution(numParution);
             if(pa != null)
             {
