@@ -671,6 +671,50 @@ public class Bibliotheque implements Serializable
             }
         }
         
+        
+
+        public void rechercheParAuteur()
+        {
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomAuteur);
+            if(au!=null)
+            {
+               au.documentsAuteur();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("L'auteur que vous avez entré n'existe pas.");       
+            }
+        }
+        
+        public void rechercheParMotCle()
+        {
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            if(mc!=null)
+            {
+               mc.documentsMotCle();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("Le mot clé que vous avez entré n'existe pas.");       
+            }
+        }
+        
+        public void rechercheParTitre()
+        {
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            if(t!=null)
+            {
+               t.documentsTitre();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("Le titre que vous avez entré n'existe pas.");       
+            }
+        }
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
