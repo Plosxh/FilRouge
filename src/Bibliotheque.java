@@ -274,9 +274,10 @@ public class Bibliotheque implements Serializable
         public void ajouterInfosArticle(Article a)
         {
             boolean testage;
-            Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour auteur, 2 pour mot clé, 3 pour sortir : ");
+           do{  
+            Integer ajout = EntreesSorties.lireEntier("Tappez : 1 pour auteur, 2 pour mot clé, 3 pour sortir : ");
                    
-            do{
+
                 testage = false;
                         
                 switch (ajout){
@@ -402,9 +403,11 @@ public class Bibliotheque implements Serializable
         public void ajouterInfosOuvrage(Ouvrage o)
         {
             boolean testage;
+            
+            do{
             Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour auteur, 2 pour mot clé, 3 pour sortir : ");
                    
-            do{
+            
                 testage = false;
                         
                 switch (ajout){
@@ -443,7 +446,7 @@ public class Bibliotheque implements Serializable
                     }
                     
                     case 3 : {
-                        EntreesSorties.afficherMessage("L'article a bien été créé.");
+                        testage=false;
                         break;
                     }
                                     

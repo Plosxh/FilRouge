@@ -45,6 +45,8 @@ public class Article implements Serializable
         this.setTitre(titre);
         this.setNumeroPage(numeroPage);
 	this.lierParution(pa);
+        this.setAuteur(new HashSet<Auteur>());
+        this.setMotCle(new HashSet<MotCle>());
         
 
     }
