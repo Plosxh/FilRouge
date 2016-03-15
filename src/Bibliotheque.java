@@ -674,6 +674,80 @@ public class Bibliotheque implements Serializable
             }
         }
         
+        
+
+        public void rechercheParAuteur()
+        {
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomAuteur);
+            if(au!=null)
+            {
+               au.documentsAuteur();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("L'auteur que vous avez entré n'existe pas.");       
+            }
+        }
+        
+        public void rechercheParMotCle()
+        {
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            if(mc!=null)
+            {
+               mc.documentsMotCle();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("Le mot clé que vous avez entré n'existe pas.");       
+            }
+        }
+        
+        public void rechercheParTitre()
+        {
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            if(t!=null)
+            {
+               t.documentsTitre();
+            }
+            else
+            {
+                EntreesSorties.afficherMessage("Le titre que vous avez entré n'existe pas.");       
+            }
+        }
+        
+        public void rechercheMixte()
+        {
+            Integer val;
+            do
+            {
+                val = EntreesSorties.lireEntier("Entrez 1 pour chercher un auteur, 2 pour chercher un mot clé, 3 pour chercher un titre, 0 pour quitter");
+                
+                switch (val){
+				case 1 : {
+					rechercheParAuteur();
+					break;
+				}
+				case 2 : {
+					rechercheParMotCle();
+					break;
+				}
+                                case 3 : {
+					rechercheParTitre();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                
+            }
+            while(val!=0);
+            
+        }
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
