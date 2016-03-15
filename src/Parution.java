@@ -122,9 +122,9 @@ public class Parution implements Serializable
         public void consulterArticle(Integer numPage)
         {
             Article a = unArticle(numPage);
-            if(a == null)
+            if(a != null)
             {
-                this.infosParutionReduit();
+                this.infosReduitParution();
                 a.consulterArticle();
             }
             else
