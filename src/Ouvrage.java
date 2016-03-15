@@ -84,7 +84,7 @@ public class Ouvrage implements Serializable
 
 	public HashSet <Auteur> unAuteur() 
         {
-            return _auteur;
+            return _collectionAuteurs;
         }
 
 	public PublicCible getPublic() 
@@ -104,7 +104,7 @@ public class Ouvrage implements Serializable
         
         public HashSet <MotCle> unMotCle() 
         {
-            return _motCle;                      
+            return _collectionMotCles;                      
         }
                
               
