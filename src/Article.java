@@ -108,13 +108,7 @@ public class Article implements Serializable
             System.out.println("Titre : " + this.getTitre());
             System.out.println("Numero de page : " + this.getNumeroPage());
             EntreesSorties.afficherMessage("");
-        }
-        /* Elodie : A enlever dans VPP ?*/
-        public void infosReduitArticles()
-	{
-            
-	}
-        
+        }      
         
         
         

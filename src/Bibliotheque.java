@@ -203,7 +203,7 @@ public class Bibliotheque implements Serializable
             // -----------------------------------------------
             
             Integer numPage = EntreesSorties.lireEntier("Entrez un numéro de page : ");
-            Article a = new Article(numPage, pa, t);
+            Article a = new Article(t, numPage, pa);
             t.ajouterArticle(a); // fait les liens entre titre et article
             
             // -----------------------------------------------
@@ -550,7 +550,15 @@ public class Bibliotheque implements Serializable
         public void consulterArticle()
         {
           String issn = EntreesSorties.lireChaine("Entrez le numero ISSN : ");  
-            
+          Integer numParution = EntreesSorties.lireEntier("Entrez le numero de la parution : ");   
+          Integer numPage = EntreesSorties.lireEntier("Entrez le numero de la page : "); 
+          
+          Periodique pe = unPeriodique(issn);
+          Parution pa = pe.uneParution(numParution);
+          Article a = pa.unArticle(numPage);
+          a.infosArticle();
+          a.consulterArticle();
+          
             
         }
         
