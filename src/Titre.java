@@ -46,7 +46,7 @@ public class Titre extends Index implements Serializable {
 	// -----------------------------------------------
 		// Methodes
 	// -----------------------------------------------
-	    public void infosTitre() 
+	    public void documentsTitre() 
                 {
                     HashSet<Ouvrage> ensO=mesOuvrages();
                     if (ensO.isEmpty())
