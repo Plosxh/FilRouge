@@ -394,7 +394,7 @@ public class Bibliotheque implements Serializable
             t.ajouterOuvrage(o); // fait les liens entre auteur et article
             lierOuvrage(o, isbn);  
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
-            
+            ajouterInfosOuvrage(o);
             return o; 
 	}
         
@@ -545,18 +545,12 @@ public class Bibliotheque implements Serializable
             }              
         }
         
-        public void consulterPeriodique()
-        {
-            
-        }
-        
-        public void consulterParutionPeriodique()
-        {
-            
-        }
+
         
         public void consulterArticle()
         {
+          String issn = EntreesSorties.lireChaine("Entrez le numero ISSN : ");  
+            
             
         }
         
