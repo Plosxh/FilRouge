@@ -715,6 +715,36 @@ public class Bibliotheque implements Serializable
             }
         }
         
+        public void rechercheMixte()
+        {
+            Integer val;
+            do
+            {
+                val = EntreesSorties.lireEntier("Entrez 1 pour chercher un auteur, 2 pour chercher un mot clé, 3 pour chercher un titre, 0 pour quitter");
+                
+                switch (val){
+				case 1 : {
+					rechercheParAuteur();
+					break;
+				}
+				case 2 : {
+					rechercheParMotCle();
+					break;
+				}
+                                case 3 : {
+					rechercheParTitre();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                
+            }
+            while(val!=0);
+            
+        }
+        
 // -----------------------------------------------
 	// Private
 // -----------------------------------------------
