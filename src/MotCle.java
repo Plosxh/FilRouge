@@ -52,36 +52,7 @@ public class MotCle extends Index implements Serializable {
                   System.out.println("Mot Cle                     : " + this.getMotCle());   
                   EntreesSorties.afficherMessage("");    
                 } 
-            
-            public void documentsMotCle() 
-                {
-                  HashSet<Ouvrage> ensO=mesOuvrages();
-                    if (ensO.isEmpty())
-                    {
-                        EntreesSorties.afficherMessage("Pas d'ouvrages pour cette requête.");
-                    }
-                    else
-                    {
-                      for(Ouvrage o : ensO) 
-                        { 
-                            o.infosReduitOuvrage();
-                        }  
-                    }
-                    
-                    HashSet<Article> ensA=mesArticles();
-                    if (ensA.isEmpty())
-                    {
-                        EntreesSorties.afficherMessage("Pas d'articles pour cette requête.");
-                    }
-                    else
-                    {
-                      for(Article a : ensA) 
-                        { 
-                            a.infosArticle();
-                        }  
-                    }
-                }
-            
+                       
             public void ajouterOuvrage(Ouvrage o) 
                 {
                   lierOuvrage(o);   

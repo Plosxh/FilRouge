@@ -559,11 +559,12 @@ public class Bibliotheque implements Serializable
           Integer numPage = EntreesSorties.lireEntier("Entrez le numero de la page : "); 
           
           Periodique pe = unPeriodique(issn);
-          Parution pa = pe.uneParution(numParution);
+          pe.consulterArticle(numParution, numPage);
+          /*Parution pa = pe.uneParution(numParution);
           Article a = pa.unArticle(numPage);
           a.infosArticle();
           a.consulterArticle();
-          
+          */
             
         }
         
@@ -689,7 +690,7 @@ public class Bibliotheque implements Serializable
             HashSet<Article> ensA = au.articleAuteur();
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
             
         }
@@ -721,7 +722,7 @@ public class Bibliotheque implements Serializable
             HashSet<Article> ensA = mc.articleAuteur();
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
         }
         /*
@@ -752,7 +753,7 @@ public class Bibliotheque implements Serializable
             HashSet<Article> ensA = t.articleAuteur();
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
         }
         /*
@@ -800,7 +801,7 @@ public class Bibliotheque implements Serializable
             }
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
         }
         
@@ -834,7 +835,7 @@ public class Bibliotheque implements Serializable
             }
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }            
         }
         
@@ -868,7 +869,7 @@ public class Bibliotheque implements Serializable
             }
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
         }
         
@@ -910,7 +911,7 @@ public class Bibliotheque implements Serializable
             }
             for(Article a : ensA) 
             { 
-                a.infosReduitArticle();
+                a.infosArticle();
             }
         }
         

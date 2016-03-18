@@ -229,7 +229,7 @@ public class Ouvrage implements Serializable
 	public void infosReduitOuvrage()
 	{
             System.out.println("ISBN    : " + this.getIsbn());
-            System.out.println("Titre   : " + this.getTitre());
+            System.out.println("Titre   : " + _titre.getTitre());
             EntreesSorties.afficherMessage("");
 	}
 		

@@ -114,7 +114,7 @@ public class Parution implements Serializable
             
             HashSet<Article> ensA=mesArticles();
             for(Article a : ensA) { 
-                a.infosArticle();               
+                a.infosReduitArticle();               
             }
         }
         
