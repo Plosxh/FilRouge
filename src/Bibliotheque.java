@@ -772,33 +772,146 @@ public class Bibliotheque implements Serializable
         
         public void rechercheTitreMotcle()
         {
+            //titre
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
             Titre t = unTitre(libelleT);
             HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
             HashSet<Article> ensAtitre = t.articleAuteur();
             
+            //motclé
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
             MotCle mc = unMotCle(motcle);
             HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
             HashSet<Article> ensAmotcle = mc.articleAuteur();
             
-            HashSet<Ouvrage> ensO = retain();
-            HashSet<Article> ensA = mc.articleAuteur();
+            //intersection ouvrage
+            HashSet<Ouvrage> ensO = ensOtitre;
+            ensO.retainAll(ensOmotcle);
+
+            //intersection article
+            HashSet<Article> ensA = ensAtitre;
+            ensA.retainAll(ensAmotcle);
+            
+            //résultat
+            EntreesSorties.afficherMessage("Pour la recherche avec le titre : " + libelleT + " et le mot clé : " + motcle + ", le résultat est :");
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
         }
         
         public void rechercheTitreAuteur()
         {
+            //titre
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
+            HashSet<Article> ensAtitre = t.articleAuteur();
             
+            //auteur
+            String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomA);
+            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
+            HashSet<Article> ensAauteur = au.articleAuteur();
+            
+            //intersection ouvrage
+            HashSet<Ouvrage> ensO = ensOtitre;
+            ensO.retainAll(ensOauteur);
+
+            //intersection article
+            HashSet<Article> ensA = ensAtitre;
+            ensA.retainAll(ensAauteur);
+            
+            //résultat
+            EntreesSorties.afficherMessage("Pour la recherche avec le titre : " + libelleT + " et l'auteur : " + nomA + ", le résultat est :");
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }            
         }
         
         public void rechercheMotcleAuteur()
         {
+             //motclé
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
+            HashSet<Article> ensAmotcle = mc.articleAuteur();
             
+            //auteur
+            String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomA);
+            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
+            HashSet<Article> ensAauteur = au.articleAuteur();
+            
+            //intersection ouvrage
+            HashSet<Ouvrage> ensO = ensOmotcle;
+            ensO.retainAll(ensOauteur);
+
+            //intersection article
+            HashSet<Article> ensA = ensAmotcle;
+            ensA.retainAll(ensAauteur);
+            
+            //résultat
+            EntreesSorties.afficherMessage("Pour la recherche avec le mot clé : " + motcle + " et l'auteur : " + nomA + ", le résultat est :");
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
         }
         
         public void rechercheTitreMotcleAuteur()
         {
+            //titre
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
+            HashSet<Article> ensAtitre = t.articleAuteur();
             
+            //motclé
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
+            HashSet<Article> ensAmotcle = mc.articleAuteur();
+            
+             //auteur
+            String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomA);
+            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
+            HashSet<Article> ensAauteur = au.articleAuteur();
+            
+            //intersection ouvrage
+            HashSet<Ouvrage> ensO = ensOtitre;
+            ensO.retainAll(ensOmotcle);
+            ensO.retainAll(ensOauteur);
+
+            //intersection article
+            HashSet<Article> ensA = ensAtitre;
+            ensA.retainAll(ensAmotcle);
+            ensA.retainAll(ensAauteur);
+            
+            //résultat
+            EntreesSorties.afficherMessage("Pour la recherche mixte avec le titre : " + libelleT + ", le mot clé : " + motcle + " et l'auteur : " + nomA + ", le résultat est :");
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
         }
         
 // -----------------------------------------------
