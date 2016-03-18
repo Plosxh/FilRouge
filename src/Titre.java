@@ -86,6 +86,15 @@ public class Titre extends Index implements Serializable {
                      lierArticle(a);
                 }
             
+            public HashSet<Article> articleAuteur()
+            {
+                return mesArticles();
+            }
+        
+            public HashSet<Ouvrage> ouvrageAuteur()
+            {
+                return mesOuvrages();
+            }
             
 // -----------------------------------------------
 	// Private

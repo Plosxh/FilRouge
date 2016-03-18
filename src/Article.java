@@ -112,6 +112,12 @@ public class Article implements Serializable
             EntreesSorties.afficherMessage("");
         }      
         
+        public void infosReduitArticle()
+        {
+            System.out.println("Titre : " + this.getTitre());
+            System.out.println("Numero de page : " + this.getNumeroPage());
+            EntreesSorties.afficherMessage("");
+        }
         
         
 // -----------------------------------------------

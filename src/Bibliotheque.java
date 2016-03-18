@@ -674,9 +674,25 @@ public class Bibliotheque implements Serializable
             }
         }
         
-        
-
         public void rechercheParAuteur()
+        {
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            Auteur au = unAuteur(nomAuteur);
+            HashSet<Ouvrage> ensO = au.ouvrageAuteur();
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            
+            HashSet<Article> ensA = au.articleAuteur();
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
+            
+        }
+
+        /*public void rechercheParAuteur()
         {
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
             Auteur au = unAuteur(nomAuteur);
@@ -688,8 +704,25 @@ public class Bibliotheque implements Serializable
             {
                 EntreesSorties.afficherMessage("L'auteur que vous avez entré n'existe pas.");       
             }
-        }
+        }*/
         
+        public void rechercheParMotCle()
+        {
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            HashSet<Ouvrage> ensO = mc.ouvrageAuteur();
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            
+            HashSet<Article> ensA = mc.articleAuteur();
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
+        }
+        /*
         public void rechercheParMotCle()
         {
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
@@ -702,8 +735,25 @@ public class Bibliotheque implements Serializable
             {
                 EntreesSorties.afficherMessage("Le mot clé que vous avez entré n'existe pas.");       
             }
-        }
+        }*/
         
+        public void rechercheParTitre()
+        {
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            HashSet<Ouvrage> ensO = t.ouvrageAuteur();
+            for(Ouvrage o : ensO) 
+            { 
+                o.infosReduitOuvrage();
+            }
+            
+            HashSet<Article> ensA = t.articleAuteur();
+            for(Article a : ensA) 
+            { 
+                a.infosReduitArticle();
+            }
+        }
+        /*
         public void rechercheParTitre()
         {
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
@@ -716,7 +766,7 @@ public class Bibliotheque implements Serializable
             {
                 EntreesSorties.afficherMessage("Le titre que vous avez entré n'existe pas.");       
             }
-        }
+        }*/
         
         public void rechercheMixte()
         {
