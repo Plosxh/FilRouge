@@ -69,9 +69,10 @@ public class Article implements Serializable
             return _parution;
 	}
             
-        public Titre getTitre()
+        public String getTitre()
         {
-            return _titre;
+            
+            return _titre.getTitre();
         }
         
                    

@@ -179,6 +179,7 @@ public class Periodique implements Serializable
               
         private void creationParution(Integer numParution, GregorianCalendar dateParution)
 	{
+            EntreesSorties.afficherMessage("Création de la parution...");
             Parution pa = new Parution(numParution, dateParution, this);
             lierParution(pa);  
             EntreesSorties.afficherMessage("Création avec succès!");     

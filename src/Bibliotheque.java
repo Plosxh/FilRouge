@@ -148,7 +148,7 @@ public class Bibliotheque implements Serializable
      Antoine : c'est bon je l'ai modifié y'a plus besoin de modifier ici*/
             
             if (pe==null) {
-                this.creationPeriodique(issn);
+                pe = this.creationPeriodique(issn);
             }
             
             Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
@@ -168,7 +168,8 @@ public class Bibliotheque implements Serializable
             
             if (pe==null)
             {
-                this.creationPeriodique(issn);
+                
+                pe = this.creationPeriodique(issn);
             }
             else{
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
@@ -462,6 +463,7 @@ public class Bibliotheque implements Serializable
         public Periodique creationPeriodique(String issn)
         {
             String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
+            EntreesSorties.afficherMessage("Création du périodique...");
             Periodique pe = new Periodique(issn, nomPeriodique);
             lierPeriodique(pe, issn);
             EntreesSorties.afficherMessage("Le périodique a bien été créé.");
@@ -768,33 +770,34 @@ public class Bibliotheque implements Serializable
             }
         }*/
         
-        public void rechercheMixte()
+        public void rechercheTitreMotcle()
         {
-            Integer val;
-            do
-            {
-                val = EntreesSorties.lireEntier("Entrez 1 pour chercher un auteur, 2 pour chercher un mot clé, 3 pour chercher un titre, 0 pour quitter");
-                
-                switch (val){
-				case 1 : {
-					rechercheParAuteur();
-					break;
-				}
-				case 2 : {
-					rechercheParMotCle();
-					break;
-				}
-                                case 3 : {
-					rechercheParTitre();
-					break;
-				}
-				default : {
-					break;
-				}
-			}
-                
-            }
-            while(val!=0);
+            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            Titre t = unTitre(libelleT);
+            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
+            HashSet<Article> ensAtitre = t.articleAuteur();
+            
+            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            MotCle mc = unMotCle(motcle);
+            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
+            HashSet<Article> ensAmotcle = mc.articleAuteur();
+            
+            HashSet<Ouvrage> ensO = retain();
+            HashSet<Article> ensA = mc.articleAuteur();
+        }
+        
+        public void rechercheTitreAuteur()
+        {
+            
+        }
+        
+        public void rechercheMotcleAuteur()
+        {
+            
+        }
+        
+        public void rechercheTitreMotcleAuteur()
+        {
             
         }
         

@@ -23,7 +23,8 @@ public void menuPrincipal() {
                 EntreesSorties.afficherMessage("| Menu Ouvrage : 5                                       |");
                 EntreesSorties.afficherMessage("| Menu Exemplaire : 6                                    |");
                 EntreesSorties.afficherMessage("| Menu Emprunt : 7                                       |");
-                EntreesSorties.afficherMessage("| Relancer Lecteurs : 8                                  |");
+                EntreesSorties.afficherMessage("| Menu Recherche : 8                                     |");
+                EntreesSorties.afficherMessage("| Relancer Lecteurs : 9                                  |");
 		EntreesSorties.afficherMessage("| Quitter : 0                                            |");
 		EntreesSorties.afficherMessage(" ========================================================");
 		menu = EntreesSorties.lireEntier();
@@ -66,11 +67,16 @@ public void menuPrincipal() {
                                         }
                                 
                                 case 8 : {
+                                        this.menuRecherche();
+                                        break;
+                                        }
+                                
+                                case 9 : {
                                         _bibliotheque.relancerLecteur();
                                         break;
                                         }
                                 
-				
+
 				default : {
 					break;
 				}
@@ -314,6 +320,82 @@ public void menuEmprunt() {
 			}
                         
 	} while (menuEmprunt != 0);	
+}
+
+public void menuRecherche() {
+	Integer menuRecherche;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Recherche par auteur : 1                               |");
+		EntreesSorties.afficherMessage("| Recherche par titre : 2                                |");
+                EntreesSorties.afficherMessage("| Recherche par mot clé : 3                              |");
+                EntreesSorties.afficherMessage("| Recherche Mixte : 4                                    |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuRecherche = EntreesSorties.lireEntier();
+			
+			switch (menuRecherche){
+				case 1 : {
+					_bibliotheque.rechercheParAuteur();
+					break;
+				}
+				case 2 : {
+					_bibliotheque.rechercheParTitre();
+					break;
+				}
+                                case 3 : {
+					_bibliotheque.rechercheParMotCle();
+					break;
+				}
+                                case 4 : {
+					this.menuRechercheMixte();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                        
+	} while (menuRecherche != 0);	
+}
+
+public void menuRechercheMixte() {
+	Integer menuRechercheMixte;
+	do {
+		EntreesSorties.afficherMessage(" ========================================================");
+		EntreesSorties.afficherMessage("| Saisissez un numéro correspondant :                    |");
+		EntreesSorties.afficherMessage("| Recherche par titre/mot clé : 1                        |");
+		EntreesSorties.afficherMessage("| Recherche par titre/auteur : 2                         |");
+                EntreesSorties.afficherMessage("| Recherche par mot clé/auteur : 3                       |");
+                EntreesSorties.afficherMessage("| Recherche par titre/mot clé/auteur : 4                 |");
+		EntreesSorties.afficherMessage("| Retour Menu Principal : 0                              |");
+		EntreesSorties.afficherMessage(" ========================================================");
+		menuRechercheMixte = EntreesSorties.lireEntier();
+			
+			switch (menuRechercheMixte){
+				case 1 : {
+					_bibliotheque.rechercheTitreMotcle();
+					break;
+				}
+				case 2 : {
+					_bibliotheque.rechercheTitreAuteur();
+					break;
+				}
+                                case 3 : {
+					_bibliotheque.rechercheMotcleAuteur();
+					break;
+				}
+                                case 4 : {
+					_bibliotheque.rechercheTitreMotcleAuteur();
+					break;
+				}
+				default : {
+					break;
+				}
+			}
+                        
+	} while (menuRechercheMixte != 0);	
 }
 
 }
