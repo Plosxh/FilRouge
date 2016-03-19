@@ -113,7 +113,7 @@ public class Lecteur implements Serializable
                     }
                 }
                 else{
-                    EntreesSorties.afficherMessage("Ce lecteur n'a pas d'emprunt.");
+                    EntreesSorties.afficherMessage("Ce lecteur n'a pas d'emprunt en cours.");
                 }
             }
             

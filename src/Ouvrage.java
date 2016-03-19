@@ -33,7 +33,7 @@ public class Ouvrage implements Serializable
     private String _nomEditeur;
     private GregorianCalendar _dateParution;
     private PublicCible _public;
-    private HashSet<Exemplaire> _exemplaire;
+    private HashSet<Exemplaire> _collectionExemplaires;
     private Integer _numLast=(1);
     private HashSet<Auteur> _collectionAuteurs;
     private HashSet<MotCle> _collectionMotCles;
@@ -99,7 +99,7 @@ public class Ouvrage implements Serializable
                
         public HashSet <Exemplaire> unExemplaire() 
         {
-            return _exemplaire;                      
+            return _collectionExemplaires;                      
         }
         
         public HashSet <MotCle> unMotCle() 
@@ -138,7 +138,7 @@ public class Ouvrage implements Serializable
             } 
             EntreesSorties.afficherMessage("");
             
-            System.out.println("Nombre d'exemplaires  : " + this._exemplaire.size());
+            System.out.println("Nombre d'exemplaires  : " + this._collectionExemplaires.size());
             
 	}
 	
@@ -185,9 +185,9 @@ public class Ouvrage implements Serializable
                 }
             } while (test);
                    
-            GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de récéption : ");                   
+            GregorianCalendar dateReception = EntreesSorties.lireDate("Entrez la date de réception : ");                   
             e = new Exemplaire(numExemplaire, dateReception, empruntable, disponible, this);
-            _exemplaire.add(e);
+            _collectionExemplaires.add(e);
             EntreesSorties.afficherMessage("L'exemplaire a bien été ajouté à cet ouvrage.");
         }
                 
@@ -305,9 +305,9 @@ public class Ouvrage implements Serializable
             this._numLast = _numLast;
         }
                 
-        private void setExemplaire(HashSet<Exemplaire> _exemplaire)
+        private void setExemplaire(HashSet<Exemplaire> _collectionExemplaires)
         {
-            this._exemplaire = _exemplaire;
+            this._collectionExemplaires = _collectionExemplaires;
         }
         
          private void setMotCle(HashSet<MotCle> _collectionMotCles)
@@ -329,7 +329,7 @@ public class Ouvrage implements Serializable
 	 */
 	private HashSet<Exemplaire> mesExemplaires()
 	{
-            return _exemplaire;
+            return _collectionExemplaires;
 	}
         
         private HashSet<Auteur> mesAuteurs()

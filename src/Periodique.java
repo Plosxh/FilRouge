@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import static java.sql.JDBCType.NULL;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,7 +34,7 @@ public class Periodique implements Serializable
 	
     private String _issn;
     private String _nomPeriodique;
-    private HashSet<Parution> _parution;
+    private HashSet<Parution> _collectionParutions;
 	
 // -----------------------------------------------
 	//Constructeur
@@ -65,10 +66,22 @@ public class Periodique implements Serializable
             return _nomPeriodique;
 	}
 
-        public HashSet <Parution> mesParutions() 
+        public HashSet <Parution> uneParution() 
         {
-            return _parution;                      
+            return _collectionParutions;                      
         }
+        
+            
+              
+	// -----------------------------------------------
+		// Methodes
+	// -----------------------------------------------
+	
+        /*appelé par nouvelleParution() depuis bibliotheque*/
+	public void ajouterParution()
+	{
+            EntreesSorties.afficherMessage("Veuillez entrer un numero de parution : ");
+	}
         
         public Parution uneParution(Integer numParution)
         {
@@ -80,17 +93,7 @@ public class Periodique implements Serializable
                 }
             }
             return par;
-        }               
-              
-	// -----------------------------------------------
-		// Methodes
-	// -----------------------------------------------
-	
-        /*appelé par nouvelleParution() depuis bibliotheque*/
-	public void ajouterParution()
-	{
-            EntreesSorties.afficherMessage("Veuillez entrer un numero de parution : ");
-	}
+        }          
 	
         /*appelé par nouvelleParution() depuis bibliotheque*/
 	public void verifParution(Integer numParution)
@@ -110,7 +113,7 @@ public class Periodique implements Serializable
 	
 	public void lierParution(Parution pa)
 	{
-            _parution.add(pa);
+            _collectionParutions.add(pa);
 	}
         
         /*appelé par consulterPeriodique() depuis bibliotheque*/
@@ -118,12 +121,21 @@ public class Periodique implements Serializable
         {
             System.out.println("Issn                  : " + this.getIssn());
             System.out.println("Nom Periodique        : " + this.getNomPeriodique());
-            
+                                    
             HashSet<Parution> ensPa=mesParutions();
-            for(Parution pa : ensPa) { 
-                pa.infosReduitParution();               
-            }   
+            if(ensPa.size()> 0){
+                System.out.println("Nombre de parutions pour ce Périodique : " + this._collectionParutions.size());
+                EntreesSorties.afficherMessage("");
+                System.out.println("Liste des parutions de ce Périodique : ");
+                for(Parution pa : ensPa) { 
+                pa.infosReduitParution();
+                }
+            }
+            else{                
+                EntreesSorties.afficherMessage("Ce périodique ne possède aucune parution.");           
+                }
         }
+        
         
         public void infosReduitPeriodique()
         {
@@ -168,9 +180,9 @@ public class Periodique implements Serializable
             this._nomPeriodique = nomPeriodique;
 	}
                 
-        private void setParution(HashSet<Parution> _parution)
+        private void setParution(HashSet<Parution> _collectionParutions)
         {
-            this._parution = _parution;
+            this._collectionParutions = _collectionParutions;
         }
                 
         // -----------------------------------------------
@@ -184,5 +196,10 @@ public class Periodique implements Serializable
             lierParution(pa);  
             EntreesSorties.afficherMessage("Création avec succès!");     
 	}
+        
+         private HashSet <Parution> mesParutions() 
+        {
+            return _collectionParutions;                      
+        }
 	
 }

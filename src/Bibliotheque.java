@@ -126,6 +126,98 @@ public class Bibliotheque implements Serializable
             }
         }
         
+        /*
+	 * La méthode creationOuvrage permet de créer un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
+	 * la date de parution, le(s) nom(s) de l'auteur (ou des auteurs), son ISBN et le public visé
+	 */
+	public Ouvrage creationOuvrage(String isbn)
+        {	
+            PublicCible p=PublicCible.ADULTE;
+            boolean test;
+            String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
+            String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
+            GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
+            Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
+                    
+            do{
+                test = false;
+                        
+                switch (publique){
+                    case 1 : {
+                        p=PublicCible.ENFANT;
+                        break;
+                    }
+                    case 2 : {
+                        p=PublicCible.ADOLESCENT;
+                        break;
+                    }
+                    case 3 : {
+                        p=PublicCible.ADULTE;
+                        break;
+                    }
+                    default : {
+                        EntreesSorties.afficherMessage("Insérez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
+                        test=true;
+                        break;
+                    }
+                }
+            } while (test);
+            
+            
+            Titre t = unTitre(titre);
+            if (t==null) {
+                t = new Titre(titre);
+                lierTitre(t, titre); // lier à l'hashmap de bib
+                EntreesSorties.afficherMessage("Le titre a bien été créé.");
+            }
+            else{
+                EntreesSorties.afficherMessage("Le titre existe déjà.");
+            } 
+            
+            Auteur au = unAuteur(nomAuteur);
+            if (au==null) {
+                au = new Auteur(nomAuteur);
+                lierAuteur(au, nomAuteur);
+                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+            }
+            else{
+                EntreesSorties.afficherMessage("L'auteur existe déjà.");
+            }
+
+                      
+                    
+            Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
+            au.ajouterOuvrage(o); // fait les liens entre auteur et article
+            t.ajouterOuvrage(o); // fait les liens entre auteur et article
+            lierOuvrage(o, isbn);  
+            EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
+            ajouterInfosOuvrage(o);
+            return o; 
+	}
+        
+        /*
+	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
+	 * date de parution.
+         * Si l'ouvrage n'existe pas, on le crée en demandant les informations correspondantes
+         * A la création, on génère un numéro d'exemplaire (en fonction du nombre d'exemplaires pré-éxistant)
+	 */
+        public void nouvelExemplaire()
+        {
+            String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage : ");
+            Ouvrage o = unOuvrage(isbn);
+            
+            if (o == null)
+            {
+               EntreesSorties.afficherMessage("Cet ouvrage n'existe pas, nous allons le créer.");
+               o =this.creationOuvrage(isbn);
+            }     
+            
+            o.ajouterExemplaire();
+        }
+        
+        
+        
         public void nouveauPeriodique()
         {
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
@@ -137,6 +229,15 @@ public class Bibliotheque implements Serializable
             else{
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
             }           
+        }
+        public Periodique creationPeriodique(String issn)
+        {
+            String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
+            EntreesSorties.afficherMessage("Création du périodique...");
+            Periodique pe = new Periodique(issn, nomPeriodique);
+            lierPeriodique(pe, issn);
+            EntreesSorties.afficherMessage("Le périodique a bien été créé.");
+            return pe;
         }
         
         public void nouvelleParution()
@@ -158,29 +259,20 @@ public class Bibliotheque implements Serializable
         public void nouvelArticle ()
         {
             
-        // -----------------------------------------------
-	// Creation Periodique
-	// -----------------------------------------------
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
             Periodique pe = unPeriodique(issn);
             
-            /* ensuite une ref au passage qui ne marche pas dans NouveauPeriodique et Nouvelle Parution */
-            
+            /*Creation Periodique*/
             if (pe==null)
             {
-                
+                EntreesSorties.afficherMessage("Ce périodique n'existe pas, nous allons le créer : ");
                 pe = this.creationPeriodique(issn);
             }
-            else{
-                EntreesSorties.afficherMessage("Ce périodique existe déjà.");
-            }
-            
-            // -----------------------------------------------
-            // Creation Parution
-            // -----------------------------------------------
-            
+                     
+            /* Creation Parution*/            
             Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
             pe.verifParution(numParution);
+            
             
             Parution pa = pe.uneParution(numParution);
             
@@ -330,75 +422,6 @@ public class Bibliotheque implements Serializable
             } while (testage);
         }
         
-        /*
-	 * La méthode creationOuvrage permet de créer un ouvrage en demandant la saisie de son titre, le nom de l'éditeur,
-	 * la date de parution, le(s) nom(s) de l'auteur (ou des auteurs), son ISBN et le public visé
-	 */
-	public Ouvrage creationOuvrage(String isbn)
-        {	
-            PublicCible p=PublicCible.ADULTE;
-            boolean test;
-            String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
-            String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
-            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
-            GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
-            Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
-                    
-            do{
-                test = false;
-                        
-                switch (publique){
-                    case 1 : {
-                        p=PublicCible.ENFANT;
-                        break;
-                    }
-                    case 2 : {
-                        p=PublicCible.ADOLESCENT;
-                        break;
-                    }
-                    case 3 : {
-                        p=PublicCible.ADULTE;
-                        break;
-                    }
-                    default : {
-                        EntreesSorties.afficherMessage("Insérez : 1 pour Enfant, 2 pour Adolescent ou 3 pour Adulte.");
-                        test=true;
-                        break;
-                    }
-                }
-            } while (test);
-            
-            
-            Titre t = unTitre(titre);
-            if (t==null) {
-                t = new Titre(titre);
-                lierTitre(t, titre); // lier à l'hashmap de bib
-                EntreesSorties.afficherMessage("Le titre a bien été créé.");
-            }
-            else{
-                EntreesSorties.afficherMessage("Le titre existe déjà.");
-            } 
-            
-            Auteur au = unAuteur(nomAuteur);
-            if (au==null) {
-                au = new Auteur(nomAuteur);
-                lierAuteur(au, nomAuteur);
-                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
-            }
-            else{
-                EntreesSorties.afficherMessage("L'auteur existe déjà.");
-            }
-
-                      
-                    
-            Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
-            au.ajouterOuvrage(o); // fait les liens entre auteur et article
-            t.ajouterOuvrage(o); // fait les liens entre auteur et article
-            lierOuvrage(o, isbn);  
-            EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
-            ajouterInfosOuvrage(o);
-            return o; 
-	}
         
         
         public void ajouterInfosOuvrage(Ouvrage o)
@@ -460,35 +483,6 @@ public class Bibliotheque implements Serializable
             } while (testage);
         }
         
-        public Periodique creationPeriodique(String issn)
-        {
-            String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
-            EntreesSorties.afficherMessage("Création du périodique...");
-            Periodique pe = new Periodique(issn, nomPeriodique);
-            lierPeriodique(pe, issn);
-            EntreesSorties.afficherMessage("Le périodique a bien été créé.");
-            return pe;
-        }
-        
-        /*
-	 * La méthode nouvelExemplaire permet de créer un exempalire en demandant la saisie de l'ISBN, puis 
-	 * date de parution.
-         * Si l'ouvrage n'existe pas, on le crée en demandant les informations correspondantes
-         * A la création, on génère un numéro d'exemplaire (en fonction du nombre d'exemplaires pré-éxistant)
-	 */
-        public void nouvelExemplaire()
-        {
-            String isbn = EntreesSorties.lireChaine("Entrez le numéro ISBN de l'ouvrage : ");
-            Ouvrage o = unOuvrage(isbn);
-            
-            if (o == null)
-            {
-               EntreesSorties.afficherMessage("Cet ouvrage n'existe pas, nous allons le créer.");
-               o =this.creationOuvrage(isbn);
-            }     
-            
-            o.ajouterExemplaire();
-        }
         
 	/*
 	 * La méthode consulterLecteur permet d'afficher l'ensemble des informations relatives à
