@@ -40,10 +40,10 @@ public class Article implements Serializable
 		
 
     /*creationArticle ???*/
-    public Article(Titre titre, Integer numeroPage, Parution pa)
+    public Article(Titre t, Integer numPage, Parution pa)
     {
-        this.setTitre(titre);
-        this.setNumeroPage(numeroPage);
+        this.setTitre(t);
+        this.setNumeroPage(numPage);
 	this.lierParution(pa);
         this.setAuteur(new HashSet<Auteur>());
         this.setMotCle(new HashSet<MotCle>());

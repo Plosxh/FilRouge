@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 /*
@@ -77,10 +78,13 @@ public class Periodique implements Serializable
 		// Methodes
 	// -----------------------------------------------
 	
-        /*appelé par nouvelleParution() depuis bibliotheque*/
-	public void ajouterParution()
+        /*appelé par nouvelleParution() depuis bibliotheque, pour créer une parution et la lier au périodique*/
+	public void ajouterParution(Integer numParution)
 	{
-            EntreesSorties.afficherMessage("Veuillez entrer un numero de parution : ");
+            GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
+            Parution pa = new Parution(numParution,dateParution, this);
+            _collectionParutions.add(pa);
+            EntreesSorties.afficherMessage("La parution a bien été créée et liée à son périodique !");
 	}
         
         public Parution uneParution(Integer numParution)
@@ -88,15 +92,16 @@ public class Periodique implements Serializable
             Parution par = null;
             HashSet<Parution> ensPa=mesParutions();
             for(Parution pa : ensPa){
-                if (numParution==pa.getNumParution()){
+                if (Objects.equals(numParution, pa.getNumParution())){
                     par = pa;
                 }
             }
             return par;
         }          
 	
+        /* N'EXISTE PLUS */
         /*appelé par nouvelleParution() depuis bibliotheque*/
-	public void verifParution(Integer numParution)
+	/*public void verifParution(Integer numParution)
 	{
             Parution pa = uneParution(numParution);
             if(pa == null)
@@ -109,7 +114,7 @@ public class Periodique implements Serializable
             {
                 EntreesSorties.afficherMessage("La parution existe déjà.");
             }
-        }
+        }*/
 	
 	public void lierParution(Parution pa)
 	{

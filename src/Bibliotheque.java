@@ -230,6 +230,7 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Ce périodique existe déjà.");
             }           
         }
+        
         public Periodique creationPeriodique(String issn)
         {
             String nomPeriodique = EntreesSorties.lireChaine("Entrez le nom du périodique : ");
@@ -245,16 +246,22 @@ public class Bibliotheque implements Serializable
             String issn = EntreesSorties.lireChaine("Entrez le numéro ISSN : ");
             Periodique pe = unPeriodique(issn);
             
-    /* Miléna : Ici il y aun gros truc qui bloque sur les diagrammes, j'arrive plus à travailler dessus donc je passe à autre chose! 
-     Antoine : c'est bon je l'ai modifié y'a plus besoin de modifier ici*/
-            
             if (pe==null) {
+                EntreesSorties.afficherMessage("Ce périodique n'existe pas, nous allons le créer : ");
                 pe = this.creationPeriodique(issn);
             }
             
             Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
-            pe.verifParution(numParution);          
+            Parution pa = pe.uneParution(numParution); 
+            
+            if (pa==null) {
+                pe.ajouterParution(numParution);
+            }
+            else{
+                EntreesSorties.afficherMessage("Cette parution existe déjà.");
+            }   
         }
+            
         
         public void nouvelArticle ()
         {
@@ -268,78 +275,82 @@ public class Bibliotheque implements Serializable
                 EntreesSorties.afficherMessage("Ce périodique n'existe pas, nous allons le créer : ");
                 pe = this.creationPeriodique(issn);
             }
-                     
-            /* Creation Parution*/            
+                           
             Integer numParution = EntreesSorties.lireEntier("Entrez le numéro de la parution : ");
-            pe.verifParution(numParution);
-            
-            
             Parution pa = pe.uneParution(numParution);
             
-            // -----------------------------------------------
-            // Creation Titre
-            // -----------------------------------------------
-            
-            String titre = EntreesSorties.lireChaine("Entrez un titre : ");
-            Titre t = unTitre(titre);
-            if (t==null) {
-                t = new Titre(titre);
-                lierTitre(t, titre); // lier à l'hashmap de bib
-                EntreesSorties.afficherMessage("Le titre a bien été créé.");
+            /* Creation Parution*/  
+            if (pa==null)
+            {
+                EntreesSorties.afficherMessage("Cette parution n'existe pas, nous allons la créer : ");
+                pe.ajouterParution(numParution);
+                pa = pe.uneParution(numParution);
             }
-            else{
-                EntreesSorties.afficherMessage("Le titre existe déjà.");
-            } 
-                         
-            // -----------------------------------------------
-            // Creation Article
-            // -----------------------------------------------
-            
-            Integer numPage = EntreesSorties.lireEntier("Entrez un numéro de page : ");
-            Article a = new Article(t, numPage, pa);
-            t.ajouterArticle(a); // fait les liens entre titre et article
-            
-            // -----------------------------------------------
-            // Creation Auteur
-            // -----------------------------------------------
-            
-            String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
-            Auteur au = unAuteur(nomAuteur);
-            if (au==null) {
-                au = new Auteur(nomAuteur);
-                lierAuteur(au, nomAuteur);
-                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
-            }
-            else{
-                EntreesSorties.afficherMessage("L'auteur existe déjà.");
-            }
-            au.ajouterArticle(a); // fait les liens entre auteur et article
-                      
-            
-            boolean test;
-            Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour Oui, 2 pour Non : ");
                    
-            do{
-                test = false;
-                        
-                switch (ajout){
-                    case 1 : {
-                        ajouterInfosArticle(a);
-                        break;
-                    }
+            Integer numPage = EntreesSorties.lireEntier("Entrez le numéro de page de l'article : ");
+            Article a = pa.unArticle(numPage);
+            
+            if (a!=null){
+               EntreesSorties.afficherMessage("Cet article existe déjà.");
+            }
+            else{
+                String titre = EntreesSorties.lireChaine("Entrez le titre de l'article : ");
+                Titre t = unTitre(titre);
                     
-                    case 2 : {
-                        EntreesSorties.afficherMessage("L'article a bien été créé.");
-                        break;
-                    }
-                                    
-                    default : {
-                        EntreesSorties.afficherMessage("Insérez : 1 pour Oui, 2 pour Non.");
-                        test=true;
-                        break;
-                    }
+                /* Creation Titre*/   
+                if (t==null) {
+                    t = new Titre(titre);
+                    lierTitre(t, titre); // lier à l'hashmap de bib
+                    EntreesSorties.afficherMessage("Le titre a bien été créé.");
                 }
-            } while (test);
+                
+                /* Creation Article*/
+                pa.ajouterArticle(t, numPage);
+                t.ajouterArticle(a); // fait les liens entre titre et article
+                    
+                String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
+                Auteur au = unAuteur(nomAuteur);
+                
+                /* Creation Auteur*/
+                if (au==null) {
+                    au = new Auteur(nomAuteur);
+                    lierAuteur(au, nomAuteur);
+                }
+                
+                /*liaison de l'auteur à l'article (et ajouterAuteur lie l'article à l'auteur)*/
+                a = pa.unArticle(numPage);
+                a.ajouterAuteur(au);
+                EntreesSorties.afficherMessage("L'article a bien été créé.");
+                
+                /* Ajout d'infos*/
+                boolean test;
+                Integer ajout = EntreesSorties.lireEntier("Voulez-vous ajouter des informations à cet article? : 1 pour Oui, 2 pour Non : ");
+                   
+                do{
+                    test = false;
+                        
+                    switch (ajout){
+                        case 1 : {
+                            ajouterInfosArticle(a);
+                            break;
+                        }
+                    
+                        case 2 : {
+                            EntreesSorties.afficherMessage("Ces informations ont bien été ajoutées à l'article.");
+                            break;
+                        }
+                                    
+                        default : {
+                            EntreesSorties.afficherMessage("Insérez : 1 pour Oui, 2 pour Non.");
+                            test=true;
+                            break;
+                        }
+                    }   
+                } while (test);
+            }
+            
+                     
+            
         }
         
         

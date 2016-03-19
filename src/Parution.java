@@ -34,19 +34,19 @@ public class Parution implements Serializable
     private Integer _numParution;
     private GregorianCalendar _dateParution;
     private Periodique _periodique;
-    private HashSet<Article> _article;
+    private HashSet<Article> _collectionArticles;
 	
 // -----------------------------------------------
 	//Constructeur
 // -----------------------------------------------
 		
     /*creationParution ???*/
-    public Parution(Integer numParution, GregorianCalendar dateParution, Periodique periodique)
+    public Parution(Integer numParution, GregorianCalendar dateParution, Periodique pe)
     {
         this.setNumParution(numParution);
         this.setDateParution(dateParution);
 	/*this.setPeriodique(periodique);*/
-        this.lierPeriodique(periodique);
+        this.lierPeriodique(pe);
         this.setArticle(new HashSet<Article>());
         
     }
@@ -76,8 +76,14 @@ public class Parution implements Serializable
         
         public HashSet <Article> mesArticles() 
         {
-            return _article;                      
+            return _collectionArticles;                      
         }
+        
+
+              
+	// -----------------------------------------------
+		// Methodes
+	// -----------------------------------------------
         
         public Article unArticle(Integer numPage)
         {
@@ -90,14 +96,17 @@ public class Parution implements Serializable
             }
             return ar;
         }
-              
-	// -----------------------------------------------
-		// Methodes
-	// -----------------------------------------------
         
         public void verifierArticle(Integer numPage)
 	{
               /*n'existe pas*/                
+	}
+        
+        /*appelé par nouvelArticle() depuis bibliotheque, pour créer un article et le lier à sa parution et son titre */
+	public void ajouterArticle(Titre t, Integer numPage)
+	{
+            Article a = new Article(t, numPage, this);
+            _collectionArticles.add(a);
 	}
         
         public void infosReduitParution()
@@ -157,9 +166,9 @@ public class Parution implements Serializable
             this._periodique = periodique;
 	}
                 
-        private void setArticle(HashSet<Article> _article)
+        private void setArticle(HashSet<Article> _collectionArticles)
         {
-            this._article = _article;
+            this._collectionArticles = _collectionArticles;
         }
                 
         // -----------------------------------------------
