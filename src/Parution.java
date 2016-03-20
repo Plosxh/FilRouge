@@ -112,14 +112,14 @@ public class Parution implements Serializable
         public void infosReduitParution()
         {
             System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + this.getDateParution());
+            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));  //modifié par antoine 20/03
         }
         
         /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
         {
             System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + this.getDateParution());
+            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));  //modifié par antoine 20/03
             
             HashSet<Article> ensA=mesArticles();
             for(Article a : ensA) { 

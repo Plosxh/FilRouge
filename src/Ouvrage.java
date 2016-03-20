@@ -118,7 +118,7 @@ public class Ouvrage implements Serializable
 	public void infosOuvrage()
 	{
             System.out.println("Isbn                  : " + this.getIsbn());
-            System.out.println("Titre                 : " + this.getTitre());
+            System.out.println("Titre                 : " + _titre.getTitre()); //modifié par antoine 20/03
                         
             HashSet<Auteur> ensAu=mesAuteurs();
             System.out.print("Auteurs               : ");

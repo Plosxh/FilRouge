@@ -159,7 +159,7 @@ public class Periodique implements Serializable
         }
         
         /*appelé par consulterArticle() depuis bibliotheque*/
-        public void consulterArticle(Integer numParution, Integer numPage)   /*erreur vpp, numParution à ajouter*/
+        public void consulterArticle(Integer numParution, Integer numPage)   
         {
            Parution pa = uneParution(numParution);
            this.infosReduitPeriodique();
