@@ -688,117 +688,127 @@ public class Bibliotheque implements Serializable
         {
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
             Auteur au = unAuteur(nomAuteur);
-            HashSet<Ouvrage> ensO = au.ouvrageAuteur();
-            for(Ouvrage o : ensO) 
-            { 
-                o.infosReduitOuvrage();
-            }
-            
-            HashSet<Article> ensA = au.articleAuteur();
-            for(Article a : ensA) 
-            { 
-                a.infosArticle();
-            }
-            
-        }
+            if(au!=null){
+              HashSet<Ouvrage> ensO = au.ouvrageAuteur();
+                for(Ouvrage o : ensO) 
+                { 
+                    o.infosReduitOuvrage();
+                }
 
-        /*public void rechercheParAuteur()
-        {
-            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
-            Auteur au = unAuteur(nomAuteur);
-            if(au!=null)
-            {
-               au.documentsAuteur();
+                HashSet<Article> ensA = au.articleAuteur();
+                for(Article a : ensA) 
+                { 
+                    a.infosArticle();
+                }  
             }
-            else
-            {
-                EntreesSorties.afficherMessage("L'auteur que vous avez entré n'existe pas.");       
-            }
-        }*/
+            else{
+                EntreesSorties.afficherMessage("Cet auteur n'existe pas.");
+            }            
+        }
         
         public void rechercheParMotCle()
         {
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
             MotCle mc = unMotCle(motcle);
-            HashSet<Ouvrage> ensO = mc.ouvrageAuteur();
-            for(Ouvrage o : ensO) 
-            { 
-                o.infosReduitOuvrage();
+            if(mc!=null){
+                HashSet<Ouvrage> ensO = mc.ouvrageAuteur();
+                for(Ouvrage o : ensO) 
+                { 
+                    o.infosReduitOuvrage();
+                }
+
+                HashSet<Article> ensA = mc.articleAuteur();
+                for(Article a : ensA) 
+                { 
+                    a.infosArticle();
+                }
             }
-            
-            HashSet<Article> ensA = mc.articleAuteur();
-            for(Article a : ensA) 
-            { 
-                a.infosArticle();
-            }
+            else{
+                EntreesSorties.afficherMessage("Ce mot-clé n'existe pas.");
+            }            
         }
-        /*
-        public void rechercheParMotCle()
-        {
-            String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
-            MotCle mc = unMotCle(motcle);
-            if(mc!=null)
-            {
-               mc.documentsMotCle();
-            }
-            else
-            {
-                EntreesSorties.afficherMessage("Le mot clé que vous avez entré n'existe pas.");       
-            }
-        }*/
         
         public void rechercheParTitre()
         {
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
             Titre t = unTitre(libelleT);
-            HashSet<Ouvrage> ensO = t.ouvrageAuteur();
-            for(Ouvrage o : ensO) 
-            { 
-                o.infosReduitOuvrage();
+            if(t!=null){
+                HashSet<Ouvrage> ensO = t.ouvrageAuteur();
+                for(Ouvrage o : ensO) 
+                { 
+                    o.infosReduitOuvrage();
+                }
+
+                HashSet<Article> ensA = t.articleAuteur();
+                for(Article a : ensA) 
+                { 
+                    a.infosArticle();
+                }
             }
-            
-            HashSet<Article> ensA = t.articleAuteur();
-            for(Article a : ensA) 
-            { 
-                a.infosArticle();
+            else{
+                EntreesSorties.afficherMessage("Ce titre n'existe pas.");
             }
         }
-        /*
-        public void rechercheParTitre()
-        {
-            String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
-            Titre t = unTitre(libelleT);
-            if(t!=null)
-            {
-               t.documentsTitre();
-            }
-            else
-            {
-                EntreesSorties.afficherMessage("Le titre que vous avez entré n'existe pas.");       
-            }
-        }*/
         
         public void rechercheTitreMotcle()
         {
             //titre
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            HashSet<Ouvrage> ensOtitre = null;            
+            HashSet<Article> ensAtitre = null;
             Titre t = unTitre(libelleT);
-            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
-            HashSet<Article> ensAtitre = t.articleAuteur();
+            if(t!=null){
+                ensOtitre = t.ouvrageAuteur();            
+                ensAtitre = t.articleAuteur();    
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce titre n'existe pas.");
+            }
             
             //motclé
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            HashSet<Ouvrage> ensOmotcle = null;
+            HashSet<Article> ensAmotcle = null;
             MotCle mc = unMotCle(motcle);
-            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
-            HashSet<Article> ensAmotcle = mc.articleAuteur();
-            
+            if(mc!=null){
+                ensOmotcle = mc.ouvrageAuteur();
+                ensAmotcle = mc.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce mot-clé n'existe pas.");
+            }
+                                    
             //intersection ouvrage
-            HashSet<Ouvrage> ensO = ensOtitre;
-            ensO.retainAll(ensOmotcle);
-
+            HashSet<Ouvrage> ensO = null;
+            if(t==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(t==null && mc != null){
+                ensO = ensOmotcle;
+            }
+            else if(t!=null && mc==null){
+                ensO = ensOtitre;
+            }
+            else{
+                ensO = ensOtitre;
+                ensO.retainAll(ensOmotcle);
+            }
+            
             //intersection article
-            HashSet<Article> ensA = ensAtitre;
-            ensA.retainAll(ensAmotcle);
+            HashSet<Article> ensA = null;
+            if(t==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(t==null && mc != null){
+                ensA = ensAmotcle;
+            }
+            else if(t!=null && mc==null){
+                ensA = ensAtitre;
+            }
+            else{
+                ensA = ensAtitre;
+                ensA.retainAll(ensAmotcle);
+            }
             
             //résultat
             EntreesSorties.afficherMessage("Pour la recherche avec le titre : " + libelleT + " et le mot clé : " + motcle + ", le résultat est :");
@@ -816,23 +826,62 @@ public class Bibliotheque implements Serializable
         {
             //titre
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            HashSet<Ouvrage> ensOtitre = null;            
+            HashSet<Article> ensAtitre = null;
             Titre t = unTitre(libelleT);
-            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
-            HashSet<Article> ensAtitre = t.articleAuteur();
+            if(t!=null){
+                ensOtitre = t.ouvrageAuteur();            
+                ensAtitre = t.articleAuteur();    
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce titre n'existe pas.");
+            }
             
             //auteur
             String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            HashSet<Ouvrage> ensOauteur = null;
+            HashSet<Article> ensAauteur = null;
             Auteur au = unAuteur(nomA);
-            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
-            HashSet<Article> ensAauteur = au.articleAuteur();
+            if(au!=null){
+                ensOauteur = au.ouvrageAuteur();
+                ensAauteur = au.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Cet auteur n'existe pas.");
+            }
+            
             
             //intersection ouvrage
-            HashSet<Ouvrage> ensO = ensOtitre;
-            ensO.retainAll(ensOauteur);
-
+            HashSet<Ouvrage> ensO = null;
+            if(t==null && au == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(t==null && au != null){
+                ensO = ensOauteur;
+            }
+            else if(t!=null && au==null){
+                ensO = ensOtitre;
+            }
+            else{
+                ensO = ensOtitre;
+                ensO.retainAll(ensOauteur);
+            }
+            
             //intersection article
-            HashSet<Article> ensA = ensAtitre;
-            ensA.retainAll(ensAauteur);
+            HashSet<Article> ensA = null;
+            if(t==null && au == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(t==null && au != null){
+                ensA = ensAauteur;
+            }
+            else if(t!=null && au==null){
+                ensA = ensAtitre;
+            }
+            else{
+                ensA = ensAtitre;
+                ensA.retainAll(ensAauteur);
+            }
             
             //résultat
             EntreesSorties.afficherMessage("Pour la recherche avec le titre : " + libelleT + " et l'auteur : " + nomA + ", le résultat est :");
@@ -850,23 +899,61 @@ public class Bibliotheque implements Serializable
         {
              //motclé
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            HashSet<Ouvrage> ensOmotcle = null;
+            HashSet<Article> ensAmotcle = null;
             MotCle mc = unMotCle(motcle);
-            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
-            HashSet<Article> ensAmotcle = mc.articleAuteur();
+            if(mc!=null){
+                ensOmotcle = mc.ouvrageAuteur();
+                ensAmotcle = mc.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce mot-clé n'existe pas.");
+            }
             
             //auteur
             String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            HashSet<Ouvrage> ensOauteur = null;
+            HashSet<Article> ensAauteur = null;
             Auteur au = unAuteur(nomA);
-            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
-            HashSet<Article> ensAauteur = au.articleAuteur();
+            if(au!=null){
+                ensOauteur = au.ouvrageAuteur();
+                ensAauteur = au.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Cet auteur n'existe pas.");
+            }
             
             //intersection ouvrage
-            HashSet<Ouvrage> ensO = ensOmotcle;
-            ensO.retainAll(ensOauteur);
-
+            HashSet<Ouvrage> ensO = null;
+            if(au==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(au==null && mc != null){
+                ensO = ensOmotcle;
+            }
+            else if(au!=null && mc==null){
+                ensO = ensOauteur;
+            }
+            else{
+                ensO = ensOauteur;
+                ensO.retainAll(ensOmotcle);
+            }
+            
             //intersection article
-            HashSet<Article> ensA = ensAmotcle;
-            ensA.retainAll(ensAauteur);
+            HashSet<Article> ensA = null;
+            if(au==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des deux arguments n'existe.");
+            }
+            else if(au==null && mc != null){
+                ensA = ensAmotcle;
+            }
+            else if(au!=null && mc==null){
+                ensA = ensAauteur;
+            }
+            else{
+                ensA = ensAauteur;
+                ensA.retainAll(ensAmotcle);
+            }
             
             //résultat
             EntreesSorties.afficherMessage("Pour la recherche avec le mot clé : " + motcle + " et l'auteur : " + nomA + ", le résultat est :");
@@ -884,31 +971,106 @@ public class Bibliotheque implements Serializable
         {
             //titre
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            HashSet<Ouvrage> ensOtitre = null;            
+            HashSet<Article> ensAtitre = null;
             Titre t = unTitre(libelleT);
-            HashSet<Ouvrage> ensOtitre = t.ouvrageAuteur();            
-            HashSet<Article> ensAtitre = t.articleAuteur();
+            if(t!=null){
+                ensOtitre = t.ouvrageAuteur();            
+                ensAtitre = t.articleAuteur();    
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce titre n'existe pas.");
+            }
             
             //motclé
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            HashSet<Ouvrage> ensOmotcle = null;
+            HashSet<Article> ensAmotcle = null;
             MotCle mc = unMotCle(motcle);
-            HashSet<Ouvrage> ensOmotcle = mc.ouvrageAuteur();
-            HashSet<Article> ensAmotcle = mc.articleAuteur();
+            if(mc!=null){
+                ensOmotcle = mc.ouvrageAuteur();
+                ensAmotcle = mc.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Ce mot-clé n'existe pas.");
+            }
             
-             //auteur
+            //auteur
             String nomA = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            HashSet<Ouvrage> ensOauteur = null;
+            HashSet<Article> ensAauteur = null;
             Auteur au = unAuteur(nomA);
-            HashSet<Ouvrage> ensOauteur = au.ouvrageAuteur();
-            HashSet<Article> ensAauteur = au.articleAuteur();
+            if(au!=null){
+                ensOauteur = au.ouvrageAuteur();
+                ensAauteur = au.articleAuteur();
+            }
+            else{
+                EntreesSorties.afficherMessage("Cet auteur n'existe pas.");
+            }
             
             //intersection ouvrage
-            HashSet<Ouvrage> ensO = ensOtitre;
-            ensO.retainAll(ensOmotcle);
-            ensO.retainAll(ensOauteur);
-
+            HashSet<Ouvrage> ensO = null;
+            if(t==null && au==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des trois arguments n'existe.");
+            }
+            else if(t==null && au==null && mc != null){
+                ensO = ensOmotcle;
+            }
+            else if(t==null && au!=null && mc==null){
+                ensO = ensOauteur;
+            }
+            else if(t==null && au!=null && mc!=null){
+                ensO = ensOauteur;
+                ensO.retainAll(ensOmotcle);
+            }
+            else if(t!=null && au==null && mc==null){
+                ensO = ensOtitre;
+            }
+            else if(t!=null && au==null && mc!=null){
+                ensO = ensOtitre;
+                ensO.retainAll(ensOmotcle);
+            }
+            else if(t!=null && au!=null && mc==null){
+                ensO = ensOtitre;
+                ensO.retainAll(ensOauteur);
+            }
+            else{
+                ensO = ensOtitre;
+                ensO.retainAll(ensOauteur);
+                ensO.retainAll(ensOmotcle);
+            }
+            
             //intersection article
-            HashSet<Article> ensA = ensAtitre;
-            ensA.retainAll(ensAmotcle);
-            ensA.retainAll(ensAauteur);
+            HashSet<Article> ensA = null;
+            if(t==null && au==null && mc == null){
+                EntreesSorties.afficherMessage("Aucun des trois arguments n'existe.");
+            }
+            else if(t==null && au==null && mc != null){
+                ensA = ensAmotcle;
+            }
+            else if(t==null && au!=null && mc==null){
+                ensA = ensAauteur;
+            }
+            else if(t==null && au!=null && mc!=null){
+                ensA = ensAauteur;
+                ensA.retainAll(ensAmotcle);
+            }
+            else if(t!=null && au==null && mc==null){
+                ensA = ensAtitre;
+            }
+            else if(t!=null && au==null && mc!=null){
+                ensA = ensAtitre;
+                ensA.retainAll(ensAmotcle);
+            }
+            else if(t!=null && au!=null && mc==null){
+                ensA = ensAtitre;
+                ensA.retainAll(ensAauteur);
+            }
+            else{
+                ensA = ensAtitre;
+                ensA.retainAll(ensAauteur);
+                ensA.retainAll(ensAmotcle);
+            }
             
             //résultat
             EntreesSorties.afficherMessage("Pour la recherche mixte avec le titre : " + libelleT + ", le mot clé : " + motcle + " et l'auteur : " + nomA + ", le résultat est :");
