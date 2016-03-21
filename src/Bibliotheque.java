@@ -180,7 +180,7 @@ public class Bibliotheque implements Serializable
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");   
             Auteur au = unAuteur(nomAuteur);
             if (au==null) {
-                this.creationAuteur(nomAuteur);
+                au = this.creationAuteur(nomAuteur);
                 lierAuteur(au, nomAuteur);
             }
     
@@ -309,7 +309,7 @@ public class Bibliotheque implements Serializable
                 
                 /* Creation Auteur*/
                 if (au==null) {
-                    this.creationAuteur(nomAuteur);
+                    au = this.creationAuteur(nomAuteur);
                     lierAuteur(au, nomAuteur);
                 }
                 

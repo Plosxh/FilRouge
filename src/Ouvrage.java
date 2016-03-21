@@ -235,6 +235,7 @@ public class Ouvrage implements Serializable
 	
         public void ajouterAuteur(Auteur au)
 	{
+                  
             au.ajouterOuvrage(this);
             lierAuteur(au);
         }
