@@ -134,7 +134,7 @@ public class Ouvrage implements Serializable
             HashSet<MotCle> ensMc=mesMotCles();
             System.out.print("Mot-clés               : ");
             for(MotCle mc : ensMc) { 
-                System.out.print(mc.getMotCle()+", ");                               
+               mc.infosMotCle();                               
             } 
             EntreesSorties.afficherMessage("");
             
