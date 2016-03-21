@@ -113,7 +113,7 @@ public class Article implements Serializable
             System.out.println("ISSN : " + pe.getIssn());
             System.out.println("Nom periodique : " + pe.getNomPeriodique());
             System.out.println("Numero parution : " + _parution.getNumParution());
-            System.out.println("Date de parution : " + _parution.getDateParution());
+            System.out.println("Date de parution : " + EntreesSorties.ecrireDate(_parution.getDateParution()));
             System.out.println("Titre : " + _titre.getTitre());
             System.out.println("Numero de page : " + this.getNumeroPage());
             EntreesSorties.afficherMessage("");

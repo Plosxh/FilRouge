@@ -412,6 +412,7 @@ public class Bibliotheque implements Serializable
                             EntreesSorties.afficherMessage("Le mot clé existe déjà.");
                         }
                         mc.ajouterArticle(a); // fait les liens entre auteur et article
+                        a.ajouterMotCle(mc);
                         
                         testage=true;
                         break;
@@ -473,7 +474,7 @@ public class Bibliotheque implements Serializable
                             EntreesSorties.afficherMessage("Le mot clé existe déjà.");
                         }
                         mc.ajouterOuvrage(o); // fait les liens entre auteur et article
-                        
+                        o.ajouterMotCle(mc);
                         testage=true;
                         break;
                     }
@@ -858,7 +859,8 @@ public class Bibliotheque implements Serializable
             else if(t!=null && au==null){
                 ensO = ensOtitre;
             }
-            else{
+            else if (t!=null && au !=null)
+                {
                 ensO = ensOtitre;
                 ensO.retainAll(ensOauteur);
             }
