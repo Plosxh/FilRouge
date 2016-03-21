@@ -232,7 +232,19 @@ public class Ouvrage implements Serializable
             System.out.println("Titre   : " + _titre.getTitre());
             EntreesSorties.afficherMessage("");
 	}
-		
+	
+        public void ajouterAuteur(Auteur au)
+	{
+            au.ajouterOuvrage(this);
+            lierAuteur(au);
+        }
+        
+        public void ajouterMotCle(MotCle mc)
+        {
+            mc.ajouterOuvrage(this);
+            lierMotCle(mc);
+        }
+        
         /*
          * La fonction unExemplaire(numExemplaire) retourne l'exemplaire e trouvé grâce à son numExemplaire
          */
@@ -253,12 +265,7 @@ public class Ouvrage implements Serializable
          */
         public boolean exemplaireEmpruntable(Exemplaire e)
         {    
-            if(e.getDisponibilite() && e.getEmpruntable()){
-                return true;
-            }
-            else{
-                return false;
-            }
+        return e.getDisponibilite() && e.getEmpruntable();
         }
                 
         public void supEmprunt(Integer numExemplaire)
@@ -290,6 +297,16 @@ public class Ouvrage implements Serializable
             this._nomEditeur = nomEditeur;
 	}
 
+        private void lierAuteur(Auteur au)
+        {
+            _collectionAuteurs.add(au);
+        }
+        
+        private void lierMotCle(MotCle mc)
+        {
+            _collectionMotCles.add(mc);
+        }
+        
 	private void setDateParution(GregorianCalendar dateParution) 
         {
             this._dateParution = dateParution;

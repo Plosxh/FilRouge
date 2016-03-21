@@ -180,12 +180,12 @@ public class Bibliotheque implements Serializable
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");   
             Auteur au = unAuteur(nomAuteur);
             if (au==null) {
-                au = new Auteur(nomAuteur);
+                this.creationAuteur(nomAuteur);
                 lierAuteur(au, nomAuteur);
-                EntreesSorties.afficherMessage("L'auteur a bien été créé.");
             }
     
-            au.ajouterOuvrage(o); // fait les liens entre auteur et article
+            o = unOuvrage(isbn);
+            o.ajouterAuteur(au);
             t.ajouterOuvrage(o); // fait les liens entre auteur et article
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
             ajouterInfosOuvrage(o);
@@ -212,7 +212,7 @@ public class Bibliotheque implements Serializable
             o.ajouterExemplaire();
         }
         
-        
+      
         
         public void nouveauPeriodique()
         {
@@ -309,7 +309,7 @@ public class Bibliotheque implements Serializable
                 
                 /* Creation Auteur*/
                 if (au==null) {
-                    au = new Auteur(nomAuteur);
+                    this.creationAuteur(nomAuteur);
                     lierAuteur(au, nomAuteur);
                 }
                 
@@ -343,12 +343,16 @@ public class Bibliotheque implements Serializable
                         }
                     }   
                 } while (test);
-            }
-            
-                     
+            }       
             
         }
         
+        public Auteur creationAuteur(String nomAuteur){
+            Auteur au = new Auteur(nomAuteur);
+            lierAuteur(au, nomAuteur);
+            EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+            return au;
+        }
         
         public void ajouterInformationsArticle()        
         {
@@ -385,14 +389,12 @@ public class Bibliotheque implements Serializable
                         String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
                         Auteur au = unAuteur(nomAuteur);
                         if (au==null) {
-                            au = new Auteur(nomAuteur);
-                            lierAuteur(au, nomAuteur);
-                            EntreesSorties.afficherMessage("L'auteur a bien été créé.");
+                            this.creationAuteur(nomAuteur);
                         }
                         else{
                             EntreesSorties.afficherMessage("L'auteur existe déjà.");
                         }
-                        au.ajouterArticle(a); // fait les liens entre auteur et article
+                        a.ajouterAuteur(au); // fait les liens entre auteur et article
                         
                         testage=true;
                         break;
