@@ -135,11 +135,21 @@ public class Bibliotheque implements Serializable
             PublicCible p=PublicCible.ADULTE;
             boolean test;
             String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
+            
+            Titre t = unTitre(titre);
+            
+            /* Création du titre*/
+            if (t==null) {
+                t = new Titre(titre);
+                lierTitre(t, titre); // lier à l'hashmap de bib
+                EntreesSorties.afficherMessage("Le titre a bien été créé.");
+            }
+            
             String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
             GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
             Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
-                    
+              
             do{
                 test = false;
                         
@@ -165,15 +175,7 @@ public class Bibliotheque implements Serializable
             } while (test);
             
             
-            Titre t = unTitre(titre);
-            if (t==null) {
-                t = new Titre(titre);
-                lierTitre(t, titre); // lier à l'hashmap de bib
-                EntreesSorties.afficherMessage("Le titre a bien été créé.");
-            }
-            else{
-                EntreesSorties.afficherMessage("Le titre existe déjà.");
-            } 
+            
             
             Auteur au = unAuteur(nomAuteur);
             if (au==null) {
