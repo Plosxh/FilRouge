@@ -42,7 +42,7 @@ public class Ouvrage implements Serializable
 	//Constructeur
 // -----------------------------------------------
 		
-    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution,Auteur _auteur, PublicCible publicOuvrage /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/)
+    public Ouvrage(String isbn, Titre titre, String nomEditeur, GregorianCalendar dateParution, PublicCible publicOuvrage /*j'ai ajouté ça sinon y'a pas de visu externe, Antoine*/)
     {
         this.setIsbn(isbn);
 	this.setTitre(titre);

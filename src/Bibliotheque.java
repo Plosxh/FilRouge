@@ -132,10 +132,7 @@ public class Bibliotheque implements Serializable
 	 */
 	public Ouvrage creationOuvrage(String isbn)
         {	
-            PublicCible p=PublicCible.ADULTE;
-            boolean test;
             String titre = EntreesSorties.lireChaine("Entrez le titre de l'ouvrage : ");
-            
             Titre t = unTitre(titre);
             
             /* Création du titre*/
@@ -146,10 +143,11 @@ public class Bibliotheque implements Serializable
             }
             
             String nomEditeur = EntreesSorties.lireChaine("Entrez le nom de l'éditeur : ");
-            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");
             GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
             Integer publique = EntreesSorties.lireEntier("Entrez le type de public pour cet ouvrage, en tapant : 1 pour Enfant, 2 pour Adolescent, 3 pour Adulte : ");
-              
+            
+            PublicCible p=PublicCible.ADULTE;
+            boolean test;  
             do{
                 test = false;
                         
@@ -174,25 +172,21 @@ public class Bibliotheque implements Serializable
                 }
             } while (test);
             
+            /*Création de l'Ouvrage*/
+            Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution,p);
+            lierOuvrage(o, isbn);
             
-            
-            
+            /*Ajout de l'auteur*/
+            String nomAuteur = EntreesSorties.lireChaine("Entrez le nom d'auteur : ");   
             Auteur au = unAuteur(nomAuteur);
             if (au==null) {
                 au = new Auteur(nomAuteur);
                 lierAuteur(au, nomAuteur);
                 EntreesSorties.afficherMessage("L'auteur a bien été créé.");
             }
-            else{
-                EntreesSorties.afficherMessage("L'auteur existe déjà.");
-            }
-
-                      
-                    
-            Ouvrage o = new Ouvrage(isbn, t, nomEditeur, dateParution, au, p);
+    
             au.ajouterOuvrage(o); // fait les liens entre auteur et article
             t.ajouterOuvrage(o); // fait les liens entre auteur et article
-            lierOuvrage(o, isbn);  
             EntreesSorties.afficherMessage("L'ouvrage a bien été créé.");     
             ajouterInfosOuvrage(o);
             return o; 
