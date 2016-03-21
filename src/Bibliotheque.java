@@ -389,7 +389,7 @@ public class Bibliotheque implements Serializable
                         String nomAuteur = EntreesSorties.lireChaine("Entrez un nom d'auteur : ");
                         Auteur au = unAuteur(nomAuteur);
                         if (au==null) {
-                            this.creationAuteur(nomAuteur);
+                            au = this.creationAuteur(nomAuteur);
                         }
                         else{
                             EntreesSorties.afficherMessage("L'auteur existe déjà.");
