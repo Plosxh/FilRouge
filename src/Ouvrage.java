@@ -118,15 +118,7 @@ public class Ouvrage implements Serializable
 	public void infosOuvrage()
 	{
             System.out.println("Isbn                  : " + this.getIsbn());
-            System.out.println("Titre                 : " + _titre.getTitre()); //modifié par antoine 20/03
-            
-            HashSet<MotCle> ensMc=mesMotCles();
-            for(MotCle mc : ensMc) 
-            { 
-               System.out.println("Bonjour je suis dans le boucle");
-               mc.infosMotCle();
-            }
-            
+            System.out.println("Titre                 : " + _titre.getTitre()); //modifié par antoine 20/03          
             
             HashSet<Auteur> ensAu=mesAuteurs();
             for(Auteur au : ensAu) 
@@ -139,7 +131,11 @@ public class Ouvrage implements Serializable
             System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
             System.out.println("Public                : " + this.getPublic());
                         
-
+            HashSet<MotCle> ensMc=mesMotCles();
+            for(MotCle mc : ensMc) 
+            { 
+               mc.infosMotCle();
+            }
             
             System.out.println("Nombre d'exemplaires  : " + this._collectionExemplaires.size());
             
