@@ -456,7 +456,7 @@ public class Bibliotheque implements Serializable
                         else{
                             EntreesSorties.afficherMessage("L'auteur existe déjà.");
                         }
-                        au.ajouterOuvrage(o); // fait les liens entre auteur et article
+                        o.ajouterAuteur(au);
                         
                         testage=true;
                         break;
