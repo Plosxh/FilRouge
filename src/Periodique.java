@@ -83,7 +83,7 @@ public class Periodique implements Serializable
 	{
             GregorianCalendar dateParution = EntreesSorties.lireDate("Entrez la date de parution : ");
             Parution pa = new Parution(numParution,dateParution, this);
-            _collectionParutions.add(pa);
+            lierParution(pa);
             EntreesSorties.afficherMessage("La parution a bien été créée et liée à son périodique !");
 	}
         
@@ -98,29 +98,7 @@ public class Periodique implements Serializable
             }
             return par;
         }          
-	
-        /* N'EXISTE PLUS */
-        /*appelé par nouvelleParution() depuis bibliotheque*/
-	/*public void verifParution(Integer numParution)
-	{
-            Parution pa = uneParution(numParution);
-            if(pa == null)
-            {
-                GregorianCalendar dateParution = EntreesSorties.lireDate("Veuillez entrer la date de parution :");
-                creationParution(numParution, dateParution);
-                EntreesSorties.afficherMessage("La parution a bien été créée.");
-            }
-            else
-            {
-                EntreesSorties.afficherMessage("La parution existe déjà.");
-            }
-        }*/
-	
-	public void lierParution(Parution pa)
-	{
-            _collectionParutions.add(pa);
-	}
-        
+		      
         /*appelé par consulterPeriodique() depuis bibliotheque*/
         public void infosPeriodique()
         {
@@ -133,7 +111,7 @@ public class Periodique implements Serializable
                 EntreesSorties.afficherMessage("");
                 System.out.println("Liste des parutions de ce Périodique : ");
                 for(Parution pa : ensPa) { 
-                pa.infosReduitParution();
+                    pa.infosReduitParution();
                 }
             }
             else{                
@@ -162,6 +140,7 @@ public class Periodique implements Serializable
         public void consulterArticle(Integer numParution, Integer numPage)   
         {
            Parution pa = uneParution(numParution);
+           EntreesSorties.afficherMessage("Cet article a été publié dans le périodique suivant:");
            this.infosReduitPeriodique();
            pa.consulterArticle(numPage);
         }
@@ -193,14 +172,11 @@ public class Periodique implements Serializable
         // -----------------------------------------------
 		// Methodes
 	// ----------------------------------------------
-              
-        private void creationParution(Integer numParution, GregorianCalendar dateParution)
-	{
-            EntreesSorties.afficherMessage("Création de la parution...");
-            Parution pa = new Parution(numParution, dateParution, this);
-            lierParution(pa);  
-            EntreesSorties.afficherMessage("Création avec succès!");     
-	}
+                
+        private void lierParution(Parution pa)
+        {
+            _collectionParutions.add(pa);
+        }
         
          private HashSet <Parution> mesParutions() 
         {

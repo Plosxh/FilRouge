@@ -94,15 +94,18 @@ public class Article implements Serializable
                
         public void consulterArticle()
         {
+            this.infosReduitArticle();
             HashSet<Auteur> ensAu=mesAuteurs();
+            EntreesSorties.afficherMessage("Les auteurs de cet article sont les suivants : ");
             for(Auteur au : ensAu) 
             { 
-                au.infosAuteur();
+                System.out.println(au.getNomAuteur());
             }
             HashSet<MotCle> ensMc=mesMotCles();
+            EntreesSorties.afficherMessage("Les mots-clés associés à cet article sont les suivants : ");
             for(MotCle mc : ensMc) 
             { 
-               mc.infosMotCle();
+               System.out.println(mc.getMotCle());
             }
         }
             
@@ -185,11 +188,7 @@ public class Article implements Serializable
             return _collectionMotCles;                      
         }
         
-        /*Antoine : ça ne peux pas être dans cette méthode, il y a une erreur sur le VPP
-        private Article unArticle(Integer numPage)
-        {
-            
-        }*/
+  
 
     
 }

@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 /*
@@ -40,12 +41,11 @@ public class Parution implements Serializable
 	//Constructeur
 // -----------------------------------------------
 		
-    /*creationParution ???*/
+    /*creationParution */
     public Parution(Integer numParution, GregorianCalendar dateParution, Periodique pe)
     {
         this.setNumParution(numParution);
         this.setDateParution(dateParution);
-	/*this.setPeriodique(periodique);*/
         this.lierPeriodique(pe);
         this.setArticle(new HashSet<Article>());
         
@@ -90,36 +90,33 @@ public class Parution implements Serializable
             Article ar = null;
             HashSet<Article> ensA=mesArticles();
             for(Article a : ensA){
-                if (numPage==a.getNumeroPage()){
+                if (Objects.equals(numPage, a.getNumeroPage())){
                     ar = a;
                 }
             }
             return ar;
         }
         
-        public void verifierArticle(Integer numPage)
-	{
-              /*n'existe pas*/                
-	}
         
         /*appelé par nouvelArticle() depuis bibliotheque, pour créer un article et le lier à sa parution et son titre */
 	public void ajouterArticle(Titre t, Integer numPage)
 	{
             Article a = new Article(t, numPage, this);
-            _collectionArticles.add(a);
+            lierArticle(a);
 	}
         
         public void infosReduitParution()
         {
             System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));  //modifié par antoine 20/03
+            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
+            EntreesSorties.afficherMessage("");
         }
         
         /*appelé par infosPeriodique() depuis periodique*/
         public void infosParution()
         {
             System.out.println("Numero de parution    : " + this.getNumParution());
-            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));  //modifié par antoine 20/03
+            System.out.println("Date de parution      : " + EntreesSorties.ecrireDate(getDateParution()));
             
             HashSet<Article> ensA=mesArticles();
             for(Article a : ensA) { 
@@ -133,7 +130,9 @@ public class Parution implements Serializable
             Article a = unArticle(numPage);
             if(a != null)
             {
+                EntreesSorties.afficherMessage("Dans la parution suivante :");
                 this.infosReduitParution();
+                EntreesSorties.afficherMessage("Les informations de l'article sont les suivantes :");
                 a.consulterArticle();
             }
             else
@@ -181,5 +180,9 @@ public class Parution implements Serializable
             _periodique=pe;
 	}
         
+        private void lierArticle(Article a)
+        {
+            _collectionArticles.add(a);
+        }
 
 }

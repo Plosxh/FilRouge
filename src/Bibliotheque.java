@@ -450,7 +450,6 @@ public class Bibliotheque implements Serializable
                         Auteur au = unAuteur(nomAuteur);
                         if (au==null) {
                             au = new Auteur(nomAuteur);
-                            lierAuteur(au, nomAuteur);
                             EntreesSorties.afficherMessage("L'auteur a bien été créé.");
                         }
                         else{
@@ -561,14 +560,10 @@ public class Bibliotheque implements Serializable
           String issn = EntreesSorties.lireChaine("Entrez le numero ISSN : ");  
           Integer numParution = EntreesSorties.lireEntier("Entrez le numero de la parution : ");   
           Integer numPage = EntreesSorties.lireEntier("Entrez le numero de la page : "); 
+          EntreesSorties.afficherMessage("");
           
           Periodique pe = unPeriodique(issn);
           pe.consulterArticle(numParution, numPage);
-          /*Parution pa = pe.uneParution(numParution);
-          Article a = pa.unArticle(numPage);
-          a.infosArticle();
-          a.consulterArticle();
-          */
             
         }
         
@@ -684,19 +679,29 @@ public class Bibliotheque implements Serializable
         public void rechercheParAuteur()
         {
             String nomAuteur = EntreesSorties.lireChaine("Entrez le nom de l'auteur : ");
+            EntreesSorties.afficherMessage("");
             Auteur au = unAuteur(nomAuteur);
             if(au!=null){
               HashSet<Ouvrage> ensO = au.ouvrageAuteur();
-                for(Ouvrage o : ensO) 
-                { 
-                    o.infosReduitOuvrage();
+                if(! ensO.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les ouvrages de cet auteur :");
+                    EntreesSorties.afficherMessage("");
+                    for(Ouvrage o : ensO) 
+                    { 
+                        o.infosReduitOuvrage();
+                    } 
                 }
-
-                HashSet<Article> ensA = au.articleAuteur();
-                for(Article a : ensA) 
-                { 
-                    a.infosArticle();
-                }  
+                
+                HashSet<Article> ensA = au.articleAuteur();           
+                if (! ensA.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les articles de cet auteur :");
+                    EntreesSorties.afficherMessage("");
+                    for(Article a : ensA) 
+                    { 
+                        a.infosArticle();
+                    }  
+                }
+                
             }
             else{
                 EntreesSorties.afficherMessage("Cet auteur n'existe pas.");
@@ -706,19 +711,28 @@ public class Bibliotheque implements Serializable
         public void rechercheParMotCle()
         {
             String motcle = EntreesSorties.lireChaine("Entrez le mot clé : ");
+            EntreesSorties.afficherMessage("");
             MotCle mc = unMotCle(motcle);
             if(mc!=null){
                 HashSet<Ouvrage> ensO = mc.ouvrageAuteur();
-                for(Ouvrage o : ensO) 
-                { 
-                    o.infosReduitOuvrage();
+                if(!ensO.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les ouvrages associés à ce mot-clé :");
+                    EntreesSorties.afficherMessage("");
+                    for(Ouvrage o : ensO) 
+                    { 
+                        o.infosReduitOuvrage();
+                    } 
                 }
-
+                
                 HashSet<Article> ensA = mc.articleAuteur();
-                for(Article a : ensA) 
-                { 
-                    a.infosArticle();
-                }
+                if(!ensA.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les articles associés à ce mot-clé :");
+                    EntreesSorties.afficherMessage("");
+                    for(Article a : ensA) 
+                    { 
+                        a.infosArticle();
+                    }   
+                }               
             }
             else{
                 EntreesSorties.afficherMessage("Ce mot-clé n'existe pas.");
@@ -728,19 +742,28 @@ public class Bibliotheque implements Serializable
         public void rechercheParTitre()
         {
             String libelleT = EntreesSorties.lireChaine("Entrez le titre : ");
+            EntreesSorties.afficherMessage("");
             Titre t = unTitre(libelleT);
             if(t!=null){
                 HashSet<Ouvrage> ensO = t.ouvrageAuteur();
-                for(Ouvrage o : ensO) 
-                { 
-                    o.infosReduitOuvrage();
+                if(!ensO.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les ouvrages ayant ce titre :");
+                    EntreesSorties.afficherMessage("");
+                    for(Ouvrage o : ensO) 
+                    { 
+                        o.infosReduitOuvrage();
+                    }   
                 }
-
+                
                 HashSet<Article> ensA = t.articleAuteur();
-                for(Article a : ensA) 
-                { 
-                    a.infosArticle();
-                }
+                if(!ensA.isEmpty()){
+                    EntreesSorties.afficherMessage("Voici les articles ayant ce titre :");
+                    EntreesSorties.afficherMessage("");
+                    for(Article a : ensA) 
+                    { 
+                        a.infosArticle();
+                    }
+                }              
             }
             else{
                 EntreesSorties.afficherMessage("Ce titre n'existe pas.");
